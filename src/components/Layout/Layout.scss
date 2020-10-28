@@ -2,13 +2,13 @@
     min-height: 100vh !important;
     &-content {
         position: relative;
-        padding: 24px;
     }
 }
 
 .main-content {
     min-height: calc(100% - 46px);
     background-color: #fff;
+    margin-top: 46px;
 }
 
 .content-padding {
