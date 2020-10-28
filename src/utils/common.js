@@ -11,7 +11,7 @@ export const parseCurrency = (value) => {
 };
 
 export const formatVietnameseCurrency = (money) => {
-    return money.toLocaleString("vi-VN", {
+    return parseInt(money).toLocaleString("vi-VN", {
         style: "currency",
         currency: "VND",
     });

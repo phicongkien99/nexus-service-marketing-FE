@@ -1,5 +1,6 @@
 import { Layout } from "antd";
 import React, { useState } from "react";
+import UserFooter from "./Footer";
 import { UserHeader } from "./Header";
 import "./Layout.scss";
 
@@ -11,6 +12,7 @@ function UserLayout(props) {
                 <Layout.Content className="wrapper-content">
                     <div className="main-content content-padding">{props.children}</div>
                 </Layout.Content>
+                <UserFooter />
             </Layout>
         </Layout>
     );

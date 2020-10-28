@@ -25,7 +25,7 @@ function HomePageCarousel(props) {
         <>
             <Button className="arrow-button arrow-button-left" icon={<LeftOutlined />} onClick={prev} />
             <Button className="arrow-button arrow-button-right" icon={<RightOutlined />} onClick={next} />
-            <Carousel ref={carousel}>
+            <Carousel ref={carousel} autoplay={true} autoplaySpeed={5000} pauseOnHover={false}>
                 <div>
                     <h3 style={contentStyle}>1</h3>
                 </div>
