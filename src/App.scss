@@ -33,3 +33,19 @@
         margin-top: 25px;
     }
 }
+
+.bg {
+    &--transparent {
+        background: transparent;
+    }
+}
+
+.display {
+    &-flex {
+        display: flex;
+    }
+
+    &-min-width {
+        width: 1px;
+    }
+}

@@ -10,7 +10,7 @@ function UserLayout(props) {
             <Layout>
                 <UserHeader />
                 <Layout.Content className="wrapper-content">
-                    <div className="main-content content-padding">{props.children}</div>
+                    <div className="main-content white-background content-padding">{props.children}</div>
                 </Layout.Content>
                 <UserFooter />
             </Layout>

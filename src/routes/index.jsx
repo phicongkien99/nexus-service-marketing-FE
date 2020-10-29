@@ -6,12 +6,14 @@ import AdminRoute from "./LayoutRoute/AdminLayoutRoute";
 import UserRoute from "./LayoutRoute/UserLayoutRoute";
 const Dashboard = lazy(() => import("../app/admin/dashboard"));
 const HomePage = lazy(() => import("../app/user/home-page"));
+const Stores = lazy(() => import("../app/admin/stores"));
 
 function Routes() {
     return (
         <BrowserRouter>
             <Switch>
                 <AdminRoute exact path="/admin/dashboard" component={Dashboard} />
+                <AdminRoute exact path="/admin/stores" component={Stores} />
                 <UserRoute exact path="/" component={HomePage} />
                 <Route component={NotFound} />
             </Switch>
