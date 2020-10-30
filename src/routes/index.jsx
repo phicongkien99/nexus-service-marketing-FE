@@ -1,5 +1,5 @@
 import React, { lazy } from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import NotFound from "../components/Layout/NotFound";
 import { ToastContainer } from "react-toastify";
 import AdminRoute from "./LayoutRoute/AdminLayoutRoute";
@@ -12,6 +12,9 @@ function Routes() {
     return (
         <BrowserRouter>
             <Switch>
+                <Route exact path="/admin">
+                    <Redirect to="/admin/dashboard" />
+                </Route>
                 <AdminRoute exact path="/admin/dashboard" component={Dashboard} />
                 <AdminRoute exact path="/admin/stores" component={Stores} />
                 <UserRoute exact path="/" component={HomePage} />

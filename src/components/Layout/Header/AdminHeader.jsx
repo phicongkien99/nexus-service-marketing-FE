@@ -6,15 +6,15 @@ import Logo from "../../../assets/img/radar.svg";
 import SubMenu from "antd/lib/menu/SubMenu";
 
 function AdminHeader(props) {
-    const { username, collapsed, onCollapseChange } = props;
     return (
         <Layout.Header className="header admin-header">
             <Menu
                 style={{ width: "100%" }}
-                className="bg--transparent"
+                className="bg-transparent"
                 key="user"
                 mode="horizontal"
                 onClick={() => console.log("ok")}
+                selectable={false}
             >
                 <SubMenu
                     style={{ float: "right" }}
