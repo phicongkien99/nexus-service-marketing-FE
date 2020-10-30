@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Button, Col, PageHeader, Row, Skeleton, Space, Table, Tag } from "antd";
+import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import StoreModal from "./Modal";
-import { v1 } from "uuid";
+import { fetchStores, createStore, updateStore, deleteStore } from "./slice";
+import ConfirmModal from "../../../components/Modal/Confirm";
 
 function Stores(props) {
     const [openModal, setOpenModal] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentStore, setCurrentStore] = useState(null);
-    const [randomKey, setRandomKey] = useState(v1());
 
     const { stores, isLoading } = useSelector((state) => state.adminStore);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        document.title = "Stores";
+        dispatch(fetchStores(stores));
+    }, []);
+
     const columns = [
+        {
+            title: "#",
+            key: "index",
+            render: (text, record, index) => index,
+        },
         {
             title: "Name",
             dataIndex: "name",
@@ -30,18 +41,17 @@ function Stores(props) {
             dataIndex: "isClosed",
             key: "isClosed",
             render: (isClosed) => (
-                <Tag color={isClosed ? "red" : "green"}>
-                    {isClosed ? "Deactivated" : "Activating"}
-                </Tag>
+                <Tag color={isClosed ? "red" : "green"}>{isClosed ? "Deactivated" : "Activating"}</Tag>
             ),
         },
         {
-            title: "Actions",
+            title: "Action",
+            key: "action",
             className: "min-width",
             render: (text, record) => (
                 <Space>
-                    <Button className="btn--yellow" icon={<EditOutlined />} onClick={handleUpdate} />
-                    <Button className="btn--red" icon={<DeleteOutlined />} onClick={handleDelete} />
+                    <Button className="btn--yellow" icon={<EditOutlined />} onClick={() => handleUpdate(record)} />
+                    <Button className="btn--red" icon={<DeleteOutlined />} onClick={() => handleDelete(record)} />
                 </Space>
             ),
         },
@@ -49,30 +59,42 @@ function Stores(props) {
 
     const handleChangeTable = (pagination, filters, sorter) => {};
 
-    const handleOpenModal = () => {
+    const handleCreate = () => {
         setOpenModal(true);
     };
 
-    const handleCreate = () => {
-        setRandomKey(v1());
-        handleOpenModal();
-    }
-
     const handleUpdate = (store) => {
         setCurrentStore(store);
-        handleOpenModal();
-    }
+        setOpenModal(true);
+    };
 
-    const handleConfirm = () => {};
+    const handleConfirm = (store) => {
+        if (currentStore) {
+            dispatch(updateStore(store));
+        } else {
+            dispatch(createStore(store));
+        }
+    };
 
     const handleCancel = () => {
         setOpenModal(false);
         setCurrentStore(null);
     };
 
-    const handleDelete = () => {
-        
-    }
+    const handleDelete = (store) => {
+        setCurrentStore(store);
+        setOpenDeleteModal(true);
+    };
+
+    const handleCancelDelete = () => {
+        setCurrentStore(null);
+        setOpenDeleteModal(false);
+    };
+
+    const handleConfirmDelete = () => {
+        dispatch(deleteStore(currentStore["id"]));
+        setOpenDeleteModal(false);
+    };
 
     return (
         <>
@@ -87,12 +109,7 @@ function Stores(props) {
                     >
                         Create
                     </Button>
-                    <Table
-                        loading={isLoading}
-                        dataSource={stores}
-                        columns={columns}
-                        onChange={handleChangeTable}
-                    />
+                    <Table loading={isLoading} dataSource={stores} columns={columns} onChange={handleChangeTable} />
                 </Col>
             </Row>
             <StoreModal
@@ -100,7 +117,14 @@ function Stores(props) {
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
                 store={currentStore}
-                key={currentStore ? currentStore.id : randomKey}
+                isLoading={isLoading}
+            />
+            <ConfirmModal
+                open={openDeleteModal}
+                message="Are you sure to close this store?"
+                onCancel={handleCancelDelete}
+                onConfirm={handleConfirmDelete}
+                isLoading={isLoading}
             />
         </>
     );

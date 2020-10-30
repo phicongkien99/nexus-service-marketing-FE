@@ -49,7 +49,7 @@ function fetchStores(stores) {
             toast.error(e.response ? e.response.data.message : "Get stores failed!");
         } finally {
             if (stores.length === 0) {
-                setIsLoading(false);
+                dispatch(setIsLoading(false));
             }
         }
     };
@@ -74,7 +74,7 @@ function createStore(store) {
     };
 }
 
-function updateStore(id, store) {
+function updateStore(store) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
