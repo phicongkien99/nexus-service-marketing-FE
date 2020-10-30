@@ -21,22 +21,23 @@ function HomePageCarousel(props) {
         textAlign: "center",
         background: "#364d79",
     };
+
     return (
         <>
             <Button className="arrow-button arrow-button-left" icon={<LeftOutlined />} onClick={prev} />
             <Button className="arrow-button arrow-button-right" icon={<RightOutlined />} onClick={next} />
-            <Carousel ref={carousel} autoplay={true} autoplaySpeed={5000} pauseOnHover={false}>
+            <Carousel ref={carousel} autoplay={true} autoplaySpeed={4000} pauseOnHover={false}>
                 <div>
-                    <h3 style={contentStyle}>1</h3>
+                    <img style={contentStyle} src="https://fpt.vn/storage/upload/images/banners/banner/gtbb_eng.jpg"/> 
+                </div>
+                <div> 
+                    <img style={contentStyle} src="https://fpt.vn/storage/upload/images/banners/banner/trangchinh_ver_eng-01.jpg"/> 
                 </div>
                 <div>
-                    <h3 style={contentStyle}>2</h3>
+                    <img style={contentStyle} src="https://fpt.vn/storage/upload/images/banners/fti/banner_fpt_bgw_en.png"/> 
                 </div>
-                <div>
-                    <h3 style={contentStyle}>3</h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>4</h3>
+                <div >
+                    <img style={contentStyle} src="https://fpt.vn/storage/upload/images/banners/banner/idg-trangchu-eng.jpg"/> 
                 </div>
             </Carousel>
         </>
