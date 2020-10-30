@@ -1,35 +1,98 @@
 .text {
-    &--center {
+    &-center {
         text-align: center;
     }
 
-    &--blue {
+    &-blue {
         color: #035690;
     }
 
-    &--orange {
+    &-orange {
         color: #FD6436;
     }
 
-    &--green {
+    &-green {
         color: #62B046;
     }
 }
 
-.mt {
-    &-5 {
-        margin-top: 5px;
+.m {
+    &t {
+        &-5 {
+            margin-top: 5px;
+        }
+        &-10 {
+            margin-top: 10px;
+        }
+        &-15 {
+            margin-top: 15px;
+        }
+        &-20 {
+            margin-top: 20px;
+        }
+        &-25 {
+            margin-top: 25px;
+        }
     }
-    &-10 {
-        margin-top: 10px;
+
+    &b {
+        &-5 {
+            margin-bottom: 5px;
+        }
+        &-10 {
+            margin-bottom: 10px;
+        }
+        &-15 {
+            margin-bottom: 15px;
+        }
+        &-20 {
+            margin-bottom: 20px;
+        }
+        &-25 {
+            margin-bottom: 25px;
+        }
     }
-    &-15 {
-        margin-top: 15px;
+}
+
+.bg {
+    &-transparent {
+        background: transparent;
     }
-    &-20 {
-        margin-top: 20px;
+}
+
+.display {
+    &-flex {
+        display: flex;
     }
-    &-25 {
-        margin-top: 25px;
+
+    &-min-width {
+        width: 1px;
+    }
+}
+
+.btn {
+    &--green {
+        background-color: #99f3bd;
+        color: black;
+    }
+
+    &--red {
+        background-color: #fc9d9d;
+        color: black;
+    }
+
+    &--yellow {
+        background-color: #fcf876;
+        color: black;
+    }
+}
+
+.float {
+    &-right {
+        float: right;
+    }
+
+    &-left {
+        float: left;
     }
 }

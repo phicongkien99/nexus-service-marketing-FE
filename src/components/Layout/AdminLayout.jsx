@@ -11,11 +11,11 @@ function AdminLayout(props) {
     };
     return (
         <Layout className="wrapper">
-            <AdminSider collapsed={collapsed} onCollapseChange={onCollapseChange} />
+            <AdminHeader />
             <Layout>
-                <AdminHeader collapsed={collapsed} onCollapseChange={onCollapseChange} />
+                <AdminSider collapsed={collapsed} onCollapseChange={onCollapseChange} />
                 <Layout.Content className="wrapper-content">
-                    <div className="main-content content-padding">{props.children}</div>
+                    <div className="admin-main-content content-padding">{props.children}</div>
                 </Layout.Content>
             </Layout>
         </Layout>

@@ -20,17 +20,17 @@ function HomePage(props) {
             <Row className="mt-15">
                 <Col span={16} offset={4}>
                     <Row gutter={5}>
-                        <Col span={8} className="text--center">
+                        <Col span={8} className="text-center">
                             <Image src={Register} alt="Register online" />
-                            <h2 className="text--blue">Register online</h2>
+                            <h2 className="text-blue">Register online</h2>
                         </Col>
-                        <Col span={8} className="text--center">
+                        <Col span={8} className="text-center">
                             <Image src={Member} alt="Member" />
-                            <h2 className="text--orange">Membership</h2>
+                            <h2 className="text-orange">Membership</h2>
                         </Col>
-                        <Col span={8} className="text--center">
+                        <Col span={8} className="text-center">
                             <Image src={Support} alt="Support" />
-                            <h2 className="text--green">Support</h2>
+                            <h2 className="text-green">Support</h2>
                         </Col>
                     </Row>
                 </Col>
