@@ -50,7 +50,7 @@ function HomePage(props) {
                     <b style={{fontSize: '18px'}}>Promotion</b>
                 </Col>
             </Row>
-            <Row>
+            <Row className="mt-15">
                 <Col span={16} offset={4} id="home-page-promotion">
                     <HomePagePromotion />
                 </Col>

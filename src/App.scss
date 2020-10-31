@@ -8,11 +8,15 @@
     }
 
     &-orange {
-        color: #FD6436;
+        color: #fd6436;
     }
 
     &-green {
-        color: #62B046;
+        color: #62b046;
+    }
+
+    &-black {
+        color: black;
     }
 }
 
@@ -95,4 +99,8 @@
     &-left {
         float: left;
     }
+}
+
+.full-width {
+    width: 100%;
 }

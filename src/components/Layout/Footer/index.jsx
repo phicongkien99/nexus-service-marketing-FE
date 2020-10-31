@@ -3,17 +3,25 @@ import { Layout, Row, Col, Image } from "antd";
 import { Link } from "react-router-dom";
 
 function UserFooter(props) {
-
     const textWhite = {
         color: "white",
-    }
+    };
 
     const rowStyle = {
-        marginTop: "6px"
-    }
+        marginTop: "6px",
+    };
 
     return (
-        <Layout.Footer style={{ textAlign: "left", backgroundColor: "#333333", color: "white", paddingLeft: "0", paddingRight: "0", paddingBottom: "0" }}>
+        <Layout.Footer
+            style={{
+                textAlign: "left",
+                backgroundColor: "#333333",
+                color: "white",
+                paddingLeft: "0",
+                paddingRight: "0",
+                paddingBottom: "0",
+            }}
+        >
             <Row>
                 <Col span={16} offset={4}>
                     <Row gutter={5}>
@@ -22,7 +30,7 @@ function UserFooter(props) {
                                 <Col span={12}>
                                     <Row>
                                         <Link to="">
-                                            <h3 className="text--orange">About Nexus Service</h3>
+                                            <h3 className="text-orange">About Nexus Service</h3>
                                         </Link>
                                     </Row>
                                     <Row>
@@ -52,7 +60,7 @@ function UserFooter(props) {
                                     </Row>
                                 </Col>
                                 <Col span={12}>
-                                    <h3 className="text--orange">Nexus Service's Customer</h3>
+                                    <h3 className="text-orange">Nexus Service's Customer</h3>
                                     <Row>
                                         <Link style={textWhite} to="">
                                             User Guides
@@ -84,7 +92,7 @@ function UserFooter(props) {
                         <Col span={12}>
                             <Row>
                                 <Col span={12}>
-                                    <h3 className="text--orange">New to Nexus Service?</h3>
+                                    <h3 className="text-orange">New to Nexus Service?</h3>
                                     <Row>
                                         <Link style={textWhite} to="">
                                             Online Registrantion
@@ -113,7 +121,12 @@ function UserFooter(props) {
                                 </Col>
                                 <Col span={12}>
                                     <Link to="">
-                                        <Image src={"https://fpt.vn/storage/upload/images/banners/associated/fptjobs_new.png"} alt="Member" />
+                                        <Image
+                                            src={
+                                                "https://fpt.vn/storage/upload/images/banners/associated/fptjobs_new.png"
+                                            }
+                                            alt="Member"
+                                        />
                                     </Link>
                                 </Col>
                             </Row>
@@ -129,29 +142,54 @@ function UserFooter(props) {
                                 <Col span={12}>
                                     <Row>
                                         <Link to="">
-                                            <h3 className="text--orange">Follow Us</h3>
+                                            <h3 className="text-orange">Follow Us</h3>
                                         </Link>
                                     </Row>
                                     <Row>
-                                        <Link style={{ fontSize: "20px", color: "white" }} to="https://www.facebook.com">
-                                            <Image src={"https://fpt.vn/assets/frontend/img/icon/face.png"} alt="Member" /> Find us in FaceBook
+                                        <Link
+                                            style={{ fontSize: "20px", color: "white" }}
+                                            to="https://www.facebook.com"
+                                        >
+                                            <Image
+                                                src={
+                                                    "https://fpt.vn/assets/frontend/img/icon/face.png"
+                                                }
+                                                alt="Member"
+                                            />{" "}
+                                            Find us in FaceBook
                                         </Link>
                                     </Row>
                                 </Col>
                                 <Col span={12}>
-                                    <h3 className="text--orange">Links</h3>
+                                    <h3 className="text-orange">Links</h3>
                                     <Row>
                                         <Link style={{ marginRight: "10px" }} to="">
-                                            <Image src={"https://fpt.vn/storage/upload/images/menus/icons/sn/youtube.png"} />
+                                            <Image
+                                                src={
+                                                    "https://fpt.vn/storage/upload/images/menus/icons/sn/youtube.png"
+                                                }
+                                            />
                                         </Link>
                                         <Link style={{ marginRight: "10px" }} to="">
-                                            <Image src={"https://fpt.vn/storage/upload/images/menus/icons/sn/instagram.png"} />
+                                            <Image
+                                                src={
+                                                    "https://fpt.vn/storage/upload/images/menus/icons/sn/instagram.png"
+                                                }
+                                            />
                                         </Link>
                                         <Link style={{ marginRight: "10px" }} to="">
-                                            <Image src={"https://fpt.vn/storage/upload/images/menus/icons/sn/zalo.png"} />
+                                            <Image
+                                                src={
+                                                    "https://fpt.vn/storage/upload/images/menus/icons/sn/zalo.png"
+                                                }
+                                            />
                                         </Link>
                                         <Link style={{ marginRight: "10px" }} to="">
-                                            <Image src={"https://fpt.vn/storage/upload/images/menus/sn/face.png"} />
+                                            <Image
+                                                src={
+                                                    "https://fpt.vn/storage/upload/images/menus/sn/face.png"
+                                                }
+                                            />
                                         </Link>
                                     </Row>
                                 </Col>
@@ -160,7 +198,15 @@ function UserFooter(props) {
                     </Row>
                 </Col>
             </Row>
-            <Row style={{ backgroundColor: "black", marginTop: "5px", width: "100%", color: "white", textAlign: "center" }}>
+            <Row
+                style={{
+                    backgroundColor: "black",
+                    marginTop: "5px",
+                    width: "100%",
+                    color: "white",
+                    textAlign: "center",
+                }}
+            >
                 <Col span={16} offset={4}>
                     <Row gutter={5}>
                         <Col span={12}>
@@ -204,8 +250,15 @@ function UserFooter(props) {
                     </Row>
                 </Col>
             </Row>
-            <Row style={{ backgroundColor: "white", height: "20px", justifyContent:"center", color:"black" }}>
-                <p>Copyright © 202, Nexus Service. All rights reserved.</p>
+            <Row
+                style={{
+                    backgroundColor: "white",
+                    height: "20px",
+                    justifyContent: "center",
+                    color: "black",
+                }}
+            >
+                <p>Copyright © 2020, Nexus Service. All rights reserved.</p>
             </Row>
         </Layout.Footer>
     );
