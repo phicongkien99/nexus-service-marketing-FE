@@ -6,7 +6,9 @@ import AdminRoute from "./LayoutRoute/AdminLayoutRoute";
 import UserRoute from "./LayoutRoute/UserLayoutRoute";
 const Dashboard = lazy(() => import("../app/admin/dashboard"));
 const HomePage = lazy(() => import("../app/user/home-page"));
-const Stores = lazy(() => import("../app/admin/stores"));
+const AdminStores = lazy(() => import("../app/admin/stores"));
+const AdminProviders = lazy(() => import("../app/admin/providers"));
+const AdminCategories = lazy(() => import("../app/admin/categories"));
 const ServicePack = lazy(() => import("../app/user/service-pack"));
 
 function Routes() {
@@ -17,7 +19,9 @@ function Routes() {
                     <Redirect to="/admin/dashboard" />
                 </Route>
                 <AdminRoute exact path="/admin/dashboard" component={Dashboard} />
-                <AdminRoute exact path="/admin/stores" component={Stores} />
+                <AdminRoute exact path="/admin/stores" component={AdminStores} />
+                <AdminRoute exact path="/admin/providers" component={AdminProviders} />
+                <AdminRoute exact path="/admin/categories" component={AdminCategories} />
                 <UserRoute exact path="/service-pack" component={ServicePack} />
                 <UserRoute exact path="/" component={HomePage} />
                 <Route component={NotFound} />

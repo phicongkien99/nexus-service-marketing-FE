@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import StoreModal from "./Modal";
-import { fetchStores, createStore, updateStore, deleteStore } from "./slice";
+import ProviderModal from "./Modal";
+import { fetchProviders, createProvider, updateProvider, deleteProvider } from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 
-function Stores(props) {
+function Providers(props) {
     const [openModal, setOpenModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [currentStore, setCurrentStore] = useState(null);
+    const [currentProvider, setCurrentProvider] = useState(null);
 
-    const { stores, isLoading } = useSelector((state) => state.adminStore);
+    const { providers, isLoading } = useSelector((state) => state.adminProvider);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "Stores";
-        dispatch(fetchStores(stores));
+        document.title = "Providers";
+        dispatch(fetchProviders(providers));
     }, []);
 
     const columns = [
@@ -73,42 +73,42 @@ function Stores(props) {
         setOpenModal(true);
     };
 
-    const handleUpdate = (store) => {
-        setCurrentStore(store);
+    const handleUpdate = (provider) => {
+        setCurrentProvider(provider);
         setOpenModal(true);
     };
 
-    const handleConfirm = (store) => {
-        if (currentStore) {
-            dispatch(updateStore(store));
+    const handleConfirm = (provider) => {
+        if (currentProvider) {
+            dispatch(updateProvider(provider));
         } else {
-            dispatch(createStore(store));
+            dispatch(createProvider(provider));
         }
     };
 
     const handleCancel = () => {
         setOpenModal(false);
-        setCurrentStore(null);
+        setCurrentProvider(null);
     };
 
-    const handleDelete = (store) => {
-        setCurrentStore(store);
+    const handleDelete = (provider) => {
+        setCurrentProvider(provider);
         setOpenDeleteModal(true);
     };
 
     const handleCancelDelete = () => {
-        setCurrentStore(null);
+        setCurrentProvider(null);
         setOpenDeleteModal(false);
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteStore(currentStore["id"]));
+        dispatch(deleteProvider(currentProvider["id"]));
         setOpenDeleteModal(false);
     };
 
     return (
         <>
-            <PageHeader title="Stores" ghost={false} />
+            <PageHeader title="Providers" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Button
@@ -121,22 +121,22 @@ function Stores(props) {
                     </Button>
                     <Table
                         loading={isLoading}
-                        dataSource={stores}
+                        dataSource={providers}
                         columns={columns}
                         onChange={handleChangeTable}
                     />
                 </Col>
             </Row>
-            <StoreModal
+            <ProviderModal
                 open={openModal}
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
-                store={currentStore}
+                provider={currentProvider}
                 isLoading={isLoading}
             />
             <ConfirmModal
                 open={openDeleteModal}
-                message="Are you sure to close this store?"
+                message="Are you sure to delete this provider?"
                 onCancel={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 isLoading={isLoading}
@@ -145,8 +145,8 @@ function Stores(props) {
     );
 }
 
-Stores.propTypes = {};
+Providers.propTypes = {};
 
-Stores.defaultProps = {};
+Providers.defaultProps = {};
 
-export default Stores;
+export default Providers;

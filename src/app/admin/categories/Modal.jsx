@@ -3,7 +3,7 @@ import { Modal, Form, Input } from "antd";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 
-function StoreModal({ open, onConfirm, onCancel, store, isLoading }) {
+function CategoryModal({ open, onConfirm, onCancel, category, isLoading }) {
     const [form] = Form.useForm();
 
     useEffect(() => {
@@ -12,12 +12,12 @@ function StoreModal({ open, onConfirm, onCancel, store, isLoading }) {
         }
     }, [open]);
 
-    const initStore = store || { name: "", address: "", isClosed: 0 };
+    const initCategory = category || { name: "", address: "", isClosed: 0 };
 
     const onSubmitForm = async () => {
         try {
             const values = await form.validateFields();
-            onConfirm({ ...initStore, ...values });
+            onConfirm({ ...initCategory, ...values });
         } catch (e) {
             toast.error("Validate data failed!");
         }
@@ -27,17 +27,17 @@ function StoreModal({ open, onConfirm, onCancel, store, isLoading }) {
         <Modal
             closable={false}
             maskClosable={false}
-            title="Store"
+            title="Category"
             visible={open}
             onOk={onSubmitForm}
             onCancel={onCancel}
             confirmLoading={isLoading}
         >
-            <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initStore} form={form}>
+            <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initCategory} form={form}>
                 <Form.Item
                     label="Name"
                     name="name"
-                    rules={[{ required: true, message: "Please input your store's name!" }]}
+                    rules={[{ required: true, message: "Please input your category's name!" }]}
                 >
                     <Input />
                 </Form.Item>
@@ -45,7 +45,7 @@ function StoreModal({ open, onConfirm, onCancel, store, isLoading }) {
                 <Form.Item
                     label="Address"
                     name="address"
-                    rules={[{ required: true, message: "Please input your store's address!" }]}
+                    rules={[{ required: true, message: "Please input your category's address!" }]}
                 >
                     <Input />
                 </Form.Item>
@@ -54,17 +54,17 @@ function StoreModal({ open, onConfirm, onCancel, store, isLoading }) {
     );
 }
 
-StoreModal.propTypes = {
+CategoryModal.propTypes = {
     open: PropTypes.bool.isRequired,
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-    store: PropTypes.object,
+    category: PropTypes.object,
     isLoading: PropTypes.bool,
 };
 
-StoreModal.defaultProps = {
-    store: null,
+CategoryModal.defaultProps = {
+    category: null,
     isLoading: false,
 };
 
-export default StoreModal;
+export default CategoryModal;

@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import StoreModal from "./Modal";
-import { fetchStores, createStore, updateStore, deleteStore } from "./slice";
+import CategoryModal from "./Modal";
+import { fetchCategories, createCategory, updateCategory, deleteCategory } from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 
-function Stores(props) {
+function Categories(props) {
     const [openModal, setOpenModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [currentStore, setCurrentStore] = useState(null);
+    const [currentCategory, setCurrentCategory] = useState(null);
 
-    const { stores, isLoading } = useSelector((state) => state.adminStore);
+    const { categories, isLoading } = useSelector((state) => state.adminCategory);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "Stores";
-        dispatch(fetchStores(stores));
+        document.title = "Categories";
+        dispatch(fetchCategories(categories));
     }, []);
 
     const columns = [
@@ -73,42 +73,42 @@ function Stores(props) {
         setOpenModal(true);
     };
 
-    const handleUpdate = (store) => {
-        setCurrentStore(store);
+    const handleUpdate = (category) => {
+        setCurrentCategory(category);
         setOpenModal(true);
     };
 
-    const handleConfirm = (store) => {
-        if (currentStore) {
-            dispatch(updateStore(store));
+    const handleConfirm = (category) => {
+        if (currentCategory) {
+            dispatch(updateCategory(category));
         } else {
-            dispatch(createStore(store));
+            dispatch(createCategory(category));
         }
     };
 
     const handleCancel = () => {
         setOpenModal(false);
-        setCurrentStore(null);
+        setCurrentCategory(null);
     };
 
-    const handleDelete = (store) => {
-        setCurrentStore(store);
+    const handleDelete = (category) => {
+        setCurrentCategory(category);
         setOpenDeleteModal(true);
     };
 
     const handleCancelDelete = () => {
-        setCurrentStore(null);
+        setCurrentCategory(null);
         setOpenDeleteModal(false);
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteStore(currentStore["id"]));
+        dispatch(deleteCategory(currentCategory["id"]));
         setOpenDeleteModal(false);
     };
 
     return (
         <>
-            <PageHeader title="Stores" ghost={false} />
+            <PageHeader title="Categories" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Button
@@ -121,22 +121,22 @@ function Stores(props) {
                     </Button>
                     <Table
                         loading={isLoading}
-                        dataSource={stores}
+                        dataSource={categories}
                         columns={columns}
                         onChange={handleChangeTable}
                     />
                 </Col>
             </Row>
-            <StoreModal
+            <CategoryModal
                 open={openModal}
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
-                store={currentStore}
+                category={currentCategory}
                 isLoading={isLoading}
             />
             <ConfirmModal
                 open={openDeleteModal}
-                message="Are you sure to close this store?"
+                message="Are you sure to delete this category?"
                 onCancel={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 isLoading={isLoading}
@@ -145,8 +145,8 @@ function Stores(props) {
     );
 }
 
-Stores.propTypes = {};
+Categories.propTypes = {};
 
-Stores.defaultProps = {};
+Categories.defaultProps = {};
 
-export default Stores;
+export default Categories;
