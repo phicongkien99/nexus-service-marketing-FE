@@ -7,6 +7,7 @@ import UserRoute from "./LayoutRoute/UserLayoutRoute";
 const Dashboard = lazy(() => import("../app/admin/dashboard"));
 const HomePage = lazy(() => import("../app/user/home-page"));
 const Stores = lazy(() => import("../app/admin/stores"));
+const ServicePack = lazy(() => import("../app/user/service-pack"));
 
 function Routes() {
     return (
@@ -17,6 +18,7 @@ function Routes() {
                 </Route>
                 <AdminRoute exact path="/admin/dashboard" component={Dashboard} />
                 <AdminRoute exact path="/admin/stores" component={Stores} />
+                <UserRoute exact path="/service-pack" component={ServicePack} />
                 <UserRoute exact path="/" component={HomePage} />
                 <Route component={NotFound} />
             </Switch>

@@ -7,7 +7,7 @@ import "./Home.scss";
 import Register from "../../../assets/img/register.png";
 import Member from "../../../assets/img/member.png";
 import Support from "../../../assets/img/support.png";
-import { size } from "lodash";
+import { Link } from "react-router-dom";
 
 function HomePage(props) {
     return (
@@ -21,8 +21,10 @@ function HomePage(props) {
                 <Col span={16} offset={4}>
                     <Row gutter={5}>
                         <Col span={8} className="text-center">
-                            <Image src={Register} alt="Register online" />
-                            <h2 className="text-blue">Register online</h2>
+                            <Link to="/service-pack">
+                                <Image src={Register} alt="Register online" />
+                                <h2 className="text-blue">Register online</h2>
+                            </Link>
                         </Col>
                         <Col span={8} className="text-center">
                             <Image src={Member} alt="Member" />
@@ -37,17 +39,17 @@ function HomePage(props) {
             </Row>
             <Row className="mt-15">
                 <Col span={16} offset={4}>
-                    <b style={{fontSize: '18px'}}>Service Pack</b>
+                    <b style={{ fontSize: "18px" }}>Service Pack</b>
                 </Col>
             </Row>
-            <Row >
+            <Row>
                 <Col span={16} offset={4} id="home-page-carousel-service-pack">
                     <HomePageCarouselServicePack />
                 </Col>
             </Row>
             <Row className="mt-15">
                 <Col span={16} offset={4}>
-                    <b style={{fontSize: '18px'}}>Promotion</b>
+                    <b style={{ fontSize: "18px" }}>Promotion</b>
                 </Col>
             </Row>
             <Row className="mt-15">
