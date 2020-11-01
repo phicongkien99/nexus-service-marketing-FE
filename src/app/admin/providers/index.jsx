@@ -37,14 +37,14 @@ function Providers(props) {
             key: "address",
         },
         {
-            title: "Status",
-            dataIndex: "isClosed",
-            key: "isClosed",
-            render: (isClosed) => (
-                <Tag color={isClosed ? "red" : "green"}>
-                    {isClosed ? "Deactivated" : "Activating"}
-                </Tag>
-            ),
+            title: "Email",
+            dataIndex: "email",
+            key: "email",
+        },
+        {
+            title: "Phone number",
+            dataIndex: "phone",
+            key: "phone",
         },
         {
             title: "Action",

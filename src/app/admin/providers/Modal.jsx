@@ -12,7 +12,7 @@ function ProviderModal({ open, onConfirm, onCancel, provider, isLoading }) {
         }
     }, [open]);
 
-    const initProvider = provider || { name: "", address: "", isClosed: 0 };
+    const initProvider = provider || { name: "", address: "", email: "", phone: "" };
 
     const onSubmitForm = async () => {
         try {
@@ -41,11 +41,29 @@ function ProviderModal({ open, onConfirm, onCancel, provider, isLoading }) {
                 >
                     <Input />
                 </Form.Item>
-
                 <Form.Item
                     label="Address"
                     name="address"
                     rules={[{ required: true, message: "Please input your provider's address!" }]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                        { required: true, message: "Please input your provider's email!" },
+                        { type: "email", message: "Email invalid!" },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Phone"
+                    name="phone"
+                    rules={[
+                        { required: true, message: "Please input your provider's phone number!" },
+                    ]}
                 >
                     <Input />
                 </Form.Item>
