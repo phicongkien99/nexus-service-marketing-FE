@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import axiosClient from "../../../utils/axiosClient";
 
 const { createSlice } = require("@reduxjs/toolkit");
 
@@ -23,9 +24,7 @@ const connectionStatusSlice = createSlice({
             );
         },
         removeConnectionStatus: (state, action) => {
-            state.connectionStatuses = state.connectionStatuses.filter(
-                (connectionStatus) => connectionStatus.id !== action.payload.id
-            );
+            state.connectionStatuses = state.connectionStatuses.filter((connectionStatus) => connectionStatus.id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -43,14 +42,18 @@ function fetchConnectionStatuses(connectionStatuses) {
             if (connectionStatuses.length === 0) {
                 dispatch(setIsLoading(true));
             }
-            //TODO: Call api
-            const resp = {
-                data: [],
-            };
-            dispatch(setConnectionStatuses(resp.data));
+            const resp = await axiosClient({
+                url: "/connectionstatus",
+                method: "get",
+            });
+            if (resp.data.IsSuccess) {
+                dispatch(setConnectionStatuses(resp.data.ListDataResult));
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Get connection statuses failed!");
+            toast.error(e);
         } finally {
             if (connectionStatuses.length === 0) {
                 dispatch(setIsLoading(false));
@@ -63,15 +66,22 @@ function createConnectionStatus(connectionStatus) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(addConnectionStatus(resp.data));
-            toast.success("Create connection status succeed!");
+            const resp = await axiosClient({
+                url: "/connectionstatus",
+                method: "post",
+                data: connectionStatus,
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(addConnectionStatus(resp.data.ListDataResult[0]));
+                }
+                toast.success("Create connection status succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Create connection status failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }
@@ -82,15 +92,22 @@ function updateConnectionStatus(connectionStatus) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(editConnectionStatus(resp.data));
-            toast.success("Update connection status succeed!");
+            const resp = await axiosClient({
+                url: `/connectionstatus/${connectionStatus.id}`,
+                method: "put",
+                data: connectionStatus,
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(editConnectionStatus(resp.data.ListDataResult[0]));
+                }
+                toast.success("Update connection status succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Update connection status failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }
@@ -101,15 +118,21 @@ function deleteConnectionStatus(id) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(removeConnectionStatus(resp.data));
-            toast.success("Delete connection status succeed!");
+            const resp = await axiosClient({
+                url: `/connectionstatus/${id}`,
+                method: "delete",
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(removeConnectionStatus(resp.data.ListDataResult[0]));
+                }
+                toast.success("Delete connection status succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Delete connection status failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }

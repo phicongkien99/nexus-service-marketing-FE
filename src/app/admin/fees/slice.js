@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import axiosClient from "../../../utils/axiosClient";
 
 const { createSlice } = require("@reduxjs/toolkit");
 
@@ -23,9 +24,7 @@ const feeSlice = createSlice({
             );
         },
         removeFee: (state, action) => {
-            state.fees = state.fees.filter(
-                (fee) => fee.id !== action.payload.id
-            );
+            state.fees = state.fees.filter((fee) => fee.id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -43,14 +42,18 @@ function fetchFees(fees) {
             if (fees.length === 0) {
                 dispatch(setIsLoading(true));
             }
-            //TODO: Call api
-            const resp = {
-                data: [],
-            };
-            dispatch(setFees(resp.data));
+            const resp = await axiosClient({
+                url: "/fee",
+                method: "get",
+            });
+            if (resp.data.IsSuccess) {
+                dispatch(setFees(resp.data.ListDataResult));
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Get fees failed!");
+            toast.error(e);
         } finally {
             if (fees.length === 0) {
                 dispatch(setIsLoading(false));
@@ -63,15 +66,22 @@ function createFee(fee) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(addFee(resp.data));
-            toast.success("Create fee succeed!");
+            const resp = await axiosClient({
+                url: "/fee",
+                method: "post",
+                data: fee,
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(addFee(resp.data.ListDataResult[0]));
+                }
+                toast.success("Create fee succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Create fee failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }
@@ -82,15 +92,22 @@ function updateFee(fee) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(editFee(resp.data));
-            toast.success("Update fee succeed!");
+            const resp = await axiosClient({
+                url: `/fee/${fee.id}`,
+                method: "put",
+                data: fee,
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(editFee(resp.data.ListDataResult[0]));
+                }
+                toast.success("Update fee succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Update fee failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }
@@ -101,15 +118,21 @@ function deleteFee(id) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(removeFee(resp.data));
-            toast.success("Delete fee succeed!");
+            const resp = await axiosClient({
+                url: `/fee/${id}`,
+                method: "delete",
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(removeFee(resp.data.ListDataResult[0]));
+                }
+                toast.success("Delete fee succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Delete fee failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }

@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import axiosClient from "../../../utils/axiosClient";
 
 const { createSlice } = require("@reduxjs/toolkit");
 
@@ -23,9 +24,7 @@ const categorySlice = createSlice({
             );
         },
         removeCategory: (state, action) => {
-            state.categories = state.categories.filter(
-                (category) => category.id !== action.payload.id
-            );
+            state.categories = state.categories.filter((category) => category.id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -43,14 +42,18 @@ function fetchCategories(categories) {
             if (categories.length === 0) {
                 dispatch(setIsLoading(true));
             }
-            //TODO: Call api
-            const resp = {
-                data: [],
-            };
-            dispatch(setCategories(resp.data));
+            const resp = await axiosClient({
+                url: "/category",
+                method: "get",
+            });
+            if (resp.data.IsSuccess) {
+                dispatch(setCategories(resp.data.ListDataResult));
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Get categories failed!");
+            toast.error(e);
         } finally {
             if (categories.length === 0) {
                 dispatch(setIsLoading(false));
@@ -63,15 +66,22 @@ function createCategory(category) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(addCategory(resp.data));
-            toast.success("Create category succeed!");
+            const resp = await axiosClient({
+                url: "/category",
+                method: "post",
+                data: category,
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(addCategory(resp.data.ListDataResult[0]));
+                }
+                toast.success("Create category succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Create category failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }
@@ -82,15 +92,22 @@ function updateCategory(category) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(editCategory(resp.data));
-            toast.success("Update category succeed!");
+            const resp = await axiosClient({
+                url: `/category/${category.id}`,
+                method: "put",
+                data: category,
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(editCategory(resp.data.ListDataResult[0]));
+                }
+                toast.success("Update category succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Update category failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }
@@ -101,15 +118,21 @@ function deleteCategory(id) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(removeCategory(resp.data));
-            toast.success("Delete category succeed!");
+            const resp = await axiosClient({
+                url: `/category/${id}`,
+                method: "delete",
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(removeCategory(resp.data.ListDataResult[0]));
+                }
+                toast.success("Delete category succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Delete category failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }

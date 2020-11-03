@@ -4,27 +4,27 @@ import axiosClient from "../../../utils/axiosClient";
 const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
-    providers: [],
+    servicePacks: [],
     isLoading: false,
 };
 
-const providerSlice = createSlice({
-    name: "providers",
+const servicePackSlice = createSlice({
+    name: "servicePacks",
     initialState: defaultState,
     reducers: {
-        setProviders: (state, action) => {
-            state.providers = action.payload;
+        setServicePacks: (state, action) => {
+            state.servicePacks = action.payload;
         },
-        addProvider: (state, action) => {
-            state.providers.push(action.payload);
+        addServicePack: (state, action) => {
+            state.servicePacks.push(action.payload);
         },
-        editProvider: (state, action) => {
-            state.providers = state.providers.map((provider) =>
-                provider.id === action.payload.id ? action.payload : provider
+        editServicePack: (state, action) => {
+            state.servicePacks = state.servicePacks.map((servicePack) =>
+                servicePack.id === action.payload.id ? action.payload : servicePack
             );
         },
-        removeProvider: (state, action) => {
-            state.providers = state.providers.filter((provider) => provider.id !== action.payload);
+        removeServicePack: (state, action) => {
+            state.servicePacks = state.servicePacks.filter((servicePack) => servicePack.id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -32,22 +32,22 @@ const providerSlice = createSlice({
     },
 });
 
-const { actions, reducer } = providerSlice;
+const { actions, reducer } = servicePackSlice;
 
-export const { setProviders, addProvider, editProvider, removeProvider, setIsLoading } = actions;
+export const { setServicePacks, addServicePack, editServicePack, removeServicePack, setIsLoading } = actions;
 
-function fetchProviders(providers) {
+function fetchServicePacks(servicePacks) {
     return async (dispatch) => {
         try {
-            if (providers.length === 0) {
+            if (servicePacks.length === 0) {
                 dispatch(setIsLoading(true));
             }
             const resp = await axiosClient({
-                url: "/provider",
+                url: "/servicepack",
                 method: "get",
             });
             if (resp.data.IsSuccess) {
-                dispatch(setProviders(resp.data.ListDataResult));
+                dispatch(setServicePacks(resp.data.ListDataResult));
             } else {
                 throw resp.data.ErrorMsg;
             }
@@ -55,27 +55,27 @@ function fetchProviders(providers) {
             console.error(e);
             toast.error(e);
         } finally {
-            if (providers.length === 0) {
+            if (servicePacks.length === 0) {
                 dispatch(setIsLoading(false));
             }
         }
     };
 }
 
-function createProvider(provider) {
+function createServicePack(servicePack) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: "/provider",
+                url: "/servicepack",
                 method: "post",
-                data: provider,
+                data: servicePack,
             });
             if (resp.data.IsSuccess) {
                 if (resp.data.ListDataResult.length > 0) {
-                    dispatch(addProvider(resp.data.ListDataResult[0]));
+                    dispatch(addServicePack(resp.data.ListDataResult[0]));
                 }
-                toast.success("Create provider succeed!");
+                toast.success("Create servicePack succeed!");
             } else {
                 throw resp.data.ErrorMsg;
             }
@@ -88,20 +88,20 @@ function createProvider(provider) {
     };
 }
 
-function updateProvider(provider) {
+function updateServicePack(servicePack) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/provider/${provider.id}`,
+                url: `/servicepack/${servicePack.id}`,
                 method: "put",
-                data: provider,
+                data: servicePack,
             });
             if (resp.data.IsSuccess) {
                 if (resp.data.ListDataResult.length > 0) {
-                    dispatch(editProvider(resp.data.ListDataResult[0]));
+                    dispatch(editServicePack(resp.data.ListDataResult[0]));
                 }
-                toast.success("Update provider succeed!");
+                toast.success("Update servicePack succeed!");
             } else {
                 throw resp.data.ErrorMsg;
             }
@@ -114,19 +114,19 @@ function updateProvider(provider) {
     };
 }
 
-function deleteProvider(id) {
+function deleteServicePack(id) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/provider/${id}`,
+                url: `/servicepack/${id}`,
                 method: "delete",
             });
             if (resp.data.IsSuccess) {
                 if (resp.data.ListDataResult.length > 0) {
-                    dispatch(removeProvider(resp.data.ListDataResult[0]));
+                    dispatch(removeServicePack(resp.data.ListDataResult[0]));
                 }
-                toast.success("Delete provider succeed!");
+                toast.success("Delete servicePack succeed!");
             } else {
                 throw resp.data.ErrorMsg;
             }
@@ -139,6 +139,6 @@ function deleteProvider(id) {
     };
 }
 
-export { fetchProviders, createProvider, updateProvider, deleteProvider };
+export { fetchServicePacks, createServicePack, updateServicePack, deleteServicePack };
 
 export default reducer;

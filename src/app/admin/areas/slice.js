@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import axiosClient from "../../../utils/axiosClient";
 
 const { createSlice } = require("@reduxjs/toolkit");
 
@@ -23,9 +24,7 @@ const areaSlice = createSlice({
             );
         },
         removeArea: (state, action) => {
-            state.areas = state.areas.filter(
-                (area) => area.id !== action.payload.id
-            );
+            state.areas = state.areas.filter((area) => area.id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -43,14 +42,18 @@ function fetchAreas(areas) {
             if (areas.length === 0) {
                 dispatch(setIsLoading(true));
             }
-            //TODO: Call api
-            const resp = {
-                data: [],
-            };
-            dispatch(setAreas(resp.data));
+            const resp = await axiosClient({
+                url: "/area",
+                method: "get",
+            });
+            if (resp.data.IsSuccess) {
+                dispatch(setAreas(resp.data.ListDataResult));
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Get areas failed!");
+            toast.error(e);
         } finally {
             if (areas.length === 0) {
                 dispatch(setIsLoading(false));
@@ -63,15 +66,22 @@ function createArea(area) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(addArea(resp.data));
-            toast.success("Create area succeed!");
+            const resp = await axiosClient({
+                url: "/area",
+                method: "post",
+                data: area,
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(addArea(resp.data.ListDataResult[0]));
+                }
+                toast.success("Create area succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Create area failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }
@@ -82,15 +92,22 @@ function updateArea(area) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(editArea(resp.data));
-            toast.success("Update area succeed!");
+            const resp = await axiosClient({
+                url: `/area/${area.id}`,
+                method: "put",
+                data: area,
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(editArea(resp.data.ListDataResult[0]));
+                }
+                toast.success("Update area succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Update area failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }
@@ -101,15 +118,21 @@ function deleteArea(id) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
-            //TODO: Call api;
-            const resp = {
-                data: {},
-            };
-            dispatch(removeArea(resp.data));
-            toast.success("Delete area succeed!");
+            const resp = await axiosClient({
+                url: `/area/${id}`,
+                method: "delete",
+            });
+            if (resp.data.IsSuccess) {
+                if (resp.data.ListDataResult.length > 0) {
+                    dispatch(removeArea(resp.data.ListDataResult[0]));
+                }
+                toast.success("Delete area succeed!");
+            } else {
+                throw resp.data.ErrorMsg;
+            }
         } catch (e) {
             console.error(e);
-            toast.error(e.response ? e.response.data.message : "Delete area failed!");
+            toast.error(e);
         } finally {
             setIsLoading(false);
         }
