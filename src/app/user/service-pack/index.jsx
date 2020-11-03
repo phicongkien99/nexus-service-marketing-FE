@@ -13,6 +13,26 @@ function ServicePack(props) {
         textAlign: "center",
     }
 
+    const itemServicePackStyle = {
+        boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.08)",
+        borderRadius: "10px",
+        padding: "25px",
+        background: "#FFFFFF",
+        // marginRight:"1px",
+    }
+
+    const buttonStyle = {
+        border: "2px solid #FF7318",
+        borderRadius: "86px",
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontSize: "18px",
+        lineHeight: "23px",
+        textAlign: "center",
+        color: "#FF7318",
+        marginTop: "20px"
+    }
+
     return (
         <>
             <Row >
@@ -49,7 +69,7 @@ function ServicePack(props) {
 
                 </Col>
             </Row>
-            <Row className="mt-10">
+            <Row className="mt-10" gutter={5}>
                 <Col span={16} offset={4}>
                     <Row>
                         <Col span={8}>
@@ -63,26 +83,77 @@ function ServicePack(props) {
                         <Col span={8}>
                         </Col>
                     </Row>
-                    <Row className="mt-5" style={nameServicePackStyle}>
-                        <Col span={8}>
-                            <h4 style={{marginBottom:"0"}}>COMBO</h4>
+                    <Row className="mt-10" style={nameServicePackStyle} gutter={5}>
+                        <Col style={itemServicePackStyle} span={8}>
+                            <h4 style={{ marginBottom: "0" }}>COMBO</h4>
                             <h1>
-                                <b className="text-orange">HOURLY BASIS</b>
+                                <b style={{ fontSize: "30px" }} className="text-orange">HOURLY BASIS</b>
                             </h1>
-                            <br />
-
+                            <span>From</span>
+                            <p>100 $/month</p>
+                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                            <span>Download / Upload</span>
+                            <p><b><h2>25 Mbps</h2></b></p>
+                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                            <p>
+                                More than 180 TV channels
+                                <br /><br />
+                                Free installation *
+                                <br />
+                                Equipped with WiFi Modem & HD Box
+                                <br /><br />
+                                Fast installation in 12 hours
+                                <br />
+                                Technical support 24/7
+                            </p>
+                            <Button style={buttonStyle}>Register now</Button>
                         </Col>
-                        <Col span={8}>
-                            <h4 style={{marginBottom:"0"}}>COMBO</h4>
+                        <Col style={itemServicePackStyle} span={8}>
+                            <h4 style={{ marginBottom: "0" }}>COMBO</h4>
                             <h1>
-                                <b className="text-orange">UNLIMITED 28K</b>
+                                <b style={{ fontSize: "30px" }} className="text-orange">UNLIMITED 28K</b>
                             </h1>
+                            <span>From</span>
+                            <p>110 $/month</p>
+                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                            <span>Download / Upload</span>
+                            <p><b><h2>25 Mbps</h2></b></p>
+                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                            <p>
+                                More than 180 TV channels
+                                <br /><br />
+                                Free installation *
+                                <br />
+                                Equipped with WiFi Modem & HD Box
+                                <br /><br />
+                                Fast installation in 12 hours
+                                <br />
+                                Technical support 24/7
+                            </p>
+                            <Button style={buttonStyle}>Register now</Button>
                         </Col>
-                        <Col span={8}>
-                            <h4 style={{marginBottom:"0"}}>COMBO</h4>
+                        <Col style={itemServicePackStyle} span={8}>
                             <h1>
-                                <b className="text-orange">UNLIMITED 56K</b>
+                                <b style={{ fontSize: "30px" }} className="text-orange">UNLIMITED 56K</b>
                             </h1>
+                            <span>From</span>
+                            <p>110 $/month</p>
+                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                            <span>Download / Upload</span>
+                            <p><b><h2>25 Mbps</h2></b></p>
+                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                            <p>
+                                More than 180 TV channels
+                                <br /><br />
+                                Free installation *
+                                <br />
+                                Equipped with WiFi Modem & HD Box
+                                <br /><br />
+                                Fast installation in 12 hours
+                                <br />
+                                Technical support 24/7
+                            </p>
+                            <Button style={buttonStyle}>Register now</Button>
                         </Col>
 
                     </Row>
