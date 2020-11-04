@@ -1,61 +1,62 @@
 import React, { useRef } from "react";
 import { Row, Col } from "antd";
 import { Carousel, Button, Image } from "antd";
+import "./ServicePack.scss";
 
 function ServicePack(props) {
-    const imageStyle = {
-        height: "379px",
-        width: "100%",
-    };
+    // const imageStyle = {
+    //     height: "379px",
+    //     width: "100%",
+    // };
 
-    const nameServicePackStyle = {
-        textAlign: "center",
-        justifyContent: "center",
-    };
+    // const nameServicePackStyle = {
+    //     textAlign: "center",
+    //     justifyContent: "center",
+    // };
 
-    const itemServicePackStyle = {
-        boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.08)",
-        borderRadius: "10px",
-        padding: "25px",
-        background: "#FFFFFF",
-        // marginRight:"1px",
-    };
+    // const itemServicePackStyle = {
+    //     boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.08)",
+    //     borderRadius: "10px",
+    //     padding: "25px",
+    //     background: "#FFFFFF",
+    //     // marginRight:"1px",
+    // };
 
-    const buttonOrangeStyle = {
-        border: "2px solid #FF7318",
-        borderRadius: "86px",
-        fontStyle: "normal",
-        fontWeight: "600",
-        fontSize: "18px",
-        lineHeight: "23px",
-        textAlign: "center",
-        color: "#FF7318",
-        marginTop: "20px",
-    };
+    // const buttonOrangeStyle = {
+    //     border: "2px solid #FF7318",
+    //     borderRadius: "86px",
+    //     fontStyle: "normal",
+    //     fontWeight: "600",
+    //     fontSize: "18px",
+    //     lineHeight: "23px",
+    //     textAlign: "center",
+    //     color: "#FF7318",
+    //     marginTop: "20px",
+    // };
 
-    const buttonBlueStyle = {
-        border: "2px solid #035690",
-        borderRadius: "86px",
-        fontStyle: "normal",
-        fontWeight: "600",
-        fontSize: "18px",
-        lineHeight: "23px",
-        textAlign: "center",
-        color: "#035690",
-        marginTop: "20px",
-    };
+    // const buttonBlueStyle = {
+    //     border: "2px solid #035690",
+    //     borderRadius: "86px",
+    //     fontStyle: "normal",
+    //     fontWeight: "600",
+    //     fontSize: "18px",
+    //     lineHeight: "23px",
+    //     textAlign: "center",
+    //     color: "#035690",
+    //     marginTop: "20px",
+    // };
 
-    const buttonGreenStyle = {
-        border: "2px solid #62b046",
-        borderRadius: "86px",
-        fontStyle: "normal",
-        fontWeight: "600",
-        fontSize: "18px",
-        lineHeight: "23px",
-        textAlign: "center",
-        color: "#62b046",
-        marginTop: "20px",
-    };
+    // const buttonGreenStyle = {
+    //     border: "2px solid #62b046",
+    //     borderRadius: "86px",
+    //     fontStyle: "normal",
+    //     fontWeight: "600",
+    //     fontSize: "18px",
+    //     lineHeight: "23px",
+    //     textAlign: "center",
+    //     color: "#62b046",
+    //     marginTop: "20px",
+    // };
 
     return (
         <>
@@ -68,28 +69,28 @@ function ServicePack(props) {
                                 <Row>
                                     <img
                                         alt="img"
-                                        style={imageStyle}
+                                        className="imageStyle"
                                         src="https://fpt.vn/shop/html/assets/images/desktop/1.1.png"
                                     />
                                 </Row>
                                 <Row>
                                     <img
                                         alt="img"
-                                        style={imageStyle}
+                                        className="imageStyle"
                                         src="https://fpt.vn/shop/html/assets/images/desktop/1.2.png"
                                     />
                                 </Row>
                                 <Row>
                                     <img
                                         alt="img"
-                                        style={imageStyle}
+                                        className="imageStyle"
                                         src="https://fpt.vn/shop/html/assets/images/desktop/1.3.png"
                                     />
                                 </Row>
                                 <Row>
                                     <img
                                         alt="img"
-                                        style={imageStyle}
+                                        className="imageStyle"
                                         src="https://fpt.vn/shop/html/assets/images/desktop/1.4.jpg"
                                     />
                                 </Row>
@@ -131,7 +132,7 @@ function ServicePack(props) {
             <Row className="mt-10" style={{ justifyContent: "center" }}>
                 <Col span={16}>
                     <Row>
-                        <Col offset={8} style={nameServicePackStyle} span={8}>
+                        <Col offset={8} className="nameServicePackStyle" span={8}>
                             <Row
                                 style={{
                                     backgroundColor: "orange",
@@ -151,8 +152,8 @@ function ServicePack(props) {
                             </Row>
                         </Col>
                     </Row>
-                    <Row className="mt-10" style={nameServicePackStyle}>
-                        <Col style={itemServicePackStyle} span={8}>
+                    <Row className="mt-10 nameServicePackStyle">
+                        <Col className="itemServicePackStyle" span={8}>
                             <h4 style={{ marginBottom: "0" }}>COMBO</h4>
                             <h1>
                                 <b style={{ fontSize: "30px" }} className="text-orange">
@@ -182,9 +183,9 @@ function ServicePack(props) {
                                 <br />
                                 Technical support 24/7
                             </p>
-                            <Button style={buttonOrangeStyle}>Register now</Button>
+                            <Button className="buttonOrangeStyle">Register now</Button>
                         </Col>
-                        <Col style={itemServicePackStyle} span={8}>
+                        <Col className="itemServicePackStyle" span={8}>
                             <h4 style={{ marginBottom: "0" }}>COMBO</h4>
                             <h1>
                                 <b style={{ fontSize: "30px" }} className="text-orange">
@@ -214,9 +215,9 @@ function ServicePack(props) {
                                 <br />
                                 Technical support 24/7
                             </p>
-                            <Button style={buttonOrangeStyle}>Register now</Button>
+                            <Button className="buttonOrangeStyle">Register now</Button>
                         </Col>
-                        <Col style={itemServicePackStyle} span={8}>
+                        <Col className="itemServicePackStyle" span={8}>
                             <h4 style={{ marginBottom: "0" }}>COMBO</h4>
                             <h1>
                                 <b style={{ fontSize: "30px" }} className="text-orange">
@@ -246,7 +247,7 @@ function ServicePack(props) {
                                 <br />
                                 Technical support 24/7
                             </p>
-                            <Button style={buttonOrangeStyle}>Register now</Button>
+                            <Button className="buttonOrangeStyle">Register now</Button>
                         </Col>
                     </Row>
                 </Col>
@@ -256,7 +257,7 @@ function ServicePack(props) {
                 <Col span={16}>
                     <Row>
                         <Col span={8}></Col>
-                        <Col style={nameServicePackStyle} span={8}>
+                        <Col className="nameServicePackStyle" span={8}>
                             <Row
                                 style={{
                                     backgroundColor: "#4EB848",
@@ -277,8 +278,8 @@ function ServicePack(props) {
                         </Col>
                         <Col span={8}></Col>
                     </Row>
-                    <Row className="mt-10" style={nameServicePackStyle}>
-                        <Col style={itemServicePackStyle} span={8}>
+                    <Row className="mt-10 nameServicePackStyle" >
+                        <Col className="itemServicePackStyle" span={8}>
                             <h4 style={{ marginBottom: "0" }}>COMBO</h4>
                             <h1>
                                 <b style={{ fontSize: "30px" }} className="text-green">
@@ -308,9 +309,9 @@ function ServicePack(props) {
                                 <br />
                                 Technical support 24/7
                             </p>
-                            <Button style={buttonGreenStyle}>Register now</Button>
+                            <Button className="buttonGreenStyle">Register now</Button>
                         </Col>
-                        <Col style={itemServicePackStyle} span={8}>
+                        <Col className="itemServicePackStyle" span={8}>
                             <h4 style={{ marginBottom: "0" }}>COMBO</h4>
                             <h1>
                                 <b style={{ fontSize: "30px" }} className="text-green">
@@ -340,9 +341,9 @@ function ServicePack(props) {
                                 <br />
                                 Technical support 24/7
                             </p>
-                            <Button style={buttonGreenStyle}>Register now</Button>
+                            <Button className="buttonGreenStyle">Register now</Button>
                         </Col>
-                        <Col style={itemServicePackStyle} span={8}>
+                        <Col className="itemServicePackStyle" span={8}>
                             <h4 style={{ marginBottom: "0" }}>COMBO</h4>
                             <h1>
                                 <b style={{ fontSize: "30px" }} className="text-green">
@@ -372,7 +373,7 @@ function ServicePack(props) {
                                 <br />
                                 Technical support 24/7
                             </p>
-                            <Button style={buttonGreenStyle}>Register now</Button>
+                            <Button className="buttonGreenStyle">Register now</Button>
                         </Col>
                     </Row>
                 </Col>
@@ -382,7 +383,7 @@ function ServicePack(props) {
                 <Col span={16}>
                     <Row>
                         <Col span={8}></Col>
-                        <Col style={nameServicePackStyle} span={8}>
+                        <Col className="nameServicePackStyle" span={8}>
                             <Row
                                 style={{
                                     backgroundColor: "#035690",
@@ -403,8 +404,8 @@ function ServicePack(props) {
                         </Col>
                         <Col span={8}></Col>
                     </Row>
-                    <Row className="mt-10" style={nameServicePackStyle}>
-                        <Col style={itemServicePackStyle} span={8}>
+                    <Row className="mt-10 nameServicePackStyle">
+                        <Col className="itemServicePackStyle" span={8}>
                             <h4 style={{ marginBottom: "0" }}>COMBO</h4>
                             <h1>
                                 <b style={{ fontSize: "30px" }} className="text-blue">
@@ -434,9 +435,9 @@ function ServicePack(props) {
                                 <br />
                                 Technical support 24/7
                             </p>
-                            <Button style={buttonBlueStyle}>Register now</Button>
+                            <Button className="buttonBlueStyle">Register now</Button>
                         </Col>
-                        <Col style={itemServicePackStyle} span={8}>
+                        <Col className="itemServicePackStyle" span={8}>
                             <h4 style={{ marginBottom: "0" }}>COMBO</h4>
                             <h1>
                                 <b style={{ fontSize: "30px" }} className="text-blue">
@@ -466,7 +467,7 @@ function ServicePack(props) {
                                 <br />
                                 Technical support 24/7
                             </p>
-                            <Button style={buttonBlueStyle}>Register now</Button>
+                            <Button className="buttonBlueStyle">Register now</Button>
                         </Col>
                     </Row>
                 </Col>

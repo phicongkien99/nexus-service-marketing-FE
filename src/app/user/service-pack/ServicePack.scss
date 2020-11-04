@@ -1,18 +1,52 @@
-#service-pack-carousel {
-    .arrow-button {
-        position: absolute;
-        z-index: 1;
-        height: 100%;
-        background: transparent;
-        cursor: pointer;
-        width: 100px;
-        border: 0px;
-        &-left {
-            left: 0;
-        }
-        &-right {
-            right: 0;
-        }
-    }
-}
+.imageStyle  {
+    height: "379px";
+    width: "100%";
+};
 
+.nameServicePackStyle  {
+    text-align: "center";
+    justify-content: "center";
+};
+
+.itemServicePackStyle  {
+    box-shadow: "0px 4px 15px rgba(0; 0; 0; 0.08)";
+    border-radius: "10px";
+    padding: "25px";
+    background: "#FFFFFF";
+};
+
+.buttonOrangeStyle  {
+    border: "2px solid #FF7318";
+    border-radius: "86px";
+    font-style: "normal";
+    font-weight: "600";
+    font-size: "18px";
+    line-height: "23px";
+    text-align: "center";
+    color: "#FF7318";
+    margin-top: "20px";
+};
+
+.buttonBlueStyle  {
+    border: "2px solid #035690";
+    border-radius: "86px";
+    font-style: "normal";
+    font-weight: "600";
+    font-size: "18px";
+    line-height: "23px";
+    text-align: "center";
+    color: "#035690";
+    margin-top: "20px";
+};
+
+.buttonGreenStyle {
+    border: "2px solid #62b046";
+    border-radius: "86px";
+    font-style: "normal";
+    font-weight: "600";
+    font-size: "18px";
+    line-height: "23px";
+    text-align: "center";
+    color: "#62b046";
+    margin-top: "20px";
+};
