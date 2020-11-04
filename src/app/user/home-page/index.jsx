@@ -27,8 +27,10 @@ function HomePage(props) {
                             </Link>
                         </Col>
                         <Col span={8} className="text-center">
-                            <Image src={Member} alt="Member" />
-                            <h2 className="text-orange">Membership</h2>
+                            <Link to="/membership">
+                                <Image src={Member} alt="Member" />
+                                <h2 className="text-orange">Membership</h2>
+                            </Link>
                         </Col>
                         <Col span={8} className="text-center">
                             <Image src={Support} alt="Support" />
