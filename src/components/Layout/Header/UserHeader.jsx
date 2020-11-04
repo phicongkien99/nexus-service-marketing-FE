@@ -1,21 +1,35 @@
 import React, { useEffect } from "react";
 import { HomeOutlined, UnorderedListOutlined } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Skeleton } from "antd";
 import "./Header.scss";
 import { Link } from "react-router-dom";
-import { size } from "lodash";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchServicePacks } from "../../../app/slice/service-pack";
+import { fetchConnectionTypes } from "../../../app/slice/connection-type";
 
 function UserHeader(props) {
+    const { servicePacks, isLoading: isLoadingSP } = useSelector((state) => state.userServicePack);
+    const { connectionTypes, isLoading: isLoadingCT } = useSelector(
+        (state) => state.userConnectionType
+    );
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchServicePacks(servicePacks));
+        dispatch(fetchConnectionTypes(connectionTypes));
+    }, []);
 
     const textStyle = {
-        fontSize: '18px', 
+        fontSize: "18px",
     };
 
     return (
         <Layout.Header className="header fixed">
             <Menu style={{ width: "100%" }} key="menu" mode="horizontal" selectable={false}>
                 <Menu.Item key="HomePage" icon={<HomeOutlined />}>
-                    <Link to="/"><b style={textStyle}>Home</b></Link>
+                    <Link to="/">
+                        <b style={textStyle}>Home</b>
+                    </Link>
                 </Menu.Item>
                 <Menu.SubMenu
                     key="ServicePack"
@@ -26,7 +40,18 @@ function UserHeader(props) {
                     }
                 >
                     {/* Dial-up */}
-                    <Menu.SubMenu key="DialUp" title={<>Dial-up</>}>
+                    <Skeleton loading={isLoadingSP && isLoadingCT}>
+                        {connectionTypes.length > 0 &&
+                            connectionTypes.map((type) => (
+                                <Menu.SubMenu key={type["id"]} title={type["name"]}>
+                                    {servicePacks.length > 0 &&
+                                        servicePacks.map((pack) => (
+                                            <Menu.Item key={pack["id"]}>{pack["name"]}</Menu.Item>
+                                        ))}
+                                </Menu.SubMenu>
+                            ))}
+                    </Skeleton>
+                    {/* <Menu.SubMenu key="DialUp" title={<>Dial-up</>}>
                         <Menu.Item key="HourlyBasis_DialUp">
                             <Link to="">Hourly Basis</Link>
                         </Menu.Item>
@@ -37,7 +62,6 @@ function UserHeader(props) {
                             <Link to="">Unlimited 56 Kbps</Link>
                         </Menu.Item>
                     </Menu.SubMenu>
-                    {/* Broad Band */}
                     <Menu.SubMenu key="Broadband" title={<>Broad Band</>}>
                         <Menu.Item key="HourlyBasis_Broadband">
                             <Link to="">Hourly Basis</Link>
@@ -49,7 +73,6 @@ function UserHeader(props) {
                             <Link to="">Unlimited 128 Kbps</Link>
                         </Menu.Item>
                     </Menu.SubMenu>
-                    {/* Land Line */}
                     <Menu.SubMenu key="LandLine" title={<>Land Line</>}>
                         <Menu.Item key="LocalPlan_LandLine">
                             <Link to="">Local Plan</Link>
@@ -57,11 +80,13 @@ function UserHeader(props) {
                         <Menu.Item key="STDPlan_LandLine">
                             <Link to=""></Link>STD Plan
                         </Menu.Item>
-                    </Menu.SubMenu>
+                    </Menu.SubMenu> */}
                 </Menu.SubMenu>
                 {/* Promotions */}
                 <Menu.Item key="Promotions">
-                    <Link to=""><b style={textStyle}>Promotions</b></Link>
+                    <Link to="">
+                        <b style={textStyle}>Promotions</b>
+                    </Link>
                 </Menu.Item>
                 {/* Support */}
                 <Menu.SubMenu
@@ -94,11 +119,15 @@ function UserHeader(props) {
                 </Menu.SubMenu>
                 {/* Online Registration */}
                 <Menu.Item key="OnlineRegistration">
-                    <Link to=""><b style={textStyle}>Online Registration</b></Link>
+                    <Link to="">
+                        <b style={textStyle}>Online Registration</b>
+                    </Link>
                 </Menu.Item>
                 {/* Online Payment */}
                 <Menu.Item key="OnlinePayment">
-                    <Link to=""><b style={textStyle}>Online Payment</b></Link>
+                    <Link to="">
+                        <b style={textStyle}>Online Payment</b>
+                    </Link>
                 </Menu.Item>
             </Menu>
         </Layout.Header>

@@ -9,7 +9,7 @@ const defaultState = {
 };
 
 const connectionStatusSlice = createSlice({
-    name: "connectionStatuses",
+    name: "adminConnectionStatuses",
     initialState: defaultState,
     reducers: {
         setConnectionStatuses: (state, action) => {

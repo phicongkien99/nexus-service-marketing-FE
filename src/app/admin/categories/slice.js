@@ -9,7 +9,7 @@ const defaultState = {
 };
 
 const categorySlice = createSlice({
-    name: "categories",
+    name: "adminCategories",
     initialState: defaultState,
     reducers: {
         setCategories: (state, action) => {

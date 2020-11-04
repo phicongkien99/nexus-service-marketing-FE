@@ -4,7 +4,11 @@ import adminProvider from "./admin/providers/slice";
 import adminCategory from "./admin/categories/slice";
 import adminArea from "./admin/areas/slice";
 import adminFee from "./admin/fees/slice";
-import adminConnectionStatuses from "./admin/connection-statuses/slice";
+import adminConnectionStatus from "./admin/connection-statuses/slice";
+import adminConnectionType from "./admin/connection-types/slice";
+import adminServicePack from "./admin/service-packs/slice";
+import userServicePack from "./slice/service-pack";
+import userConnectionType from "./slice/connection-type";
 
 const rootReducer = combineReducers({
     adminStore,
@@ -12,7 +16,11 @@ const rootReducer = combineReducers({
     adminCategory,
     adminArea,
     adminFee,
-    adminConnectionStatuses,
+    adminConnectionStatus,
+    adminConnectionType,
+    adminServicePack,
+    userServicePack,
+    userConnectionType,
 });
 
 export default rootReducer;

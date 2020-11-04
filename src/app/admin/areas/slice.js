@@ -9,7 +9,7 @@ const defaultState = {
 };
 
 const areaSlice = createSlice({
-    name: "areas",
+    name: "adminAreas",
     initialState: defaultState,
     reducers: {
         setAreas: (state, action) => {

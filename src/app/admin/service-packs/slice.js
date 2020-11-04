@@ -9,7 +9,7 @@ const defaultState = {
 };
 
 const servicePackSlice = createSlice({
-    name: "servicePacks",
+    name: "adminServicePacks",
     initialState: defaultState,
     reducers: {
         setServicePacks: (state, action) => {

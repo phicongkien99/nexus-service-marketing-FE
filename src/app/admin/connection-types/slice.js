@@ -4,27 +4,27 @@ import axiosClient from "../../../utils/axiosClient";
 const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
-    fees: [],
+    connectionTypes: [],
     isLoading: false,
 };
 
-const feeSlice = createSlice({
-    name: "adminFees",
+const connectionTypeSlice = createSlice({
+    name: "adminConnectionTypes",
     initialState: defaultState,
     reducers: {
-        setFees: (state, action) => {
-            state.fees = action.payload;
+        setConnectionTypes: (state, action) => {
+            state.connectionTypes = action.payload;
         },
-        addFee: (state, action) => {
-            state.fees.push(action.payload);
+        addConnectionType: (state, action) => {
+            state.connectionTypes.push(action.payload);
         },
-        editFee: (state, action) => {
-            state.fees = state.fees.map((fee) =>
-                fee.id === action.payload.id ? action.payload : fee
+        editConnectionType: (state, action) => {
+            state.connectionTypes = state.connectionTypes.map((connectionType) =>
+                connectionType.id === action.payload.id ? action.payload : connectionType
             );
         },
-        removeFee: (state, action) => {
-            state.fees = state.fees.filter((fee) => fee.id !== action.payload);
+        removeConnectionType: (state, action) => {
+            state.connectionTypes = state.connectionTypes.filter((connectionType) => connectionType.id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -32,22 +32,22 @@ const feeSlice = createSlice({
     },
 });
 
-const { actions, reducer } = feeSlice;
+const { actions, reducer } = connectionTypeSlice;
 
-export const { setFees, addFee, editFee, removeFee, setIsLoading } = actions;
+export const { setConnectionTypes, addConnectionType, editConnectionType, removeConnectionType, setIsLoading } = actions;
 
-function fetchFees(fees) {
+function fetchConnectionTypes(connectionTypes) {
     return async (dispatch) => {
         try {
-            if (fees.length === 0) {
+            if (connectionTypes.length === 0) {
                 dispatch(setIsLoading(true));
             }
             const resp = await axiosClient({
-                url: "/fee",
+                url: "/connectionType",
                 method: "get",
             });
             if (resp.data.IsSuccess) {
-                dispatch(setFees(resp.data.ListDataResult));
+                dispatch(setConnectionTypes(resp.data.ListDataResult));
             } else {
                 throw resp.data.ErrorMsg;
             }
@@ -55,27 +55,27 @@ function fetchFees(fees) {
             console.error(e);
             toast.error(e);
         } finally {
-            if (fees.length === 0) {
+            if (connectionTypes.length === 0) {
                 dispatch(setIsLoading(false));
             }
         }
     };
 }
 
-function createFee(fee) {
+function createConnectionType(connectionType) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: "/fee",
+                url: "/connectionType",
                 method: "post",
-                data: fee,
+                data: connectionType,
             });
             if (resp.data.IsSuccess) {
                 if (resp.data.ListDataResult.length > 0) {
-                    dispatch(addFee(resp.data.ListDataResult[0]));
+                    dispatch(addConnectionType(resp.data.ListDataResult[0]));
                 }
-                toast.success("Create fee succeed!");
+                toast.success("Create connection type succeed!");
             } else {
                 throw resp.data.ErrorMsg;
             }
@@ -88,20 +88,20 @@ function createFee(fee) {
     };
 }
 
-function updateFee(fee) {
+function updateConnectionType(connectionType) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/fee/${fee.id}`,
+                url: `/connectionType/${connectionType.id}`,
                 method: "put",
-                data: fee,
+                data: connectionType,
             });
             if (resp.data.IsSuccess) {
                 if (resp.data.ListDataResult.length > 0) {
-                    dispatch(editFee(resp.data.ListDataResult[0]));
+                    dispatch(editConnectionType(resp.data.ListDataResult[0]));
                 }
-                toast.success("Update fee succeed!");
+                toast.success("Update connection type succeed!");
             } else {
                 throw resp.data.ErrorMsg;
             }
@@ -114,19 +114,19 @@ function updateFee(fee) {
     };
 }
 
-function deleteFee(id) {
+function deleteConnectionType(id) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/fee/${id}`,
+                url: `/connectionType/${id}`,
                 method: "delete",
             });
             if (resp.data.IsSuccess) {
                 if (resp.data.ListDataResult.length > 0) {
-                    dispatch(removeFee(resp.data.ListDataResult[0]));
+                    dispatch(removeConnectionType(resp.data.ListDataResult[0]));
                 }
-                toast.success("Delete fee succeed!");
+                toast.success("Delete connection type succeed!");
             } else {
                 throw resp.data.ErrorMsg;
             }
@@ -139,6 +139,6 @@ function deleteFee(id) {
     };
 }
 
-export { fetchFees, createFee, updateFee, deleteFee };
+export { fetchConnectionTypes, createConnectionType, updateConnectionType, deleteConnectionType };
 
 export default reducer;

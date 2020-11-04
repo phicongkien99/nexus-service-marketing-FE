@@ -9,7 +9,7 @@ const defaultState = {
 };
 
 const storeSlice = createSlice({
-    name: "stores",
+    name: "adminStores",
     initialState: defaultState,
     reducers: {
         setStores: (state, action) => {

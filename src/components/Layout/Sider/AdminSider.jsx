@@ -31,6 +31,21 @@ function AdminSider(props) {
                 <Menu.Item key="categories" icon={<ShopOutlined />}>
                     <Link to="/admin/categories">Categories</Link>
                 </Menu.Item>
+                <Menu.Item key="areas" icon={<ShopOutlined />}>
+                    <Link to="/admin/areas">Areas</Link>
+                </Menu.Item>
+                <Menu.Item key="fees" icon={<ShopOutlined />}>
+                    <Link to="/admin/fees">Fees</Link>
+                </Menu.Item>
+                <Menu.Item key="connection-statuses" icon={<ShopOutlined />}>
+                    <Link to="/admin/connection-statuses">Connection statuses</Link>
+                </Menu.Item>
+                <Menu.Item key="connection-types" icon={<ShopOutlined />}>
+                    <Link to="/admin/connection-types">Connection types</Link>
+                </Menu.Item>
+                <Menu.Item key="service-packs" icon={<ShopOutlined />}>
+                    <Link to="/admin/service-packs">Service packs</Link>
+                </Menu.Item>
             </Menu>
         </Layout.Sider>
     );

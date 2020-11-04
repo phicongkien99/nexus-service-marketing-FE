@@ -9,7 +9,7 @@ const defaultState = {
 };
 
 const providerSlice = createSlice({
-    name: "providers",
+    name: "adminProviders",
     initialState: defaultState,
     reducers: {
         setProviders: (state, action) => {
