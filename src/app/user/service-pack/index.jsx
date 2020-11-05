@@ -4,7 +4,7 @@ import { Carousel, Button, Image } from "antd";
 import "./ServicePack.scss";
 
 function ServicePack(props) {
-    
+
     return (
         <>
             {/* Slide top */}
@@ -421,13 +421,15 @@ function ServicePack(props) {
             </Row>
             {/* Promotion Service Pack */}
             <Row className="mt-20" style={{ justifyContent: "center" }}>
-                <Col span={16}>
+                <Col span={20}>
                     {/* Image left */}
                     <Row>
-                        <Row style={{ fontSize: "30px", justifyContent: "center" }}>
-                            <h1>
-                                <b>Special offer for Online Subscription only</b>
-                            </h1>
+                        <Row style={{ fontSize: "30px" }}>
+                            <Col offset={7} span={24}>
+                                <h1>
+                                    <b>Special offer for Online Subscription only</b>
+                                </h1>
+                            </Col>
                         </Row>
                         <Row>
                             <Col span={16}>
@@ -437,7 +439,7 @@ function ServicePack(props) {
                                     src="https://fpt.vn/shop/html/assets/images/event_t11/desktop/5.jpg"
                                 />
                             </Col>
-                            <Col span={8} style={{ paddingLeft: "20px" }}>
+                            <Col span={8}>
                                 <Row>
                                     <h1
                                         className="text-orange front-size-20"
@@ -470,13 +472,12 @@ function ServicePack(props) {
                                 <Row>
                                     <h1
                                         className="text-orange front-size-20"
-                                        style={{ marginLeft: "4%" }}
                                     >
                                         Apply only at Nexus Service
                                     </h1>
                                 </Row>
                                 <Row>
-                                    <ul>
+                                    <ul style={{ paddingLeft: "22px" }}>
                                         <li>
                                             Up to 3 months free when prepaid Hourly Basis package
                                         </li>
@@ -504,13 +505,15 @@ function ServicePack(props) {
                     <Row className="mt-20">
                         <Row>
                             <Col span={16}>
-                                <img
-                                    alt="img"
-                                    style={{ width: "900px" }}
-                                    src="https://fpt.vn/shop/html/assets/images/event_t11/desktop/5.jpg"
-                                />
+                                <Row>
+                                    <img
+                                        alt="img"
+                                        style={{ width: "900px" }}
+                                        src="https://fpt.vn/shop/html/assets/images/event_t11/desktop/5.jpg"
+                                    />
+                                </Row>
                             </Col>
-                            <Col span={8} style={{ paddingLeft: "42px" }}>
+                            <Col span={8}>
                                 <Row>
                                     <h1
                                         className="text-orange front-size-20"
