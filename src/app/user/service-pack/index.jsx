@@ -4,60 +4,7 @@ import { Carousel, Button, Image } from "antd";
 import "./ServicePack.scss";
 
 function ServicePack(props) {
-    // const imageStyle = {
-    //     height: "379px",
-    //     width: "100%",
-    // };
-
-    // const nameServicePackStyle = {
-    //     textAlign: "center",
-    //     justifyContent: "center",
-    // };
-
-    // const itemServicePackStyle = {
-    //     boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.08)",
-    //     borderRadius: "10px",
-    //     padding: "25px",
-    //     background: "#FFFFFF",
-    //     // marginRight:"1px",
-    // };
-
-    // const buttonOrangeStyle = {
-    //     border: "2px solid #FF7318",
-    //     borderRadius: "86px",
-    //     fontStyle: "normal",
-    //     fontWeight: "600",
-    //     fontSize: "18px",
-    //     lineHeight: "23px",
-    //     textAlign: "center",
-    //     color: "#FF7318",
-    //     marginTop: "20px",
-    // };
-
-    // const buttonBlueStyle = {
-    //     border: "2px solid #035690",
-    //     borderRadius: "86px",
-    //     fontStyle: "normal",
-    //     fontWeight: "600",
-    //     fontSize: "18px",
-    //     lineHeight: "23px",
-    //     textAlign: "center",
-    //     color: "#035690",
-    //     marginTop: "20px",
-    // };
-
-    // const buttonGreenStyle = {
-    //     border: "2px solid #62b046",
-    //     borderRadius: "86px",
-    //     fontStyle: "normal",
-    //     fontWeight: "600",
-    //     fontSize: "18px",
-    //     lineHeight: "23px",
-    //     textAlign: "center",
-    //     color: "#62b046",
-    //     marginTop: "20px",
-    // };
-
+    
     return (
         <>
             {/* Slide top */}
