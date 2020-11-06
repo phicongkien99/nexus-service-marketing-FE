@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
-import { Modal, Form, Input } from "antd";
+import { Modal, Form, Input, Select } from "antd";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchConnectionTypes } from "../connection-types/slice";
 function ServicePackModal({ open, onConfirm, onCancel, servicePack, isLoading }) {
     const [form] = Form.useForm();
+
+    const { connectionTypes } = useSelector((state) => state.adminConnectionType);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchConnectionTypes(connectionTypes));
+    }, []);
 
     useEffect(() => {
         if (open) {
@@ -12,7 +21,7 @@ function ServicePackModal({ open, onConfirm, onCancel, servicePack, isLoading })
         }
     }, [open]);
 
-    const initServicePack = servicePack || { name: "", address: "", isClosed: 0 };
+    const initServicePack = servicePack || { Name: "", Description: "", IdConnectionType: "" };
 
     const onSubmitForm = async () => {
         try {
@@ -27,27 +36,45 @@ function ServicePackModal({ open, onConfirm, onCancel, servicePack, isLoading })
         <Modal
             closable={false}
             maskClosable={false}
-            title="ServicePack"
+            title="Service pack"
             visible={open}
             onOk={onSubmitForm}
             onCancel={onCancel}
             confirmLoading={isLoading}
         >
-            <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initServicePack} form={form}>
+            <Form
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+                name="basic"
+                initialValues={initServicePack}
+                form={form}
+            >
                 <Form.Item
                     label="Name"
-                    name="name"
-                    rules={[{ required: true, message: "Please input your servicePack's name!" }]}
+                    name="Name"
+                    rules={[{ required: true, message: "Please input your service pack's name!" }]}
                 >
                     <Input />
                 </Form.Item>
 
-                <Form.Item
-                    label="Address"
-                    name="address"
-                    rules={[{ required: true, message: "Please input your servicePack's address!" }]}
-                >
+                <Form.Item label="Description" name="Description">
                     <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Connection type"
+                    name="IdConnectionType"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your service pack's connection type!",
+                        },
+                    ]}
+                >
+                    <Select>
+                        {connectionTypes.map((ct) => (
+                            <Select.Option value={ct["Id"]}>{ct["Name"]}</Select.Option>
+                        ))}
+                    </Select>
                 </Form.Item>
             </Form>
         </Modal>

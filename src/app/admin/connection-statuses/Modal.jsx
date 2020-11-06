@@ -12,7 +12,7 @@ function ConnectionStatusModal({ open, onConfirm, onCancel, connectionStatus, is
         }
     }, [open]);
 
-    const initConnectionStatus = connectionStatus || { name: "", description: "" };
+    const initConnectionStatus = connectionStatus || { Name: "", Description: "" };
 
     const onSubmitForm = async () => {
         try {
@@ -27,7 +27,7 @@ function ConnectionStatusModal({ open, onConfirm, onCancel, connectionStatus, is
         <Modal
             closable={false}
             maskClosable={false}
-            title="ConnectionStatus"
+            title="Connection status"
             visible={open}
             onOk={onSubmitForm}
             onCancel={onCancel}
@@ -36,15 +36,15 @@ function ConnectionStatusModal({ open, onConfirm, onCancel, connectionStatus, is
             <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initConnectionStatus} form={form}>
                 <Form.Item
                     label="Name"
-                    name="name"
-                    rules={[{ required: true, message: "Please input your connectionStatus's name!" }]}
+                    name="Name"
+                    rules={[{ required: true, message: "Please input your connection status's name!" }]}
                 >
                     <Input />
                 </Form.Item>
 
                 <Form.Item
                     label="Description"
-                    name="description"
+                    name="Description"
                 >
                     <Input />
                 </Form.Item>

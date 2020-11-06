@@ -46,10 +46,10 @@ function fetchConnectionStatuses(connectionStatuses) {
                 url: "/connectionstatus",
                 method: "get",
             });
-            if (resp.data.IsSuccess) {
-                dispatch(setConnectionStatuses(resp.data.ListDataResult));
+            if (resp.IsSuccess) {
+                dispatch(setConnectionStatuses(resp.ListDataResult));
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -71,13 +71,13 @@ function createConnectionStatus(connectionStatus) {
                 method: "post",
                 data: connectionStatus,
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(addConnectionStatus(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(addConnectionStatus(resp.ListDataResult[0]));
                 }
                 toast.success("Create connection status succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -97,13 +97,13 @@ function updateConnectionStatus(connectionStatus) {
                 method: "put",
                 data: connectionStatus,
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(editConnectionStatus(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(editConnectionStatus(resp.ListDataResult[0]));
                 }
                 toast.success("Update connection status succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -122,13 +122,13 @@ function deleteConnectionStatus(id) {
                 url: `/connectionstatus/${id}`,
                 method: "delete",
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(removeConnectionStatus(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(removeConnectionStatus(resp.ListDataResult[0]));
                 }
                 toast.success("Delete connection status succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);

@@ -16,7 +16,7 @@ function ServicePacks(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "ServicePacks";
+        document.title = "Service packs";
         dispatch(fetchServicePacks(servicePacks));
     }, []);
 
@@ -24,27 +24,22 @@ function ServicePacks(props) {
         {
             title: "#",
             key: "index",
-            render: (text, record, index) => index,
+            render: (text, record, index) => index + 1,
         },
         {
             title: "Name",
-            dataIndex: "name",
-            key: "name",
+            dataIndex: "Name",
+            key: "Name",
         },
         {
-            title: "Address",
-            dataIndex: "address",
-            key: "address",
+            title: "Description",
+            dataIndex: "Description",
+            key: "Description",
         },
         {
-            title: "Status",
-            dataIndex: "isClosed",
-            key: "isClosed",
-            render: (isClosed) => (
-                <Tag color={isClosed ? "red" : "green"}>
-                    {isClosed ? "Deactivated" : "Activating"}
-                </Tag>
-            ),
+            title: "Connection type",
+            dataIndex: "ConnectionTypeName",
+            key: "ConnectionTypeName",
         },
         {
             title: "Action",
@@ -102,13 +97,13 @@ function ServicePacks(props) {
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteServicePack(currentServicePack["id"]));
+        dispatch(deleteServicePack(currentServicePack["Id"]));
         setOpenDeleteModal(false);
     };
 
     return (
         <>
-            <PageHeader title="ServicePacks" ghost={false} />
+            <PageHeader title="Service packs" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Button

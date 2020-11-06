@@ -12,7 +12,7 @@ function ProviderModal({ open, onConfirm, onCancel, provider, isLoading }) {
         }
     }, [open]);
 
-    const initProvider = provider || { name: "", address: "", email: "", phone: "" };
+    const initProvider = provider || { Name: "", Address: "", Email: "", Phone: "" };
 
     const onSubmitForm = async () => {
         try {
@@ -33,24 +33,30 @@ function ProviderModal({ open, onConfirm, onCancel, provider, isLoading }) {
             onCancel={onCancel}
             confirmLoading={isLoading}
         >
-            <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initProvider} form={form}>
+            <Form
+                labelCol={6}
+                wrapperCol={18}
+                name="basic"
+                initialValues={initProvider}
+                form={form}
+            >
                 <Form.Item
                     label="Name"
-                    name="name"
+                    name="Name"
                     rules={[{ required: true, message: "Please input your provider's name!" }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
                     label="Address"
-                    name="address"
+                    name="Address"
                     rules={[{ required: true, message: "Please input your provider's address!" }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
                     label="Email"
-                    name="email"
+                    name="Email"
                     rules={[
                         { required: true, message: "Please input your provider's email!" },
                         { type: "email", message: "Email invalid!" },
@@ -60,7 +66,7 @@ function ProviderModal({ open, onConfirm, onCancel, provider, isLoading }) {
                 </Form.Item>
                 <Form.Item
                     label="Phone"
-                    name="phone"
+                    name="Phone"
                     rules={[
                         { required: true, message: "Please input your provider's phone number!" },
                     ]}

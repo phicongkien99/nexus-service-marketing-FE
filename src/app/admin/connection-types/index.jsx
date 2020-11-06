@@ -4,7 +4,12 @@ import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import ConnectionTypeModal from "./Modal";
-import { fetchConnectionTypes, createConnectionType, updateConnectionType, deleteConnectionType } from "./slice";
+import {
+    fetchConnectionTypes,
+    createConnectionType,
+    updateConnectionType,
+    deleteConnectionType,
+} from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 
 function ConnectionTypes(props) {
@@ -16,7 +21,7 @@ function ConnectionTypes(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "Connection Types";
+        document.title = "Connection types";
         dispatch(fetchConnectionTypes(connectionTypes));
     }, []);
 
@@ -24,17 +29,17 @@ function ConnectionTypes(props) {
         {
             title: "#",
             key: "index",
-            render: (text, record, index) => index,
+            render: (text, record, index) => index + 1,
         },
         {
             title: "Name",
-            dataIndex: "name",
-            key: "name",
+            dataIndex: "Name",
+            key: "Name",
         },
         {
             title: "Description",
-            dataIndex: "description",
-            key: "description",
+            dataIndex: "Description",
+            key: "Description",
         },
         {
             title: "Action",
@@ -92,13 +97,13 @@ function ConnectionTypes(props) {
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteConnectionType(currentConnectionType["id"]));
+        dispatch(deleteConnectionType(currentConnectionType["Id"]));
         setOpenDeleteModal(false);
     };
 
     return (
         <>
-            <PageHeader title="ConnectionTypes" ghost={false} />
+            <PageHeader title="Connection types" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Button

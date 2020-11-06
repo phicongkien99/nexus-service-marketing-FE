@@ -40,17 +40,17 @@ function UserHeader(props) {
                     }
                 >
                     {/* Dial-up */}
-                    <Skeleton loading={isLoadingSP && isLoadingCT}>
-                        {connectionTypes.length > 0 &&
-                            connectionTypes.map((type) => (
-                                <Menu.SubMenu key={type["id"]} title={type["name"]}>
-                                    {servicePacks.length > 0 &&
-                                        servicePacks.map((pack) => (
-                                            <Menu.Item key={pack["id"]}>{pack["name"]}</Menu.Item>
+                    {connectionTypes.length > 0 &&
+                        connectionTypes.map((type) => (
+                            <Menu.SubMenu key={type["Id"]} title={type["Name"]}>
+                                {servicePacks.length > 0 &&
+                                    servicePacks
+                                        .filter((sp) => sp["IdConnectionType"] === type["Id"])
+                                        .map((pack) => (
+                                            <Menu.Item key={pack["Id"]}>{pack["Name"]}</Menu.Item>
                                         ))}
-                                </Menu.SubMenu>
-                            ))}
-                    </Skeleton>
+                            </Menu.SubMenu>
+                        ))}
                     {/* <Menu.SubMenu key="DialUp" title={<>Dial-up</>}>
                         <Menu.Item key="HourlyBasis_DialUp">
                             <Link to="">Hourly Basis</Link>

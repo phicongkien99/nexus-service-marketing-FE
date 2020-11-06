@@ -46,10 +46,10 @@ function fetchStores(stores) {
                 url: "/store",
                 method: "get",
             });
-            if (resp.data.IsSuccess) {
-                dispatch(setStores(resp.data.ListDataResult));
+            if (resp.IsSuccess) {
+                dispatch(setStores(resp.ListDataResult));
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -71,13 +71,13 @@ function createStore(store) {
                 method: "post",
                 data: store,
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(addStore(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(addStore(resp.ListDataResult[0]));
                 }
                 toast.success("Create store succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -97,13 +97,13 @@ function updateStore(store) {
                 method: "put",
                 data: store,
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(editStore(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(editStore(resp.ListDataResult[0]));
                 }
                 toast.success("Update store succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -122,13 +122,13 @@ function deleteStore(id) {
                 url: `/store/${id}`,
                 method: "delete",
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(removeStore(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(removeStore(resp.ListDataResult[0]));
                 }
                 toast.success("Delete store succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);

@@ -46,10 +46,10 @@ function fetchConnectionTypes(connectionTypes) {
                 url: "/connectionType",
                 method: "get",
             });
-            if (resp.data.IsSuccess) {
-                dispatch(setConnectionTypes(resp.data.ListDataResult));
+            if (resp.IsSuccess) {
+                dispatch(setConnectionTypes(resp.ListDataResult));
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -71,13 +71,13 @@ function createConnectionType(connectionType) {
                 method: "post",
                 data: connectionType,
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(addConnectionType(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(addConnectionType(resp.ListDataResult[0]));
                 }
                 toast.success("Create connection type succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -97,13 +97,13 @@ function updateConnectionType(connectionType) {
                 method: "put",
                 data: connectionType,
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(editConnectionType(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(editConnectionType(resp.ListDataResult[0]));
                 }
                 toast.success("Update connection type succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -122,13 +122,13 @@ function deleteConnectionType(id) {
                 url: `/connectionType/${id}`,
                 method: "delete",
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(removeConnectionType(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(removeConnectionType(resp.ListDataResult[0]));
                 }
                 toast.success("Delete connection type succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);

@@ -35,10 +35,10 @@ function fetchServicePacks(servicePacks) {
                 url: "/servicepack",
                 method: "get",
             });
-            if (resp.data.IsSuccess) {
-                dispatch(setServicePacks(resp.data.ListDataResult));
+            if (resp.IsSuccess) {
+                dispatch(setServicePacks(resp.ListDataResult));
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);

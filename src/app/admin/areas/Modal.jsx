@@ -12,7 +12,7 @@ function AreaModal({ open, onConfirm, onCancel, area, isLoading }) {
         }
     }, [open]);
 
-    const initArea = area || { name: "", shortName: "" };
+    const initArea = area || { Name: "", ShortName: "" };
 
     const onSubmitForm = async () => {
         try {
@@ -36,7 +36,7 @@ function AreaModal({ open, onConfirm, onCancel, area, isLoading }) {
             <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initArea} form={form}>
                 <Form.Item
                     label="Name"
-                    name="name"
+                    name="Name"
                     rules={[{ required: true, message: "Please input your area's name!" }]}
                 >
                     <Input />
@@ -44,7 +44,7 @@ function AreaModal({ open, onConfirm, onCancel, area, isLoading }) {
 
                 <Form.Item
                     label="Short name"
-                    name="shortName"
+                    name="ShortName"
                     rules={[{ required: true, message: "Please input your area's short name!" }]}
                 >
                     <Input />

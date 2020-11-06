@@ -24,22 +24,22 @@ function Stores(props) {
         {
             title: "#",
             key: "index",
-            render: (text, record, index) => index,
+            render: (text, record, index) => index + 1,
         },
         {
             title: "Name",
-            dataIndex: "name",
-            key: "name",
+            dataIndex: "Name",
+            key: "Name",
         },
         {
             title: "Address",
-            dataIndex: "address",
-            key: "address",
+            dataIndex: "Address",
+            key: "Address",
         },
         {
             title: "Status",
-            dataIndex: "isClosed",
-            key: "isClosed",
+            dataIndex: "IsClosed",
+            key: "IsClosed",
             render: (isClosed) => (
                 <Tag color={isClosed ? "red" : "green"}>
                     {isClosed ? "Deactivated" : "Activating"}
@@ -102,7 +102,7 @@ function Stores(props) {
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteStore(currentStore["id"]));
+        dispatch(deleteStore(currentStore["Id"]));
         setOpenDeleteModal(false);
     };
 

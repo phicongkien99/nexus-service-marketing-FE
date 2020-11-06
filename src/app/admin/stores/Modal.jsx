@@ -12,7 +12,7 @@ function StoreModal({ open, onConfirm, onCancel, store, isLoading }) {
         }
     }, [open]);
 
-    const initStore = store || { name: "", address: "", isClosed: 0 };
+    const initStore = store || { Name: "", Address: "", IsClosed: 0 };
 
     const onSubmitForm = async () => {
         try {
@@ -33,10 +33,16 @@ function StoreModal({ open, onConfirm, onCancel, store, isLoading }) {
             onCancel={onCancel}
             confirmLoading={isLoading}
         >
-            <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initStore} form={form}>
+            <Form
+                labelCol={{ span: 6 }}
+                wrapperCol={{ span: 18 }}
+                name="basic"
+                initialValues={initStore}
+                form={form}
+            >
                 <Form.Item
                     label="Name"
-                    name="name"
+                    name="Name"
                     rules={[{ required: true, message: "Please input your store's name!" }]}
                 >
                     <Input />
@@ -44,7 +50,7 @@ function StoreModal({ open, onConfirm, onCancel, store, isLoading }) {
 
                 <Form.Item
                     label="Address"
-                    name="address"
+                    name="Address"
                     rules={[{ required: true, message: "Please input your store's address!" }]}
                 >
                     <Input />

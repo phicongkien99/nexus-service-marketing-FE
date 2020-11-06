@@ -24,27 +24,27 @@ function Providers(props) {
         {
             title: "#",
             key: "index",
-            render: (text, record, index) => index,
+            render: (text, record, index) => index + 1,
         },
         {
             title: "Name",
-            dataIndex: "name",
-            key: "name",
+            dataIndex: "Name",
+            key: "Name",
         },
         {
             title: "Address",
-            dataIndex: "address",
-            key: "address",
+            dataIndex: "Address",
+            key: "Address",
         },
         {
             title: "Email",
-            dataIndex: "email",
-            key: "email",
+            dataIndex: "Email",
+            key: "Email",
         },
         {
             title: "Phone number",
-            dataIndex: "phone",
-            key: "phone",
+            dataIndex: "Phone",
+            key: "Phone",
         },
         {
             title: "Action",
@@ -102,7 +102,7 @@ function Providers(props) {
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteProvider(currentProvider["id"]));
+        dispatch(deleteProvider(currentProvider["Id"]));
         setOpenDeleteModal(false);
     };
 

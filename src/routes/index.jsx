@@ -8,7 +8,6 @@ import UserRoute from "./LayoutRoute/UserLayoutRoute";
 const Dashboard = lazy(() => import("../app/admin/dashboard"));
 const AdminStores = lazy(() => import("../app/admin/stores"));
 const AdminProviders = lazy(() => import("../app/admin/providers"));
-const AdminCategories = lazy(() => import("../app/admin/categories"));
 const AdminServicePacks = lazy(() => import("../app/admin/service-packs"));
 const AdminAreas = lazy(() => import("../app/admin/areas"));
 const AdminConnectionStatuses = lazy(() => import("../app/admin/connection-statuses"));
@@ -29,7 +28,6 @@ function Routes() {
                 <AdminRoute exact path="/admin/dashboard" component={Dashboard} />
                 <AdminRoute exact path="/admin/stores" component={AdminStores} />
                 <AdminRoute exact path="/admin/providers" component={AdminProviders} />
-                <AdminRoute exact path="/admin/categories" component={AdminCategories} />
                 <AdminRoute exact path="/admin/fees" component={AdminFees} />
                 <AdminRoute exact path="/admin/connection-types" component={AdminConnectionTypes} />
                 <AdminRoute exact path="/admin/connection-statuses" component={AdminConnectionStatuses} />

@@ -28,9 +28,6 @@ function AdminSider(props) {
                 <Menu.Item key="providers" icon={<ShopOutlined />}>
                     <Link to="/admin/providers">Providers</Link>
                 </Menu.Item>
-                <Menu.Item key="categories" icon={<ShopOutlined />}>
-                    <Link to="/admin/categories">Categories</Link>
-                </Menu.Item>
                 <Menu.Item key="areas" icon={<ShopOutlined />}>
                     <Link to="/admin/areas">Areas</Link>
                 </Menu.Item>

@@ -46,10 +46,10 @@ function fetchFees(fees) {
                 url: "/fee",
                 method: "get",
             });
-            if (resp.data.IsSuccess) {
-                dispatch(setFees(resp.data.ListDataResult));
+            if (resp.IsSuccess) {
+                dispatch(setFees(resp.ListDataResult));
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -71,13 +71,13 @@ function createFee(fee) {
                 method: "post",
                 data: fee,
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(addFee(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(addFee(resp.ListDataResult[0]));
                 }
                 toast.success("Create fee succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -97,13 +97,13 @@ function updateFee(fee) {
                 method: "put",
                 data: fee,
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(editFee(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(editFee(resp.ListDataResult[0]));
                 }
                 toast.success("Update fee succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -122,13 +122,13 @@ function deleteFee(id) {
                 url: `/fee/${id}`,
                 method: "delete",
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(removeFee(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(removeFee(resp.ListDataResult[0]));
                 }
                 toast.success("Delete fee succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);

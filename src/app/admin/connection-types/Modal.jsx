@@ -12,7 +12,7 @@ function ConnectionTypeModal({ open, onConfirm, onCancel, connectionType, isLoad
         }
     }, [open]);
 
-    const initConnectionType = connectionType || { name: "", description: "" };
+    const initConnectionType = connectionType || { Name: "", Description: "" };
 
     const onSubmitForm = async () => {
         try {
@@ -36,7 +36,7 @@ function ConnectionTypeModal({ open, onConfirm, onCancel, connectionType, isLoad
             <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initConnectionType} form={form}>
                 <Form.Item
                     label="Name"
-                    name="name"
+                    name="Name"
                     rules={[{ required: true, message: "Please input your connection type's name!" }]}
                 >
                     <Input />
@@ -44,7 +44,7 @@ function ConnectionTypeModal({ open, onConfirm, onCancel, connectionType, isLoad
 
                 <Form.Item
                     label="Description"
-                    name="description"
+                    name="Description"
                 >
                     <Input />
                 </Form.Item>

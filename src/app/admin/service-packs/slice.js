@@ -46,10 +46,10 @@ function fetchServicePacks(servicePacks) {
                 url: "/servicepack",
                 method: "get",
             });
-            if (resp.data.IsSuccess) {
-                dispatch(setServicePacks(resp.data.ListDataResult));
+            if (resp.IsSuccess) {
+                dispatch(setServicePacks(resp.ListDataResult));
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -71,13 +71,13 @@ function createServicePack(servicePack) {
                 method: "post",
                 data: servicePack,
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(addServicePack(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(addServicePack(resp.ListDataResult[0]));
                 }
                 toast.success("Create servicePack succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -97,13 +97,13 @@ function updateServicePack(servicePack) {
                 method: "put",
                 data: servicePack,
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(editServicePack(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(editServicePack(resp.ListDataResult[0]));
                 }
                 toast.success("Update servicePack succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);
@@ -122,13 +122,13 @@ function deleteServicePack(id) {
                 url: `/servicepack/${id}`,
                 method: "delete",
             });
-            if (resp.data.IsSuccess) {
-                if (resp.data.ListDataResult.length > 0) {
-                    dispatch(removeServicePack(resp.data.ListDataResult[0]));
+            if (resp.IsSuccess) {
+                if (resp.ListDataResult.length > 0) {
+                    dispatch(removeServicePack(resp.ListDataResult[0]));
                 }
                 toast.success("Delete servicePack succeed!");
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);

@@ -28,23 +28,13 @@ function Areas(props) {
         },
         {
             title: "Name",
-            dataIndex: "name",
-            key: "name",
+            dataIndex: "Name",
+            key: "Name",
         },
         {
-            title: "Address",
-            dataIndex: "address",
-            key: "address",
-        },
-        {
-            title: "Status",
-            dataIndex: "isClosed",
-            key: "isClosed",
-            render: (isClosed) => (
-                <Tag color={isClosed ? "red" : "green"}>
-                    {isClosed ? "Deactivated" : "Activating"}
-                </Tag>
-            ),
+            title: "Short name",
+            dataIndex: "ShortName",
+            key: "ShortName",
         },
         {
             title: "Action",
@@ -102,7 +92,7 @@ function Areas(props) {
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteArea(currentArea["id"]));
+        dispatch(deleteArea(currentArea["Id"]));
         setOpenDeleteModal(false);
     };
 

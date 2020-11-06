@@ -35,10 +35,10 @@ function fetchConnectionTypes(connectionTypes) {
                 url: "/connectiontype",
                 method: "get",
             });
-            if (resp.data.IsSuccess) {
-                dispatch(setConnectionTypes(resp.data.ListDataResult));
+            if (resp.IsSuccess) {
+                dispatch(setConnectionTypes(resp.ListDataResult));
             } else {
-                throw resp.data.ErrorMsg;
+                throw resp.ErrorMsg;
             }
         } catch (e) {
             console.error(e);

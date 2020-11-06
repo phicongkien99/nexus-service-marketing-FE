@@ -1,8 +1,12 @@
 import { Card, Col, Row } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import "./Dashboard.scss";
 
 function Dashboard(props) {
+    useEffect(() => {
+        document.title = "Dashboard";
+    }, []);
+
     return (
         <div id="admin-dashboard">
             <Row gutter={15}>
@@ -28,7 +32,7 @@ function Dashboard(props) {
                 </Col>
             </Row>
         </div>
-    )
+    );
 }
 
 export default Dashboard;

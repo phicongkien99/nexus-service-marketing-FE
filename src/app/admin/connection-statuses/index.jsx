@@ -16,7 +16,7 @@ function ConnectionStatuses(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "ConnectionStatuses";
+        document.title = "Connection statuses";
         dispatch(fetchConnectionStatuses(connectionStatuses));
     }, []);
 
@@ -28,23 +28,13 @@ function ConnectionStatuses(props) {
         },
         {
             title: "Name",
-            dataIndex: "name",
-            key: "name",
+            dataIndex: "Name",
+            key: "Name",
         },
         {
-            title: "Address",
-            dataIndex: "address",
-            key: "address",
-        },
-        {
-            title: "Status",
-            dataIndex: "isClosed",
-            key: "isClosed",
-            render: (isClosed) => (
-                <Tag color={isClosed ? "red" : "green"}>
-                    {isClosed ? "Deactivated" : "Activating"}
-                </Tag>
-            ),
+            title: "Description",
+            dataIndex: "Description",
+            key: "Description",
         },
         {
             title: "Action",
@@ -102,13 +92,13 @@ function ConnectionStatuses(props) {
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteConnectionStatus(currentConnectionStatus["id"]));
+        dispatch(deleteConnectionStatus(currentConnectionStatus["Id"]));
         setOpenDeleteModal(false);
     };
 
     return (
         <>
-            <PageHeader title="ConnectionStatuses" ghost={false} />
+            <PageHeader title="Connection statuses" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Button

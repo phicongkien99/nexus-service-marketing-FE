@@ -24,27 +24,17 @@ function Fees(props) {
         {
             title: "#",
             key: "index",
-            render: (text, record, index) => index,
+            render: (text, record, index) => index + 1,
         },
         {
             title: "Name",
-            dataIndex: "name",
-            key: "name",
+            dataIndex: "Name",
+            key: "Name",
         },
         {
-            title: "Address",
-            dataIndex: "address",
-            key: "address",
-        },
-        {
-            title: "Status",
-            dataIndex: "isClosed",
-            key: "isClosed",
-            render: (isClosed) => (
-                <Tag color={isClosed ? "red" : "green"}>
-                    {isClosed ? "Deactivated" : "Activating"}
-                </Tag>
-            ),
+            title: "Description",
+            dataIndex: "Description",
+            key: "Description",
         },
         {
             title: "Action",
@@ -102,7 +92,7 @@ function Fees(props) {
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteFee(currentFee["id"]));
+        dispatch(deleteFee(currentFee["Id"]));
         setOpenDeleteModal(false);
     };
 

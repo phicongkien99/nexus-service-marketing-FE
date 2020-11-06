@@ -12,7 +12,7 @@ function FeeModal({ open, onConfirm, onCancel, fee, isLoading }) {
         }
     }, [open]);
 
-    const initFee = fee || { name: "", description: "" };
+    const initFee = fee || { Name: "", Description: "" };
 
     const onSubmitForm = async () => {
         try {
@@ -36,7 +36,7 @@ function FeeModal({ open, onConfirm, onCancel, fee, isLoading }) {
             <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initFee} form={form}>
                 <Form.Item
                     label="Name"
-                    name="name"
+                    name="Name"
                     rules={[{ required: true, message: "Please input your fee's name!" }]}
                 >
                     <Input />
@@ -44,7 +44,7 @@ function FeeModal({ open, onConfirm, onCancel, fee, isLoading }) {
 
                 <Form.Item
                     label="Description"
-                    name="description"
+                    name="Description"
                 >
                     <Input />
                 </Form.Item>
