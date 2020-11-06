@@ -4,59 +4,6 @@ import { Carousel, Button, Image } from "antd";
 import "./ServicePack.scss";
 
 function ServicePack(props) {
-    // const imageStyle = {
-    //     height: "379px",
-    //     width: "100%",
-    // };
-
-    // const nameServicePackStyle = {
-    //     textAlign: "center",
-    //     justifyContent: "center",
-    // };
-
-    // const itemServicePackStyle = {
-    //     boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.08)",
-    //     borderRadius: "10px",
-    //     padding: "25px",
-    //     background: "#FFFFFF",
-    //     // marginRight:"1px",
-    // };
-
-    // const buttonOrangeStyle = {
-    //     border: "2px solid #FF7318",
-    //     borderRadius: "86px",
-    //     fontStyle: "normal",
-    //     fontWeight: "600",
-    //     fontSize: "18px",
-    //     lineHeight: "23px",
-    //     textAlign: "center",
-    //     color: "#FF7318",
-    //     marginTop: "20px",
-    // };
-
-    // const buttonBlueStyle = {
-    //     border: "2px solid #035690",
-    //     borderRadius: "86px",
-    //     fontStyle: "normal",
-    //     fontWeight: "600",
-    //     fontSize: "18px",
-    //     lineHeight: "23px",
-    //     textAlign: "center",
-    //     color: "#035690",
-    //     marginTop: "20px",
-    // };
-
-    // const buttonGreenStyle = {
-    //     border: "2px solid #62b046",
-    //     borderRadius: "86px",
-    //     fontStyle: "normal",
-    //     fontWeight: "600",
-    //     fontSize: "18px",
-    //     lineHeight: "23px",
-    //     textAlign: "center",
-    //     color: "#62b046",
-    //     marginTop: "20px",
-    // };
 
     return (
         <>
@@ -474,13 +421,15 @@ function ServicePack(props) {
             </Row>
             {/* Promotion Service Pack */}
             <Row className="mt-20" style={{ justifyContent: "center" }}>
-                <Col span={16}>
+                <Col span={20}>
                     {/* Image left */}
                     <Row>
-                        <Row style={{ fontSize: "30px", justifyContent: "center" }}>
-                            <h1>
-                                <b>Special offer for Online Subscription only</b>
-                            </h1>
+                        <Row style={{ fontSize: "30px" }}>
+                            <Col offset={7} span={24}>
+                                <h1>
+                                    <b>Special offer for Online Subscription only</b>
+                                </h1>
+                            </Col>
                         </Row>
                         <Row>
                             <Col span={16}>
@@ -490,7 +439,7 @@ function ServicePack(props) {
                                     src="https://fpt.vn/shop/html/assets/images/event_t11/desktop/5.jpg"
                                 />
                             </Col>
-                            <Col span={8} style={{ paddingLeft: "20px" }}>
+                            <Col span={8}>
                                 <Row>
                                     <h1
                                         className="text-orange front-size-20"
@@ -523,13 +472,12 @@ function ServicePack(props) {
                                 <Row>
                                     <h1
                                         className="text-orange front-size-20"
-                                        style={{ marginLeft: "4%" }}
                                     >
                                         Apply only at Nexus Service
                                     </h1>
                                 </Row>
                                 <Row>
-                                    <ul>
+                                    <ul style={{ paddingLeft: "22px" }}>
                                         <li>
                                             Up to 3 months free when prepaid Hourly Basis package
                                         </li>
@@ -557,13 +505,15 @@ function ServicePack(props) {
                     <Row className="mt-20">
                         <Row>
                             <Col span={16}>
-                                <img
-                                    alt="img"
-                                    style={{ width: "900px" }}
-                                    src="https://fpt.vn/shop/html/assets/images/event_t11/desktop/5.jpg"
-                                />
+                                <Row>
+                                    <img
+                                        alt="img"
+                                        style={{ width: "900px" }}
+                                        src="https://fpt.vn/shop/html/assets/images/event_t11/desktop/5.jpg"
+                                    />
+                                </Row>
                             </Col>
-                            <Col span={8} style={{ paddingLeft: "42px" }}>
+                            <Col span={8}>
                                 <Row>
                                     <h1
                                         className="text-orange front-size-20"
