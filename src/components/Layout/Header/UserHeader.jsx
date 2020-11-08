@@ -101,7 +101,7 @@ function UserHeader(props) {
                         <Link to="">Contact 24/7</Link>
                     </Menu.Item>
                     <Menu.Item key="Feedback_Support">
-                        <Link to="">Feedback</Link>
+                        <Link to="/feedback">Feedback</Link>
                     </Menu.Item>
                 </Menu.SubMenu>
                 {/* Member */}
