@@ -21,8 +21,8 @@ function Membership(props) {
 
 
     return (<>
-        <Row className="mt-20" style={{ justifyContent: "center" }}>
-            <Col span={16} offset={8}>
+        <Row className="mt-100" style={{ justifyContent: "center" }}>
+            <Col span={16} offset={11}>
                 <Row>
                     <Image width={156} height={52} src={"https://id.fpt.vn/images/logo.png"} />
                 </Row>
@@ -65,7 +65,7 @@ function Membership(props) {
                             </Col>
                             <Col span={12}>
                                 <Link>
-                                    <Row gutter={15}>
+                                    <Row gutter={15} className="ml-10">
                                         <Col className="mt-5">
                                             <Image width={32} height={32} src={"https://id.fpt.vn/images/Loyalty40.svg"} />
                                         </Col>
@@ -79,14 +79,13 @@ function Membership(props) {
                     </Col>
                 </Row>
                 <Row className="mt-25 mb-250">
-                    <Col span={8} offset={2}>
-                        <Button icon={<BookTwoTone />} size={"large"} shape={"round"}>User manual</Button>
+                    <Col span={8}>
+                        <Button icon={<BookTwoTone />} block size={"large"} shape={"round"}>User manual</Button>
                     </Col>
                 </Row>
             </Col>
         </Row>
     </>);
-
 }
 
 export default Membership;

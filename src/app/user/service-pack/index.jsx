@@ -16,28 +16,28 @@ function ServicePack(props) {
                                 <Row>
                                     <img
                                         alt="img"
-                                        className="imageStyle"
+                                        className="image-style"
                                         src="https://fpt.vn/shop/html/assets/images/desktop/1.1.png"
                                     />
                                 </Row>
                                 <Row>
                                     <img
                                         alt="img"
-                                        className="imageStyle"
+                                        className="image-style"
                                         src="https://fpt.vn/shop/html/assets/images/desktop/1.2.png"
                                     />
                                 </Row>
                                 <Row>
                                     <img
                                         alt="img"
-                                        className="imageStyle"
+                                        className="image-style"
                                         src="https://fpt.vn/shop/html/assets/images/desktop/1.3.png"
                                     />
                                 </Row>
                                 <Row>
                                     <img
                                         alt="img"
-                                        className="imageStyle"
+                                        className="image-style"
                                         src="https://fpt.vn/shop/html/assets/images/desktop/1.4.jpg"
                                     />
                                 </Row>
@@ -79,7 +79,7 @@ function ServicePack(props) {
             <Row className="mt-10" style={{ justifyContent: "center" }}>
                 <Col span={16}>
                     <Row>
-                        <Col offset={8} className="nameServicePackStyle" span={8}>
+                        <Col offset={8} className="name-service-pack-style" span={8}>
                             <Row
                                 style={{
                                     backgroundColor: "orange",
@@ -99,112 +99,118 @@ function ServicePack(props) {
                             </Row>
                         </Col>
                     </Row>
-                    <Row className="mt-10 nameServicePackStyle">
-                        <Col className="itemServicePackStyle" span={8}>
-                            <h4 style={{ marginBottom: "0" }}>COMBO</h4>
-                            <h1>
-                                <b style={{ fontSize: "30px" }} className="text-orange">
-                                    HOURLY BASIS
+                    <Row className="mt-10 name-service-pack-style">
+                        <Col className="item-service-pack-style" span={8}>
+                            <div className="border-shadow-shtyle">
+                                <h4 style={{ marginBottom: "0" }}>COMBO</h4>
+                                <h1>
+                                    <b style={{ fontSize: "30px" }} className="text-orange">
+                                        HOURLY BASIS
                                 </b>
-                            </h1>
-                            <span>From</span>
-                            <p>100 $/month</p>
-                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
-                            <span>Download / Upload</span>
-                            <p>
-                                <b>
-                                    <h2>25 Mbps</h2>
-                                </b>
-                            </p>
-                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
-                            <p>
-                                More than 180 TV channels
+                                </h1>
+                                <span>From</span>
+                                <p>100 $/month</p>
+                                <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                                <span>Download / Upload</span>
+                                <p>
+                                    <b>
+                                        <h2>25 Mbps</h2>
+                                    </b>
+                                </p>
+                                <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                                <p>
+                                    More than 180 TV channels
                                 <br />
-                                <br />
+                                    <br />
                                 Free installation *
                                 <br />
                                 Equipped with WiFi Modem & HD Box
                                 <br />
-                                <br />
+                                    <br />
                                 Fast installation in 12 hours
                                 <br />
                                 Technical support 24/7
-                            </p>
-                            <Button className="buttonOrangeStyle">Register now</Button>
+                                </p>
+                                <Button className="button-orange-style">Register now</Button>
+                            </div>
                         </Col>
-                        <Col className="itemServicePackStyle" span={8}>
-                            <h4 style={{ marginBottom: "0" }}>COMBO</h4>
-                            <h1>
-                                <b style={{ fontSize: "30px" }} className="text-orange">
-                                    UNLIMITED 28K
+                        <Col className="item-service-pack-style" span={8}>
+                            <div className="border-shadow-shtyle">
+                                <h4 style={{ marginBottom: "0" }}>COMBO</h4>
+                                <h1>
+                                    <b style={{ fontSize: "30px" }} className="text-orange">
+                                        UNLIMITED 28K
                                 </b>
-                            </h1>
-                            <span>From</span>
-                            <p>110 $/month</p>
-                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
-                            <span>Download / Upload</span>
-                            <p>
-                                <b>
-                                    <h2>25 Mbps</h2>
-                                </b>
-                            </p>
-                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
-                            <p>
-                                More than 180 TV channels
+                                </h1>
+                                <span>From</span>
+                                <p>110 $/month</p>
+                                <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                                <span>Download / Upload</span>
+                                <p>
+                                    <b>
+                                        <h2>25 Mbps</h2>
+                                    </b>
+                                </p>
+                                <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                                <p>
+                                    More than 180 TV channels
                                 <br />
-                                <br />
+                                    <br />
                                 Free installation *
                                 <br />
                                 Equipped with WiFi Modem & HD Box
                                 <br />
-                                <br />
+                                    <br />
                                 Fast installation in 12 hours
                                 <br />
                                 Technical support 24/7
-                            </p>
-                            <Button className="buttonOrangeStyle">Register now</Button>
+                                </p>
+                                <Button className="button-orange-style">Register now</Button>
+                            </div>
                         </Col>
-                        <Col className="itemServicePackStyle" span={8}>
-                            <h4 style={{ marginBottom: "0" }}>COMBO</h4>
-                            <h1>
-                                <b style={{ fontSize: "30px" }} className="text-orange">
-                                    UNLIMITED 56Kbps
+                        <Col className="item-service-pack-style" span={8}>
+                            <div className="border-shadow-shtyle">
+                                <h4 style={{ marginBottom: "0" }}>COMBO</h4>
+                                <h1>
+                                    <b style={{ fontSize: "30px" }} className="text-orange">
+                                        UNLIMITED 56Kbps
                                 </b>
-                            </h1>
-                            <span>From</span>
-                            <p>110 $/month</p>
-                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
-                            <span>Download / Upload</span>
-                            <p>
-                                <b>
-                                    <h2>25 Mbps</h2>
-                                </b>
-                            </p>
-                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
-                            <p>
-                                More than 180 TV channels
+                                </h1>
+                                <span>From</span>
+                                <p>110 $/month</p>
+                                <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                                <span>Download / Upload</span>
+                                <p>
+                                    <b>
+                                        <h2>25 Mbps</h2>
+                                    </b>
+                                </p>
+                                <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                                <p>
+                                    More than 180 TV channels
                                 <br />
-                                <br />
+                                    <br />
                                 Free installation *
                                 <br />
                                 Equipped with WiFi Modem & HD Box
                                 <br />
-                                <br />
+                                    <br />
                                 Fast installation in 12 hours
                                 <br />
                                 Technical support 24/7
-                            </p>
-                            <Button className="buttonOrangeStyle">Register now</Button>
+                                </p>
+                                <Button className="button-orange-style">Register now</Button>
+                            </div>
                         </Col>
                     </Row>
                 </Col>
             </Row>
-            {/*   Boad Band  */}
+            {/*   Broad Band  */}
             <Row className="mt-20" style={{ justifyContent: "center" }}>
                 <Col span={16}>
                     <Row>
                         <Col span={8}></Col>
-                        <Col className="nameServicePackStyle" span={8}>
+                        <Col className="name-service-pack-style" span={8}>
                             <Row
                                 style={{
                                     backgroundColor: "#4EB848",
@@ -219,108 +225,114 @@ function ServicePack(props) {
                                     }
                                 />
                                 <h2 className="mt-3" style={{ color: "white" }}>
-                                    Boad Band
+                                    Broad Band
                                 </h2>
                             </Row>
                         </Col>
                         <Col span={8}></Col>
                     </Row>
-                    <Row className="mt-10 nameServicePackStyle" >
-                        <Col className="itemServicePackStyle" span={8}>
-                            <h4 style={{ marginBottom: "0" }}>COMBO</h4>
-                            <h1>
-                                <b style={{ fontSize: "30px" }} className="text-green">
-                                    HOURLY BASIS
+                    <Row className="mt-10 name-service-pack-style" >
+                        <Col className="item-service-pack-style" span={8}>
+                            <div className="border-shadow-shtyle">
+                                <h4 style={{ marginBottom: "0" }}>COMBO</h4>
+                                <h1>
+                                    <b style={{ fontSize: "30px" }} className="text-green">
+                                        HOURLY BASIS
                                 </b>
-                            </h1>
-                            <span>From</span>
-                            <p>100 $/month</p>
-                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
-                            <span>Download / Upload</span>
-                            <p>
-                                <b>
-                                    <h2>25 Mbps</h2>
-                                </b>
-                            </p>
-                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
-                            <p>
-                                More than 180 TV channels
+                                </h1>
+                                <span>From</span>
+                                <p>100 $/month</p>
+                                <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                                <span>Download / Upload</span>
+                                <p>
+                                    <b>
+                                        <h2>25 Mbps</h2>
+                                    </b>
+                                </p>
+                                <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                                <p>
+                                    More than 180 TV channels
                                 <br />
-                                <br />
+                                    <br />
                                 Free installation *
                                 <br />
                                 Equipped with WiFi Modem & HD Box
                                 <br />
-                                <br />
+                                    <br />
                                 Fast installation in 12 hours
                                 <br />
                                 Technical support 24/7
                             </p>
-                            <Button className="buttonGreenStyle">Register now</Button>
+                                <Button className="button-green-style">Register now</Button>
+                            </div>
                         </Col>
-                        <Col className="itemServicePackStyle" span={8}>
-                            <h4 style={{ marginBottom: "0" }}>COMBO</h4>
-                            <h1>
-                                <b style={{ fontSize: "30px" }} className="text-green">
-                                    UNLIMITED 64Kbps
+                        <Col className="item-service-pack-style" span={8}>
+                            <div className="border-shadow-shtyle">
+                                <h4 style={{ marginBottom: "0" }}>COMBO</h4>
+                                <h1>
+                                    <b style={{ fontSize: "30px" }} className="text-green">
+                                        UNLIMITED 64Kbps
                                 </b>
-                            </h1>
-                            <span>From</span>
-                            <p>110 $/month</p>
-                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
-                            <span>Download / Upload</span>
-                            <p>
-                                <b>
-                                    <h2>25 Mbps</h2>
-                                </b>
-                            </p>
-                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
-                            <p>
-                                More than 180 TV channels
+                                </h1>
+                                <span>From</span>
+                                <p>110 $/month</p>
+                                <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                                <span>Download / Upload</span>
+                                <p>
+                                    <b>
+                                        <h2>25 Mbps</h2>
+                                    </b>
+                                </p>
+                                <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                                <p>
+                                    More than 180 TV channels
                                 <br />
-                                <br />
+                                    <br />
                                 Free installation *
                                 <br />
                                 Equipped with WiFi Modem & HD Box
                                 <br />
-                                <br />
+                                    <br />
                                 Fast installation in 12 hours
                                 <br />
                                 Technical support 24/7
-                            </p>
-                            <Button className="buttonGreenStyle">Register now</Button>
+                                </p>
+                                <Button className="button-green-style">Register now</Button>
+                            </div>
                         </Col>
-                        <Col className="itemServicePackStyle" span={8}>
-                            <h4 style={{ marginBottom: "0" }}>COMBO</h4>
-                            <h1>
-                                <b style={{ fontSize: "30px" }} className="text-green">
-                                    UNLIMITED 128Kbps
+                        <Col className="item-service-pack-style" span={8}>
+                            <div className="border-shadow-shtyle">
+                                <h4 style={{ marginBottom: "0" }}>COMBO</h4>
+                                <h1>
+                                    <b style={{ fontSize: "30px" }} className="text-green">
+                                        UNLIMITED 128Kbps
                                 </b>
-                            </h1>
-                            <span>From</span>
-                            <p>110 $/month</p>
-                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
-                            <span>Download / Upload</span>
-                            <p>
-                                <b>
-                                    <h2>25 Mbps</h2>
-                                </b>
-                            </p>
-                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
-                            <p>
-                                More than 180 TV channels
+                                </h1>
+                                <span>From</span>
+                                <p>110 $/month</p>
+                                <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                                <span>Download / Upload</span>
+                                <p>
+                                    <b>
+                                        <h2>25 Mbps</h2>
+                                    </b>
+                                </p>
+                                <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                                <p>
+                                    More than 180 TV channels
                                 <br />
-                                <br />
+                                    <br />
                                 Free installation *
                                 <br />
                                 Equipped with WiFi Modem & HD Box
                                 <br />
-                                <br />
+                                    <br />
                                 Fast installation in 12 hours
                                 <br />
                                 Technical support 24/7
-                            </p>
-                            <Button className="buttonGreenStyle">Register now</Button>
+                                </p>
+                                <Button className="button-green-style">Register now</Button>
+                            </div>
                         </Col>
                     </Row>
                 </Col>
@@ -330,7 +342,7 @@ function ServicePack(props) {
                 <Col span={16}>
                     <Row>
                         <Col span={8}></Col>
-                        <Col className="nameServicePackStyle" span={8}>
+                        <Col className="name-service-pack-style" span={8}>
                             <Row
                                 style={{
                                     backgroundColor: "#035690",
@@ -351,70 +363,74 @@ function ServicePack(props) {
                         </Col>
                         <Col span={8}></Col>
                     </Row>
-                    <Row className="mt-10 nameServicePackStyle">
-                        <Col className="itemServicePackStyle" span={8}>
-                            <h4 style={{ marginBottom: "0" }}>COMBO</h4>
-                            <h1>
-                                <b style={{ fontSize: "30px" }} className="text-blue">
-                                    LOCAL PLAN
+                    <Row className="mt-10 name-service-pack-style">
+                        <Col className="item-service-pack-style" span={8}>
+                            <div className="border-shadow-shtyle">
+                                <h4 style={{ marginBottom: "0" }}>COMBO</h4>
+                                <h1>
+                                    <b style={{ fontSize: "30px" }} className="text-blue">
+                                        LOCAL PLAN
                                 </b>
-                            </h1>
-                            <span>From</span>
-                            <p>100 $/month</p>
-                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
-                            <span>Download / Upload</span>
-                            <p>
-                                <b>
-                                    <h2>25 Mbps</h2>
-                                </b>
-                            </p>
-                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
-                            <p>
-                                More than 180 TV channels
+                                </h1>
+                                <span>From</span>
+                                <p>100 $/month</p>
+                                <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                                <span>Download / Upload</span>
+                                <p>
+                                    <b>
+                                        <h2>25 Mbps</h2>
+                                    </b>
+                                </p>
+                                <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                                <p>
+                                    More than 180 TV channels
                                 <br />
-                                <br />
+                                    <br />
                                 Free installation *
                                 <br />
                                 Equipped with WiFi Modem & HD Box
                                 <br />
-                                <br />
+                                    <br />
                                 Fast installation in 12 hours
                                 <br />
                                 Technical support 24/7
-                            </p>
-                            <Button className="buttonBlueStyle">Register now</Button>
+                                </p>
+                                <Button className="button-blue-style">Register now</Button>
+                            </div>
                         </Col>
-                        <Col className="itemServicePackStyle" span={8}>
-                            <h4 style={{ marginBottom: "0" }}>COMBO</h4>
-                            <h1>
-                                <b style={{ fontSize: "30px" }} className="text-blue">
-                                    STD PLAN
+                        <Col className="item-service-pack-style" span={8}>
+                            <div className="border-shadow-shtyle">
+                                <h4 style={{ marginBottom: "0" }}>COMBO</h4>
+                                <h1>
+                                    <b style={{ fontSize: "30px" }} className="text-blue">
+                                        STD PLAN
                                 </b>
-                            </h1>
-                            <span>From</span>
-                            <p>110 $/month</p>
-                            <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
-                            <span>Download / Upload</span>
-                            <p>
-                                <b>
-                                    <h2>25 Mbps</h2>
-                                </b>
-                            </p>
-                            <hr style={{ width: "50%", color: "#BDBDBD" }} />
-                            <p>
-                                More than 180 TV channels
+                                </h1>
+                                <span>From</span>
+                                <p>110 $/month</p>
+                                <p style={{ color: "#BDBDBD" }}>Price does not include VAT</p>
+                                <span>Download / Upload</span>
+                                <p>
+                                    <b>
+                                        <h2>25 Mbps</h2>
+                                    </b>
+                                </p>
+                                <hr style={{ width: "50%", color: "#BDBDBD" }} />
+                                <p>
+                                    More than 180 TV channels
                                 <br />
-                                <br />
+                                    <br />
                                 Free installation *
                                 <br />
                                 Equipped with WiFi Modem & HD Box
                                 <br />
-                                <br />
+                                    <br />
                                 Fast installation in 12 hours
                                 <br />
                                 Technical support 24/7
                             </p>
-                            <Button className="buttonBlueStyle">Register now</Button>
+                                <Button className="button-blue-style">Register now</Button>
+                            </div>
                         </Col>
                     </Row>
                 </Col>

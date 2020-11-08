@@ -1,52 +1,56 @@
-.imageStyle  {
-    height:  335px ;
-    width:  100% ;
+.image-style {
+    height: 335px;
+    width: 100%;
 }
 
-.nameServicePackStyle  {
-    text-align:  center ;
-    justify-content:  center ;
+.name-service-pack-style {
+    text-align: center;
+    justify-content: center;
 }
 
-.itemServicePackStyle  {
-    box-shadow:  0px 4px 15px rgba(0, 0, 0, 0.08) ;
-    border-radius:  10px ;
-    padding:  25px ;
-    background:  #FFFFFF ;
+.item-service-pack-style {
+    padding: 10px;
+    background: #FFFFFF;
 }
 
-.buttonOrangeStyle  {
-    border:  2px solid #FF7318 ;
-    border-radius:  86px ;
-    font-style:  normal ;
-    font-weight:  600 ;
-    font-size:  18px ;
-    line-height:  23px ;
-    text-align:  center ;
-    color:  #FF7318 ;
-    margin-top:  20px ;
+.border-shadow-shtyle {
+    height: 500px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
 }
 
-.buttonBlueStyle  {
-    border:  2px solid #035690 ;
-    border-radius:  86px ;
-    font-style:  normal ;
-    font-weight:  600 ;
-    font-size:  18px ;
-    line-height:  23px ;
-    text-align:  center ;
-    color:  #035690 ;
-    margin-top:  20px ;
+.button-orange-style {
+    border: 2px solid #FF7318;
+    border-radius: 86px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #FF7318;
+    margin-top: 20px;
 }
 
-.buttonGreenStyle {
-    border:  2px solid #62b046 ;
-    border-radius:  86px ;
-    font-style:  normal ;
-    font-weight:  600 ;
-    font-size:  18px ;
-    line-height:  23px ;
-    text-align:  center ;
-    color:  #62b046 ;
-    margin-top:  20px ;
+.button-blue-style {
+    border: 2px solid #035690;
+    border-radius: 86px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #035690;
+    margin-top: 20px;
+}
+
+.button-green-style {
+    border: 2px solid #62b046;
+    border-radius: 86px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #62b046;
+    margin-top: 20px;
 }

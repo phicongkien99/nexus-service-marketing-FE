@@ -18,6 +18,7 @@ const AdminFees = lazy(() => import("../app/admin/fees"));
 const HomePage = lazy(() => import("../app/user/home-page"));
 const ServicePack = lazy(() => import("../app/user/service-pack"));
 const Membership = lazy(() => import("../app/user/membership"));
+const Feedback = lazy(() => import("../app/user/feedback"));
 
 function Routes() {
     return (
@@ -37,6 +38,7 @@ function Routes() {
                 <AdminRoute exact path="/admin/service-packs" component={AdminServicePacks} />
                 <UserRoute exact path="/service-pack" component={ServicePack} />
                 <UserRoute exact path="/membership" component={Membership} />
+                <UserRoute exact path="/feedback" component={Feedback} />
                 <UserRoute exact path="/" component={HomePage} />
                 <Route component={NotFound} />
             </Switch>
