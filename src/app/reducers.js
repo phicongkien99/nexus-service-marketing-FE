@@ -4,6 +4,7 @@ import adminProvider from "./admin/providers/slice";
 import adminArea from "./admin/areas/slice";
 import adminFee from "./admin/fees/slice";
 import adminConnectionStatus from "./admin/connection-statuses/slice";
+import adminServiceFormStatus from "./admin/service-form-statuses/slice";
 import adminConnectionType from "./admin/connection-types/slice";
 import adminServicePack from "./admin/service-packs/slice";
 import userServicePack from "./slice/service-pack";
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     adminArea,
     adminFee,
     adminConnectionStatus,
+    adminServiceFormStatus,
     adminConnectionType,
     adminServicePack,
     userServicePack,

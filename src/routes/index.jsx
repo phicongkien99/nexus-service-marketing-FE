@@ -11,6 +11,7 @@ const AdminProviders = lazy(() => import("../app/admin/providers"));
 const AdminServicePacks = lazy(() => import("../app/admin/service-packs"));
 const AdminAreas = lazy(() => import("../app/admin/areas"));
 const AdminConnectionStatuses = lazy(() => import("../app/admin/connection-statuses"));
+const AdminServiceFormStatuses = lazy(() => import("../app/admin/service-form-statuses"));
 const AdminConnectionTypes = lazy(() => import("../app/admin/connection-types"));
 const AdminFees = lazy(() => import("../app/admin/fees"));
 // USER
@@ -31,6 +32,7 @@ function Routes() {
                 <AdminRoute exact path="/admin/fees" component={AdminFees} />
                 <AdminRoute exact path="/admin/connection-types" component={AdminConnectionTypes} />
                 <AdminRoute exact path="/admin/connection-statuses" component={AdminConnectionStatuses} />
+                <AdminRoute exact path="/admin/service-form-statuses" component={AdminServiceFormStatuses} />
                 <AdminRoute exact path="/admin/areas" component={AdminAreas} />
                 <AdminRoute exact path="/admin/service-packs" component={AdminServicePacks} />
                 <UserRoute exact path="/service-pack" component={ServicePack} />
