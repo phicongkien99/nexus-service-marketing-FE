@@ -1,21 +1,21 @@
 export const roles = [
     {
-        key: "admin",
+        key: "ADMIN",
         text: "ADMIN",
         value: "ADMIN",
     },
     {
-        key: "employee",
+        key: "EMPLOYEE",
         text: "EMPLOYEE",
         value: "EMPLOYEE",
     },
     {
-        key: "technician",
+        key: "TECHNICIAN",
         text: "TECHNICIAN",
         value: "TECHNICIAN",
     },
     {
-        key: "accountant",
+        key: "ACCOUNTANT",
         text: "ACCOUNTANT",
         value: "ACCOUNTANT",
     },

@@ -4,6 +4,7 @@ import NotFound from "../components/Layout/NotFound";
 import { ToastContainer } from "react-toastify";
 import AdminRoute from "./LayoutRoute/AdminLayoutRoute";
 import UserRoute from "./LayoutRoute/UserLayoutRoute";
+import Login from "../app/admin/login";
 // ADMIN
 const Dashboard = lazy(() => import("../app/admin/dashboard"));
 const AdminStores = lazy(() => import("../app/admin/stores"));
@@ -36,6 +37,7 @@ function Routes() {
                 <AdminRoute exact path="/admin/service-form-statuses" component={AdminServiceFormStatuses} />
                 <AdminRoute exact path="/admin/areas" component={AdminAreas} />
                 <AdminRoute exact path="/admin/service-packs" component={AdminServicePacks} />
+                <Route exact path="/admin/login" component={Login} />
                 <UserRoute exact path="/service-pack" component={ServicePack} />
                 <UserRoute exact path="/membership" component={Membership} />
                 <UserRoute exact path="/feedback" component={Feedback} />
