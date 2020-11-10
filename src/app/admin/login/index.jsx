@@ -50,6 +50,7 @@ function Login({ history }) {
                 const userInfo = resp.ListDataResult[0]["UserInfo"];
                 window.userInfo = userInfo;
                 window.localStorage.setItem("token", token);
+                history.push("/admin/dashboard");
             } else {
                 throw resp.ErrorMsg;
             }
