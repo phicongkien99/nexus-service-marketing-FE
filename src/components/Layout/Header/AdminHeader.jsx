@@ -4,18 +4,19 @@ import React, { Fragment } from "react";
 import "./Header.scss";
 import Logo from "../../../assets/img/radar.svg";
 import SubMenu from "antd/lib/menu/SubMenu";
+import { useLocation } from "react-router-dom";
 
-function AdminHeader(props) {
+function AdminHeader({history}) {
+
+    const handleSignOut = () => {
+        window.userInfo = undefined;
+        window.localStorage.removeItem("token");
+        history.push("/");
+    };
+
     return (
         <Layout.Header className="header admin-header">
-            <Menu
-                style={{ width: "100%" }}
-                className="bg-transparent"
-                key="user"
-                mode="horizontal"
-                onClick={() => console.log("ok")}
-                selectable={false}
-            >
+            <Menu style={{ width: "100%" }} className="bg-transparent" key="user" mode="horizontal" selectable={false}>
                 <SubMenu
                     style={{ float: "right" }}
                     title={
@@ -26,7 +27,9 @@ function AdminHeader(props) {
                         </Fragment>
                     }
                 >
-                    <Menu.Item key="SignOut">Sign out</Menu.Item>
+                    <Menu.Item key="SignOut" onClick={handleSignOut}>
+                        Sign out
+                    </Menu.Item>
                 </SubMenu>
             </Menu>
         </Layout.Header>

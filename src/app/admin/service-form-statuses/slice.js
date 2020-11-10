@@ -20,11 +20,11 @@ const serviceFormStatusSlice = createSlice({
         },
         editServiceFormStatus: (state, action) => {
             state.serviceFormStatuses = state.serviceFormStatuses.map((serviceFormStatus) =>
-                serviceFormStatus.id === action.payload.id ? action.payload : serviceFormStatus
+                serviceFormStatus.Id === action.payload.Id ? action.payload : serviceFormStatus
             );
         },
         removeServiceFormStatus: (state, action) => {
-            state.serviceFormStatuses = state.serviceFormStatuses.filter((serviceFormStatus) => serviceFormStatus.id !== action.payload);
+            state.serviceFormStatuses = state.serviceFormStatuses.filter((serviceFormStatus) => serviceFormStatus.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -93,7 +93,7 @@ function updateServiceFormStatus(serviceFormStatus) {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/serviceformstatus/${serviceFormStatus.id}`,
+                url: `/serviceformstatus/${serviceFormStatus.Id}`,
                 method: "put",
                 data: serviceFormStatus,
             });

@@ -20,11 +20,11 @@ const storeSlice = createSlice({
         },
         editStore: (state, action) => {
             state.stores = state.stores.map((store) =>
-                store.id === action.payload.id ? action.payload : store
+                store.Id === action.payload.Id ? action.payload : store
             );
         },
         removeStore: (state, action) => {
-            state.stores = state.stores.filter((store) => store.id !== action.payload);
+            state.stores = state.stores.filter((store) => store.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -93,7 +93,7 @@ function updateStore(store) {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/store/${store.id}`,
+                url: `/store/${store.Id}`,
                 method: "put",
                 data: store,
             });

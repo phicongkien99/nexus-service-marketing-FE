@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Checkbox, Row, Col, PageHeader } from "antd";
 import axiosClient from "../../../utils/axiosClient";
 import { toast } from "react-toastify";
+import jwt from "jsonwebtoken";
 
 const layout = {
     labelCol: {
@@ -24,6 +25,16 @@ function Login({ history }) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        const token = window.localStorage.getItem("token");
+        if (token) {
+            try {
+                const decoded = jwt.verify(token, process.env.REACT_APP_JWT_SECRET);
+                window.userInfo = decoded.Employee;
+                history.push("/admin/dashboard");
+            } catch (e) {
+                console.error(e);
+            }
+        }
         form.resetFields();
     }, []);
 
@@ -49,7 +60,9 @@ function Login({ history }) {
                 const token = resp.ListDataResult[0]["Token"];
                 const userInfo = resp.ListDataResult[0]["UserInfo"];
                 window.userInfo = userInfo;
-                window.localStorage.setItem("token", token);
+                if (remember) {
+                    window.localStorage.setItem("token", token);
+                }
                 history.push("/admin/dashboard");
             } else {
                 throw resp.ErrorMsg;

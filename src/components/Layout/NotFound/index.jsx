@@ -11,7 +11,7 @@ function NotFound(props) {
             subTitle="Ohh, Trang bạn yêu cầu không tồn tại."
             extra={
                 <Button type="primary">
-                    <Link to="/admin/dashboard">Về Dashboard</Link>
+                    <Link to="/">Về trang chủ</Link>
                 </Button>
             }
         />

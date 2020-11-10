@@ -20,11 +20,11 @@ const manufacturerSlice = createSlice({
         },
         editManufacturer: (state, action) => {
             state.manufacturers = state.manufacturers.map((manufacturer) =>
-                manufacturer.id === action.payload.id ? action.payload : manufacturer
+                manufacturer.Id === action.payload.Id ? action.payload : manufacturer
             );
         },
         removeManufacturer: (state, action) => {
-            state.manufacturers = state.manufacturers.filter((manufacturer) => manufacturer.id !== action.payload);
+            state.manufacturers = state.manufacturers.filter((manufacturer) => manufacturer.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -93,7 +93,7 @@ function updateManufacturer(manufacturer) {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/manufacturer/${manufacturer.id}`,
+                url: `/manufacturer/${manufacturer.Id}`,
                 method: "put",
                 data: manufacturer,
             });

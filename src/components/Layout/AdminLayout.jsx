@@ -11,7 +11,7 @@ function AdminLayout(props) {
     };
     return (
         <Layout className="wrapper">
-            <AdminHeader />
+            <AdminHeader history={props.history} />
             <Layout>
                 <AdminSider collapsed={collapsed} onCollapseChange={onCollapseChange} />
                 <Layout.Content className="wrapper-content">

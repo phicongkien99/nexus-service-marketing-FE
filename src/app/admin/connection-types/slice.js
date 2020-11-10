@@ -20,11 +20,11 @@ const connectionTypeSlice = createSlice({
         },
         editConnectionType: (state, action) => {
             state.connectionTypes = state.connectionTypes.map((connectionType) =>
-                connectionType.id === action.payload.id ? action.payload : connectionType
+                connectionType.Id === action.payload.Id ? action.payload : connectionType
             );
         },
         removeConnectionType: (state, action) => {
-            state.connectionTypes = state.connectionTypes.filter((connectionType) => connectionType.id !== action.payload);
+            state.connectionTypes = state.connectionTypes.filter((connectionType) => connectionType.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -93,7 +93,7 @@ function updateConnectionType(connectionType) {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/connectionType/${connectionType.id}`,
+                url: `/connectionType/${connectionType.Id}`,
                 method: "put",
                 data: connectionType,
             });

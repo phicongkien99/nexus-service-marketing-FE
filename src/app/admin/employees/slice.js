@@ -20,11 +20,11 @@ const employeeSlice = createSlice({
         },
         editEmployee: (state, action) => {
             state.employees = state.employees.map((employee) =>
-                employee.id === action.payload.id ? action.payload : employee
+                employee.Id === action.payload.Id ? action.payload : employee
             );
         },
         removeEmployee: (state, action) => {
-            state.employees = state.employees.filter((employee) => employee.id !== action.payload);
+            state.employees = state.employees.filter((employee) => employee.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -93,7 +93,7 @@ function updateEmployee(employee) {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/employee/${employee.id}`,
+                url: `/employee/${employee.Id}`,
                 method: "put",
                 data: employee,
             });

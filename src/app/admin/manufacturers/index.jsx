@@ -113,7 +113,7 @@ function Manufacturers(props) {
                         loading={isLoading}
                         dataSource={manufacturers}
                         columns={columns}
-                        onChange={handleChangeTable}
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>

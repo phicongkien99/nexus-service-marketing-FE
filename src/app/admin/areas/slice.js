@@ -20,11 +20,11 @@ const areaSlice = createSlice({
         },
         editArea: (state, action) => {
             state.areas = state.areas.map((area) =>
-                area.id === action.payload.id ? action.payload : area
+                area.Id === action.payload.Id ? action.payload : area
             );
         },
         removeArea: (state, action) => {
-            state.areas = state.areas.filter((area) => area.id !== action.payload);
+            state.areas = state.areas.filter((area) => area.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -93,7 +93,7 @@ function updateArea(area) {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/area/${area.id}`,
+                url: `/area/${area.Id}`,
                 method: "put",
                 data: area,
             });

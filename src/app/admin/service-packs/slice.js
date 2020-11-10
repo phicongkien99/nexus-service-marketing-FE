@@ -20,11 +20,11 @@ const servicePackSlice = createSlice({
         },
         editServicePack: (state, action) => {
             state.servicePacks = state.servicePacks.map((servicePack) =>
-                servicePack.id === action.payload.id ? action.payload : servicePack
+                servicePack.Id === action.payload.Id ? action.payload : servicePack
             );
         },
         removeServicePack: (state, action) => {
-            state.servicePacks = state.servicePacks.filter((servicePack) => servicePack.id !== action.payload);
+            state.servicePacks = state.servicePacks.filter((servicePack) => servicePack.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -93,7 +93,7 @@ function updateServicePack(servicePack) {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/servicepack/${servicePack.id}`,
+                url: `/servicepack/${servicePack.Id}`,
                 method: "put",
                 data: servicePack,
             });

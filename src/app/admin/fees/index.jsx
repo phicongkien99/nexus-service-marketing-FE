@@ -113,7 +113,7 @@ function Fees(props) {
                         loading={isLoading}
                         dataSource={fees}
                         columns={columns}
-                        onChange={handleChangeTable}
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>

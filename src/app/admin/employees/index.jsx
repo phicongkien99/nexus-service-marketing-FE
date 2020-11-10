@@ -123,7 +123,7 @@ function Providers(props) {
                         loading={isLoading}
                         dataSource={providers}
                         columns={columns}
-                        onChange={handleChangeTable}
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>

@@ -118,7 +118,7 @@ function ConnectionTypes(props) {
                         loading={isLoading}
                         dataSource={connectionTypes}
                         columns={columns}
-                        onChange={handleChangeTable}
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>

@@ -20,11 +20,11 @@ const feeSlice = createSlice({
         },
         editFee: (state, action) => {
             state.fees = state.fees.map((fee) =>
-                fee.id === action.payload.id ? action.payload : fee
+                fee.Id === action.payload.Id ? action.payload : fee
             );
         },
         removeFee: (state, action) => {
-            state.fees = state.fees.filter((fee) => fee.id !== action.payload);
+            state.fees = state.fees.filter((fee) => fee.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -93,7 +93,7 @@ function updateFee(fee) {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/fee/${fee.id}`,
+                url: `/fee/${fee.Id}`,
                 method: "put",
                 data: fee,
             });

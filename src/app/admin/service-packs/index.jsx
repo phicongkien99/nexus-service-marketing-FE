@@ -118,7 +118,7 @@ function ServicePacks(props) {
                         loading={isLoading}
                         dataSource={servicePacks}
                         columns={columns}
-                        onChange={handleChangeTable}
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>

@@ -113,7 +113,7 @@ function ConnectionStatuses(props) {
                         loading={isLoading}
                         dataSource={connectionStatuses}
                         columns={columns}
-                        onChange={handleChangeTable}
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>

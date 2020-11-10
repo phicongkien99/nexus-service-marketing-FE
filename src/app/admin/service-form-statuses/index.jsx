@@ -113,7 +113,7 @@ function ServiceFormStatuses(props) {
                         loading={isLoading}
                         dataSource={serviceFormStatuses}
                         columns={columns}
-                        onChange={handleChangeTable}
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>

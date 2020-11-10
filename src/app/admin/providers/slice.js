@@ -20,11 +20,11 @@ const providerSlice = createSlice({
         },
         editProvider: (state, action) => {
             state.providers = state.providers.map((provider) =>
-                provider.id === action.payload.id ? action.payload : provider
+                provider.Id === action.payload.Id ? action.payload : provider
             );
         },
         removeProvider: (state, action) => {
-            state.providers = state.providers.filter((provider) => provider.id !== action.payload);
+            state.providers = state.providers.filter((provider) => provider.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -93,7 +93,7 @@ function updateProvider(provider) {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/provider/${provider.id}`,
+                url: `/provider/${provider.Id}`,
                 method: "put",
                 data: provider,
             });

@@ -20,11 +20,11 @@ const connectionStatusSlice = createSlice({
         },
         editConnectionStatus: (state, action) => {
             state.connectionStatuses = state.connectionStatuses.map((connectionStatus) =>
-                connectionStatus.id === action.payload.id ? action.payload : connectionStatus
+                connectionStatus.Id === action.payload.Id ? action.payload : connectionStatus
             );
         },
         removeConnectionStatus: (state, action) => {
-            state.connectionStatuses = state.connectionStatuses.filter((connectionStatus) => connectionStatus.id !== action.payload);
+            state.connectionStatuses = state.connectionStatuses.filter((connectionStatus) => connectionStatus.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -93,7 +93,7 @@ function updateConnectionStatus(connectionStatus) {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/connectionstatus/${connectionStatus.id}`,
+                url: `/connectionstatus/${connectionStatus.Id}`,
                 method: "put",
                 data: connectionStatus,
             });

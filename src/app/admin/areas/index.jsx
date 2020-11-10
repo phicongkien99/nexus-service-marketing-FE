@@ -113,7 +113,7 @@ function Areas(props) {
                         loading={isLoading}
                         dataSource={areas}
                         columns={columns}
-                        onChange={handleChangeTable}
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>

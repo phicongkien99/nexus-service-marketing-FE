@@ -123,7 +123,7 @@ function Stores(props) {
                         loading={isLoading}
                         dataSource={stores}
                         columns={columns}
-                        onChange={handleChangeTable}
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>

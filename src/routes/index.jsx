@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import AdminRoute from "./LayoutRoute/AdminLayoutRoute";
 import UserRoute from "./LayoutRoute/UserLayoutRoute";
 import Login from "../app/admin/login";
+import constants from "../utils/constants";
 // ADMIN
 const Dashboard = lazy(() => import("../app/admin/dashboard"));
 const AdminStores = lazy(() => import("../app/admin/stores"));
@@ -28,15 +29,15 @@ function Routes() {
                 <Route exact path="/admin">
                     <Redirect to="/admin/dashboard" />
                 </Route>
-                <AdminRoute exact path="/admin/dashboard" component={Dashboard} />
-                <AdminRoute exact path="/admin/stores" component={AdminStores} />
-                <AdminRoute exact path="/admin/providers" component={AdminProviders} />
-                <AdminRoute exact path="/admin/fees" component={AdminFees} />
-                <AdminRoute exact path="/admin/connection-types" component={AdminConnectionTypes} />
-                <AdminRoute exact path="/admin/connection-statuses" component={AdminConnectionStatuses} />
-                <AdminRoute exact path="/admin/service-form-statuses" component={AdminServiceFormStatuses} />
-                <AdminRoute exact path="/admin/areas" component={AdminAreas} />
-                <AdminRoute exact path="/admin/service-packs" component={AdminServicePacks} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/dashboard" component={Dashboard} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/stores" component={AdminStores} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/providers" component={AdminProviders} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/fees" component={AdminFees} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/connection-types" component={AdminConnectionTypes} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/connection-statuses" component={AdminConnectionStatuses} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/service-form-statuses" component={AdminServiceFormStatuses} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/areas" component={AdminAreas} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/service-packs" component={AdminServicePacks} />
                 <Route exact path="/admin/login" component={Login} />
                 <UserRoute exact path="/service-pack" component={ServicePack} />
                 <UserRoute exact path="/membership" component={Membership} />
