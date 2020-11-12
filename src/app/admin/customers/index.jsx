@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import EmployeeModal from "./Modal";
-import { fetchEmployees, createEmployee, updateEmployee, deleteEmployee } from "./slice";
+import CustomerModal from "./Modal";
+import { fetchCustomers, createCustomer, updateCustomer, deleteCustomer } from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 
-function Employees(props) {
+function Customers(props) {
     const [openModal, setOpenModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [currentEmployee, setCurrentEmployee] = useState(null);
+    const [currentCustomer, setCurrentCustomer] = useState(null);
 
-    const { employees, isLoading } = useSelector((state) => state.adminEmployee);
+    const { customers, isLoading } = useSelector((state) => state.adminCustomer);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "Employees";
-        dispatch(fetchEmployees(employees));
+        document.title = "Customers";
+        dispatch(fetchCustomers(customers));
     }, []);
 
     const columns = [
@@ -73,42 +73,42 @@ function Employees(props) {
         setOpenModal(true);
     };
 
-    const handleUpdate = (employee) => {
-        setCurrentEmployee(employee);
+    const handleUpdate = (customer) => {
+        setCurrentCustomer(customer);
         setOpenModal(true);
     };
 
-    const handleConfirm = (employee) => {
-        if (currentEmployee) {
-            dispatch(updateEmployee(employee));
+    const handleConfirm = (customer) => {
+        if (currentCustomer) {
+            dispatch(updateCustomer(customer));
         } else {
-            dispatch(createEmployee(employee));
+            dispatch(createCustomer(customer));
         }
     };
 
     const handleCancel = () => {
         setOpenModal(false);
-        setCurrentEmployee(null);
+        setCurrentCustomer(null);
     };
 
-    const handleDelete = (employee) => {
-        setCurrentEmployee(employee);
+    const handleDelete = (customer) => {
+        setCurrentCustomer(customer);
         setOpenDeleteModal(true);
     };
 
     const handleCancelDelete = () => {
-        setCurrentEmployee(null);
+        setCurrentCustomer(null);
         setOpenDeleteModal(false);
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteEmployee(currentEmployee["Id"]));
+        dispatch(deleteCustomer(currentCustomer["Id"]));
         setOpenDeleteModal(false);
     };
 
     return (
         <>
-            <PageHeader title="Employees" ghost={false} />
+            <PageHeader title="Customers" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Button
@@ -121,22 +121,22 @@ function Employees(props) {
                     </Button>
                     <Table
                         loading={isLoading}
-                        dataSource={employees}
+                        dataSource={customers}
                         columns={columns}
                         onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>
-            <EmployeeModal
+            <CustomerModal
                 open={openModal}
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
-                employee={currentEmployee}
+                customer={currentCustomer}
                 isLoading={isLoading}
             />
             <ConfirmModal
                 open={openDeleteModal}
-                message="Are you sure to delete this employee?"
+                message="Are you sure to delete this customer?"
                 onCancel={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 isLoading={isLoading}
@@ -145,8 +145,8 @@ function Employees(props) {
     );
 }
 
-Employees.propTypes = {};
+Customers.propTypes = {};
 
-Employees.defaultProps = {};
+Customers.defaultProps = {};
 
-export default Employees;
+export default Customers;

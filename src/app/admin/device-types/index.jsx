@@ -3,21 +3,26 @@ import PropTypes from "prop-types";
 import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import EmployeeModal from "./Modal";
-import { fetchEmployees, createEmployee, updateEmployee, deleteEmployee } from "./slice";
+import DeviceTypeModal from "./Modal";
+import {
+    fetchDeviceTypes,
+    createDeviceType,
+    updateDeviceType,
+    deleteDeviceType,
+} from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 
-function Employees(props) {
+function DeviceTypes(props) {
     const [openModal, setOpenModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [currentEmployee, setCurrentEmployee] = useState(null);
+    const [currentDeviceType, setCurrentDeviceType] = useState(null);
 
-    const { employees, isLoading } = useSelector((state) => state.adminEmployee);
+    const { deviceTypes, isLoading } = useSelector((state) => state.adminDeviceType);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "Employees";
-        dispatch(fetchEmployees(employees));
+        document.title = "Device types";
+        dispatch(fetchDeviceTypes(deviceTypes));
     }, []);
 
     const columns = [
@@ -32,19 +37,9 @@ function Employees(props) {
             key: "Name",
         },
         {
-            title: "Address",
-            dataIndex: "Address",
-            key: "Address",
-        },
-        {
-            title: "Email",
-            dataIndex: "Email",
-            key: "Email",
-        },
-        {
-            title: "Phone number",
-            dataIndex: "Phone",
-            key: "Phone",
+            title: "Description",
+            dataIndex: "Description",
+            key: "Description",
         },
         {
             title: "Action",
@@ -73,42 +68,42 @@ function Employees(props) {
         setOpenModal(true);
     };
 
-    const handleUpdate = (employee) => {
-        setCurrentEmployee(employee);
+    const handleUpdate = (deviceType) => {
+        setCurrentDeviceType(deviceType);
         setOpenModal(true);
     };
 
-    const handleConfirm = (employee) => {
-        if (currentEmployee) {
-            dispatch(updateEmployee(employee));
+    const handleConfirm = (deviceType) => {
+        if (currentDeviceType) {
+            dispatch(updateDeviceType(deviceType));
         } else {
-            dispatch(createEmployee(employee));
+            dispatch(createDeviceType(deviceType));
         }
     };
 
     const handleCancel = () => {
         setOpenModal(false);
-        setCurrentEmployee(null);
+        setCurrentDeviceType(null);
     };
 
-    const handleDelete = (employee) => {
-        setCurrentEmployee(employee);
+    const handleDelete = (deviceType) => {
+        setCurrentDeviceType(deviceType);
         setOpenDeleteModal(true);
     };
 
     const handleCancelDelete = () => {
-        setCurrentEmployee(null);
+        setCurrentDeviceType(null);
         setOpenDeleteModal(false);
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteEmployee(currentEmployee["Id"]));
+        dispatch(deleteDeviceType(currentDeviceType["Id"]));
         setOpenDeleteModal(false);
     };
 
     return (
         <>
-            <PageHeader title="Employees" ghost={false} />
+            <PageHeader title="Device types" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Button
@@ -121,22 +116,22 @@ function Employees(props) {
                     </Button>
                     <Table
                         loading={isLoading}
-                        dataSource={employees}
+                        dataSource={deviceTypes}
                         columns={columns}
                         onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>
-            <EmployeeModal
+            <DeviceTypeModal
                 open={openModal}
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
-                employee={currentEmployee}
+                deviceType={currentDeviceType}
                 isLoading={isLoading}
             />
             <ConfirmModal
                 open={openDeleteModal}
-                message="Are you sure to delete this employee?"
+                message="Are you sure to delete this device type?"
                 onCancel={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 isLoading={isLoading}
@@ -145,8 +140,8 @@ function Employees(props) {
     );
 }
 
-Employees.propTypes = {};
+DeviceTypes.propTypes = {};
 
-Employees.defaultProps = {};
+DeviceTypes.defaultProps = {};
 
-export default Employees;
+export default DeviceTypes;

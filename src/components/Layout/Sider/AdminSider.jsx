@@ -28,6 +28,12 @@ function AdminSider(props) {
                 <Menu.Item key="providers" icon={<ShopOutlined />}>
                     <Link to="/admin/providers">Providers</Link>
                 </Menu.Item>
+                <Menu.Item key="manufacturers" icon={<ShopOutlined />}>
+                    <Link to="/admin/manufacturers">Manufacturers</Link>
+                </Menu.Item>
+                <Menu.Item key="employees" icon={<ShopOutlined />}>
+                    <Link to="/admin/employees">Employees</Link>
+                </Menu.Item>
                 <Menu.Item key="areas" icon={<ShopOutlined />}>
                     <Link to="/admin/areas">Areas</Link>
                 </Menu.Item>
@@ -46,8 +52,23 @@ function AdminSider(props) {
                 <Menu.Item key="connection-types" icon={<ShopOutlined />}>
                     <Link to="/admin/connection-types">Connection types</Link>
                 </Menu.Item>
+                <Menu.Item key="device-types" icon={<ShopOutlined />}>
+                    <Link to="/admin/device-types">Device types</Link>
+                </Menu.Item>
+                <Menu.Item key="devices" icon={<ShopOutlined />}>
+                    <Link to="/admin/devices">Devices</Link>
+                </Menu.Item>
                 <Menu.Item key="service-packs" icon={<ShopOutlined />}>
                     <Link to="/admin/service-packs">Service packs</Link>
+                </Menu.Item>
+                <Menu.Item key="customers" icon={<ShopOutlined />}>
+                    <Link to="/admin/customers">Customers</Link>
+                </Menu.Item>
+                <Menu.Item key="customer-feedbacks" icon={<ShopOutlined />}>
+                    <Link to="/admin/customer-feedbacks">Customer feedbacks</Link>
+                </Menu.Item>
+                <Menu.Item key="contracts" icon={<ShopOutlined />}>
+                    <Link to="/admin/contracts">Contracts</Link>
                 </Menu.Item>
             </Menu>
         </Layout.Sider>

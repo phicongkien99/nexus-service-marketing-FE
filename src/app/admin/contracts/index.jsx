@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import EmployeeModal from "./Modal";
-import { fetchEmployees, createEmployee, updateEmployee, deleteEmployee } from "./slice";
+import ContractModal from "./Modal";
+import { fetchContracts, createContract, updateContract, deleteContract } from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 
-function Employees(props) {
+function Contracts(props) {
     const [openModal, setOpenModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [currentEmployee, setCurrentEmployee] = useState(null);
+    const [currentContract, setCurrentContract] = useState(null);
 
-    const { employees, isLoading } = useSelector((state) => state.adminEmployee);
+    const { contracts, isLoading } = useSelector((state) => state.adminContract);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "Employees";
-        dispatch(fetchEmployees(employees));
+        document.title = "Contracts";
+        dispatch(fetchContracts(contracts));
     }, []);
 
     const columns = [
@@ -73,42 +73,42 @@ function Employees(props) {
         setOpenModal(true);
     };
 
-    const handleUpdate = (employee) => {
-        setCurrentEmployee(employee);
+    const handleUpdate = (contract) => {
+        setCurrentContract(contract);
         setOpenModal(true);
     };
 
-    const handleConfirm = (employee) => {
-        if (currentEmployee) {
-            dispatch(updateEmployee(employee));
+    const handleConfirm = (contract) => {
+        if (currentContract) {
+            dispatch(updateContract(contract));
         } else {
-            dispatch(createEmployee(employee));
+            dispatch(createContract(contract));
         }
     };
 
     const handleCancel = () => {
         setOpenModal(false);
-        setCurrentEmployee(null);
+        setCurrentContract(null);
     };
 
-    const handleDelete = (employee) => {
-        setCurrentEmployee(employee);
+    const handleDelete = (contract) => {
+        setCurrentContract(contract);
         setOpenDeleteModal(true);
     };
 
     const handleCancelDelete = () => {
-        setCurrentEmployee(null);
+        setCurrentContract(null);
         setOpenDeleteModal(false);
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteEmployee(currentEmployee["Id"]));
+        dispatch(deleteContract(currentContract["Id"]));
         setOpenDeleteModal(false);
     };
 
     return (
         <>
-            <PageHeader title="Employees" ghost={false} />
+            <PageHeader title="Contracts" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Button
@@ -121,22 +121,22 @@ function Employees(props) {
                     </Button>
                     <Table
                         loading={isLoading}
-                        dataSource={employees}
+                        dataSource={contracts}
                         columns={columns}
                         onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>
-            <EmployeeModal
+            <ContractModal
                 open={openModal}
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
-                employee={currentEmployee}
+                contract={currentContract}
                 isLoading={isLoading}
             />
             <ConfirmModal
                 open={openDeleteModal}
-                message="Are you sure to delete this employee?"
+                message="Are you sure to delete this contract?"
                 onCancel={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 isLoading={isLoading}
@@ -145,8 +145,8 @@ function Employees(props) {
     );
 }
 
-Employees.propTypes = {};
+Contracts.propTypes = {};
 
-Employees.defaultProps = {};
+Contracts.defaultProps = {};
 
-export default Employees;
+export default Contracts;
