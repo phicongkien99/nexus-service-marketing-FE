@@ -72,8 +72,8 @@ function createConnectionStatus(connectionStatus) {
                 data: connectionStatus,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(addConnectionStatus(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(addConnectionStatus(resp.DataResult));
                 }
                 toast.success("Create connection status succeed!");
             } else {
@@ -98,8 +98,8 @@ function updateConnectionStatus(connectionStatus) {
                 data: connectionStatus,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(editConnectionStatus(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(editConnectionStatus(resp.DataResult));
                 }
                 toast.success("Update connection status succeed!");
             } else {
@@ -123,8 +123,8 @@ function deleteConnectionStatus(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(removeConnectionStatus(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(removeConnectionStatus(resp.DataResult));
                 }
                 toast.success("Delete connection status succeed!");
             } else {

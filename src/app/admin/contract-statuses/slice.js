@@ -4,27 +4,27 @@ import axiosClient from "../../../utils/axiosClient";
 const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
-    serviceFormStatuses: [],
+    contractStatuses: [],
     isLoading: false,
 };
 
-const serviceFormStatusSlice = createSlice({
-    name: "adminServiceFormStatuses",
+const contractStatusSlice = createSlice({
+    name: "adminContractStatuses",
     initialState: defaultState,
     reducers: {
-        setServiceFormStatuses: (state, action) => {
-            state.serviceFormStatuses = action.payload;
+        setContractStatuses: (state, action) => {
+            state.contractStatuses = action.payload;
         },
-        addServiceFormStatus: (state, action) => {
-            state.serviceFormStatuses.push(action.payload);
+        addContractStatus: (state, action) => {
+            state.contractStatuses.push(action.payload);
         },
-        editServiceFormStatus: (state, action) => {
-            state.serviceFormStatuses = state.serviceFormStatuses.map((serviceFormStatus) =>
-                serviceFormStatus.Id === action.payload.Id ? action.payload : serviceFormStatus
+        editContractStatus: (state, action) => {
+            state.contractStatuses = state.contractStatuses.map((contractStatus) =>
+                contractStatus.Id === action.payload.Id ? action.payload : contractStatus
             );
         },
-        removeServiceFormStatus: (state, action) => {
-            state.serviceFormStatuses = state.serviceFormStatuses.filter((serviceFormStatus) => serviceFormStatus.Id !== action.payload);
+        removeContractStatus: (state, action) => {
+            state.contractStatuses = state.contractStatuses.filter((contractStatus) => contractStatus.Id !== action.payload);
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -32,22 +32,22 @@ const serviceFormStatusSlice = createSlice({
     },
 });
 
-const { actions, reducer } = serviceFormStatusSlice;
+const { actions, reducer } = contractStatusSlice;
 
-export const { setServiceFormStatuses, addServiceFormStatus, editServiceFormStatus, removeServiceFormStatus, setIsLoading } = actions;
+export const { setContractStatuses, addContractStatus, editContractStatus, removeContractStatus, setIsLoading } = actions;
 
-function fetchServiceFormStatuses(serviceFormStatuses) {
+function fetchContractStatuses(contractStatuses) {
     return async (dispatch) => {
         try {
-            if (serviceFormStatuses.length === 0) {
+            if (contractStatuses.length === 0) {
                 dispatch(setIsLoading(true));
             }
             const resp = await axiosClient({
-                url: "/serviceformstatus",
+                url: "/contractstatus",
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setServiceFormStatuses(resp.ListDataResult));
+                dispatch(setContractStatuses(resp.ListDataResult));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -55,27 +55,27 @@ function fetchServiceFormStatuses(serviceFormStatuses) {
             console.error(e);
             toast.error(e);
         } finally {
-            if (serviceFormStatuses.length === 0) {
+            if (contractStatuses.length === 0) {
                 dispatch(setIsLoading(false));
             }
         }
     };
 }
 
-function createServiceFormStatus(serviceFormStatus) {
+function createContractStatus(contractStatus) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: "/serviceformstatus",
+                url: "/contractstatus",
                 method: "post",
-                data: serviceFormStatus,
+                data: contractStatus,
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addServiceFormStatus(resp.DataResult));
+                    dispatch(addContractStatus(resp.DataResult));
                 }
-                toast.success("Create service form status succeed!");
+                toast.success("Create contract status succeed!");
             } else {
                 throw resp.ErrorMsg;
             }
@@ -88,20 +88,20 @@ function createServiceFormStatus(serviceFormStatus) {
     };
 }
 
-function updateServiceFormStatus(serviceFormStatus) {
+function updateContractStatus(contractStatus) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/serviceformstatus/${serviceFormStatus.Id}`,
+                url: `/contractstatus/${contractStatus.Id}`,
                 method: "put",
-                data: serviceFormStatus,
+                data: contractStatus,
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editServiceFormStatus(resp.DataResult));
+                    dispatch(editContractStatus(resp.DataResult));
                 }
-                toast.success("Update service form status succeed!");
+                toast.success("Update contract status succeed!");
             } else {
                 throw resp.ErrorMsg;
             }
@@ -114,19 +114,19 @@ function updateServiceFormStatus(serviceFormStatus) {
     };
 }
 
-function deleteServiceFormStatus(id) {
+function deleteContractStatus(id) {
     return async (dispatch) => {
         try {
             setIsLoading(true);
             const resp = await axiosClient({
-                url: `/serviceformstatus/${id}`,
+                url: `/contractstatus/${id}`,
                 method: "delete",
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeServiceFormStatus(resp.DataResult));
+                    dispatch(removeContractStatus(resp.DataResult));
                 }
-                toast.success("Delete service form status succeed!");
+                toast.success("Delete contract status succeed!");
             } else {
                 throw resp.ErrorMsg;
             }
@@ -139,6 +139,6 @@ function deleteServiceFormStatus(id) {
     };
 }
 
-export { fetchServiceFormStatuses, createServiceFormStatus, updateServiceFormStatus, deleteServiceFormStatus };
+export { fetchContractStatuses, createContractStatus, updateContractStatus, deleteContractStatus };
 
 export default reducer;

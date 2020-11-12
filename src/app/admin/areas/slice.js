@@ -72,8 +72,8 @@ function createArea(area) {
                 data: area,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(addArea(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(addArea(resp.DataResult));
                 }
                 toast.success("Create area succeed!");
             } else {
@@ -98,8 +98,8 @@ function updateArea(area) {
                 data: area,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(editArea(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(editArea(resp.DataResult));
                 }
                 toast.success("Update area succeed!");
             } else {
@@ -123,8 +123,8 @@ function deleteArea(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(removeArea(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(removeArea(resp.DataResult));
                 }
                 toast.success("Delete area succeed!");
             } else {

@@ -37,6 +37,9 @@ function AdminSider(props) {
                 <Menu.Item key="connection-statuses" icon={<ShopOutlined />}>
                     <Link to="/admin/connection-statuses">Connection statuses</Link>
                 </Menu.Item>
+                <Menu.Item key="contract-statuses" icon={<ShopOutlined />}>
+                    <Link to="/admin/contract-statuses">Contract statuses</Link>
+                </Menu.Item>
                 <Menu.Item key="service-form-statuses" icon={<ShopOutlined />}>
                     <Link to="/admin/service-form-statuses">Service form statuses</Link>
                 </Menu.Item>

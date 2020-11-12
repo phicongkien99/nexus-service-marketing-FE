@@ -72,8 +72,8 @@ function createManufacturer(manufacturer) {
                 data: manufacturer,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(addManufacturer(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(addManufacturer(resp.DataResult));
                 }
                 toast.success("Create manufacturer succeed!");
             } else {
@@ -98,8 +98,8 @@ function updateManufacturer(manufacturer) {
                 data: manufacturer,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(editManufacturer(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(editManufacturer(resp.DataResult));
                 }
                 toast.success("Update manufacturer succeed!");
             } else {
@@ -123,8 +123,8 @@ function deleteManufacturer(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(removeManufacturer(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(removeManufacturer(resp.DataResult));
                 }
                 toast.success("Delete manufacturer succeed!");
             } else {

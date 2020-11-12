@@ -72,8 +72,8 @@ function createFee(fee) {
                 data: fee,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(addFee(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(addFee(resp.DataResult));
                 }
                 toast.success("Create fee succeed!");
             } else {
@@ -98,8 +98,8 @@ function updateFee(fee) {
                 data: fee,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(editFee(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(editFee(resp.DataResult));
                 }
                 toast.success("Update fee succeed!");
             } else {
@@ -123,8 +123,8 @@ function deleteFee(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(removeFee(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(removeFee(resp.DataResult));
                 }
                 toast.success("Delete fee succeed!");
             } else {

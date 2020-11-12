@@ -46,8 +46,8 @@ function EmployeeModal({ open, onConfirm, onCancel, employee, isLoading }) {
             confirmLoading={isLoading}
         >
             <Form
-                labelCol={6}
-                wrapperCol={18}
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 19 }}
                 name="basic"
                 initialValues={initEmployee}
                 form={form}

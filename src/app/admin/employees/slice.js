@@ -72,8 +72,8 @@ function createEmployee(employee) {
                 data: employee,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(addEmployee(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(addEmployee(resp.DataResult));
                 }
                 toast.success("Create employee succeed!");
             } else {
@@ -98,8 +98,8 @@ function updateEmployee(employee) {
                 data: employee,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(editEmployee(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(editEmployee(resp.DataResult));
                 }
                 toast.success("Update employee succeed!");
             } else {
@@ -123,8 +123,8 @@ function deleteEmployee(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(removeEmployee(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(removeEmployee(resp.DataResult));
                 }
                 toast.success("Delete employee succeed!");
             } else {

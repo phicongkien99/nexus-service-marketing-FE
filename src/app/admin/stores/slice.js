@@ -72,8 +72,8 @@ function createStore(store) {
                 data: store,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(addStore(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(addStore(resp.DataResult));
                 }
                 toast.success("Create store succeed!");
             } else {
@@ -98,8 +98,8 @@ function updateStore(store) {
                 data: store,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(editStore(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(editStore(resp.DataResult));
                 }
                 toast.success("Update store succeed!");
             } else {
@@ -123,8 +123,8 @@ function deleteStore(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(removeStore(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(removeStore(resp.DataResult));
                 }
                 toast.success("Delete store succeed!");
             } else {

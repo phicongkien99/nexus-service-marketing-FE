@@ -72,8 +72,9 @@ function createServicePack(servicePack) {
                 data: servicePack,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(addServicePack(resp.ListDataResult[0]));
+                console.log(resp)
+                if (resp.DataResult) {
+                    dispatch(addServicePack(resp.DataResult));
                 }
                 toast.success("Create servicePack succeed!");
             } else {
@@ -98,8 +99,9 @@ function updateServicePack(servicePack) {
                 data: servicePack,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(editServicePack(resp.ListDataResult[0]));
+                console.log(resp);
+                if (resp.DataResult) {
+                    dispatch(editServicePack(resp.DataResult));
                 }
                 toast.success("Update servicePack succeed!");
             } else {
@@ -123,8 +125,9 @@ function deleteServicePack(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(removeServicePack(resp.ListDataResult[0]));
+                console.log(resp);
+                if (resp.DataResult) {
+                    dispatch(removeServicePack(resp.DataResult));
                 }
                 toast.success("Delete servicePack succeed!");
             } else {

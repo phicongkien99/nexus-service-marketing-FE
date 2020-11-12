@@ -33,7 +33,7 @@ function FeeModal({ open, onConfirm, onCancel, fee, isLoading }) {
             onCancel={onCancel}
             confirmLoading={isLoading}
         >
-            <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initFee} form={form}>
+            <Form labelCol={{ span: 5 }} wrapperCol={{ span: 19 }} name="basic" initialValues={initFee} form={form}>
                 <Form.Item
                     label="Name"
                     name="Name"

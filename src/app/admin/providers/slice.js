@@ -72,8 +72,8 @@ function createProvider(provider) {
                 data: provider,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(addProvider(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(addProvider(resp.DataResult));
                 }
                 toast.success("Create provider succeed!");
             } else {
@@ -98,8 +98,8 @@ function updateProvider(provider) {
                 data: provider,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(editProvider(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(editProvider(resp.DataResult));
                 }
                 toast.success("Update provider succeed!");
             } else {
@@ -123,8 +123,8 @@ function deleteProvider(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(removeProvider(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(removeProvider(resp.DataResult));
                 }
                 toast.success("Delete provider succeed!");
             } else {

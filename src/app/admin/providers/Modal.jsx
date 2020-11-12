@@ -34,8 +34,8 @@ function ProviderModal({ open, onConfirm, onCancel, provider, isLoading }) {
             confirmLoading={isLoading}
         >
             <Form
-                labelCol={6}
-                wrapperCol={18}
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 19 }}
                 name="basic"
                 initialValues={initProvider}
                 form={form}

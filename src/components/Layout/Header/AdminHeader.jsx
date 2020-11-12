@@ -14,6 +14,8 @@ function AdminHeader({history}) {
         history.push("/");
     };
 
+    const user = window.userInfo;
+
     return (
         <Layout.Header className="header admin-header">
             <Menu style={{ width: "100%" }} className="bg-transparent" key="user" mode="horizontal" selectable={false}>
@@ -22,7 +24,7 @@ function AdminHeader({history}) {
                     title={
                         <Fragment>
                             <span style={{ color: "#999", marginRight: 4 }}>Hi,</span>
-                            <span className="username">Admin</span>
+                            <span className="username">{user["Name"]}</span>
                             <Avatar style={{ marginLeft: 8 }} src={Logo} />
                         </Fragment>
                     }

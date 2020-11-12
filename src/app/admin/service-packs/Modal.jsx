@@ -72,7 +72,7 @@ function ServicePackModal({ open, onConfirm, onCancel, servicePack, isLoading })
                 >
                     <Select>
                         {connectionTypes.map((ct) => (
-                            <Select.Option value={ct["Id"]}>{ct["Name"]}</Select.Option>
+                            <Select.Option key={ct["Id"]} value={ct["Id"]}>{ct["Name"]}</Select.Option>
                         ))}
                     </Select>
                 </Form.Item>

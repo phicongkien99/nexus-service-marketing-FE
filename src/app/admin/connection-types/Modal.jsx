@@ -33,7 +33,7 @@ function ConnectionTypeModal({ open, onConfirm, onCancel, connectionType, isLoad
             onCancel={onCancel}
             confirmLoading={isLoading}
         >
-            <Form labelCol={6} wrapperCol={18} name="basic" initialValues={initConnectionType} form={form}>
+            <Form labelCol={{ span: 5 }} wrapperCol={{ span: 19 }} name="basic" initialValues={initConnectionType} form={form}>
                 <Form.Item
                     label="Name"
                     name="Name"

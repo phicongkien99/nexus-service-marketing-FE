@@ -72,8 +72,8 @@ function createConnectionType(connectionType) {
                 data: connectionType,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(addConnectionType(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(addConnectionType(resp.DataResult));
                 }
                 toast.success("Create connection type succeed!");
             } else {
@@ -98,8 +98,8 @@ function updateConnectionType(connectionType) {
                 data: connectionType,
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(editConnectionType(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(editConnectionType(resp.DataResult));
                 }
                 toast.success("Update connection type succeed!");
             } else {
@@ -123,8 +123,8 @@ function deleteConnectionType(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                if (resp.ListDataResult.length > 0) {
-                    dispatch(removeConnectionType(resp.ListDataResult[0]));
+                if (resp.DataResult) {
+                    dispatch(removeConnectionType(resp.DataResult));
                 }
                 toast.success("Delete connection type succeed!");
             } else {

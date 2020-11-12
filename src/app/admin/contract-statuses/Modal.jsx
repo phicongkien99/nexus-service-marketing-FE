@@ -3,7 +3,7 @@ import { Modal, Form, Input } from "antd";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 
-function ManufacturerModal({ open, onConfirm, onCancel, manufacturer, isLoading }) {
+function ContractStatusModal({ open, onConfirm, onCancel, contractStatus, isLoading }) {
     const [form] = Form.useForm();
 
     useEffect(() => {
@@ -12,12 +12,12 @@ function ManufacturerModal({ open, onConfirm, onCancel, manufacturer, isLoading 
         }
     }, [open]);
 
-    const initManufacturer = manufacturer || { Name: "", Description: "" };
+    const initContractStatus = contractStatus || { Name: "", Description: "" };
 
     const onSubmitForm = async () => {
         try {
             const values = await form.validateFields();
-            onConfirm({ ...initManufacturer, ...values });
+            onConfirm({ ...initContractStatus, ...values });
         } catch (e) {
             toast.error("Validate data failed!");
         }
@@ -27,30 +27,24 @@ function ManufacturerModal({ open, onConfirm, onCancel, manufacturer, isLoading 
         <Modal
             closable={false}
             maskClosable={false}
-            title="Manufacturer"
+            title="Contract status"
             visible={open}
             onOk={onSubmitForm}
             onCancel={onCancel}
             confirmLoading={isLoading}
         >
-            <Form
-                labelCol={{ span: 5 }}
-                wrapperCol={{ span: 19 }}
-                name="basic"
-                initialValues={initManufacturer}
-                form={form}
-            >
+            <Form labelCol={{ span: 5 }} wrapperCol={{ span: 19 }} name="basic" initialValues={initContractStatus} form={form}>
                 <Form.Item
                     label="Name"
                     name="Name"
-                    rules={[{ required: true, message: "Please input your manufacturer's name!" }]}
+                    rules={[{ required: true, message: "Please input your contract status's name!" }]}
                 >
                     <Input />
                 </Form.Item>
+
                 <Form.Item
                     label="Description"
                     name="Description"
-                    rules={[{ required: true, message: "Please input your manufacturer's description!" }]}
                 >
                     <Input />
                 </Form.Item>
@@ -59,17 +53,17 @@ function ManufacturerModal({ open, onConfirm, onCancel, manufacturer, isLoading 
     );
 }
 
-ManufacturerModal.propTypes = {
+ContractStatusModal.propTypes = {
     open: PropTypes.bool.isRequired,
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-    manufacturer: PropTypes.object,
+    contractStatus: PropTypes.object,
     isLoading: PropTypes.bool,
 };
 
-ManufacturerModal.defaultProps = {
-    manufacturer: null,
+ContractStatusModal.defaultProps = {
+    contractStatus: null,
     isLoading: false,
 };
 
-export default ManufacturerModal;
+export default ContractStatusModal;
