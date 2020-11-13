@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     connectionStatuses: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const connectionStatusSlice = createSlice({
@@ -24,7 +24,10 @@ const connectionStatusSlice = createSlice({
             );
         },
         removeConnectionStatus: (state, action) => {
-            state.connectionStatuses = state.connectionStatuses.filter((connectionStatus) => connectionStatus.Id !== action.payload);
+            state.connectionStatuses = state.connectionStatuses.filter((connectionStatus) => connectionStatus.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

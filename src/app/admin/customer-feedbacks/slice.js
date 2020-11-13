@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     customerFeedbacks: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const customerFeedbackSlice = createSlice({
@@ -24,7 +24,10 @@ const customerFeedbackSlice = createSlice({
             );
         },
         removeCustomerFeedback: (state, action) => {
-            state.customerFeedbacks = state.customerFeedbacks.filter((customerFeedback) => customerFeedback.Id !== action.payload);
+            state.customerFeedbacks = state.customerFeedbacks.filter((customerFeedback) => customerFeedback.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

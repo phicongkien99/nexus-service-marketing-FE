@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     servicePacks: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const servicePackSlice = createSlice({
@@ -14,6 +14,9 @@ const servicePackSlice = createSlice({
     reducers: {
         setServicePacks: (state, action) => {
             state.servicePacks = action.payload;
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

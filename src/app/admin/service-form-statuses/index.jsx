@@ -12,7 +12,7 @@ function ServiceFormStatuses(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentServiceFormStatus, setCurrentServiceFormStatus] = useState(null);
 
-    const { serviceFormStatuses, isLoading } = useSelector((state) => state.adminServiceFormStatus);
+    const { serviceFormStatuses, isLoading, isSucceed } = useSelector((state) => state.adminServiceFormStatus);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,11 +20,17 @@ function ServiceFormStatuses(props) {
         dispatch(fetchServiceFormStatuses(serviceFormStatuses));
     }, []);
 
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
+
     const columns = [
         {
             title: "#",
             key: "index",
-            render: (text, record, index) => index,
+            render: (text, record, index) => index + 1,
         },
         {
             title: "Name",

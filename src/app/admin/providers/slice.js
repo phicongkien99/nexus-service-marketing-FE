@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     providers: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const providerSlice = createSlice({
@@ -24,7 +24,10 @@ const providerSlice = createSlice({
             );
         },
         removeProvider: (state, action) => {
-            state.providers = state.providers.filter((provider) => provider.Id !== action.payload);
+            state.providers = state.providers.filter((provider) => provider.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

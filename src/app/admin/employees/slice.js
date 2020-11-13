@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     employees: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const employeeSlice = createSlice({
@@ -24,7 +24,10 @@ const employeeSlice = createSlice({
             );
         },
         removeEmployee: (state, action) => {
-            state.employees = state.employees.filter((employee) => employee.Id !== action.payload);
+            state.employees = state.employees.filter((employee) => employee.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     areas: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const areaSlice = createSlice({
@@ -24,7 +24,10 @@ const areaSlice = createSlice({
             );
         },
         removeArea: (state, action) => {
-            state.areas = state.areas.filter((area) => area.Id !== action.payload);
+            state.areas = state.areas.filter((area) => area.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

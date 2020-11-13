@@ -12,7 +12,7 @@ function ConnectionStatuses(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentConnectionStatus, setCurrentConnectionStatus] = useState(null);
 
-    const { connectionStatuses, isLoading } = useSelector((state) => state.adminConnectionStatus);
+    const { connectionStatuses, isLoading, isSucceed } = useSelector((state) => state.adminConnectionStatus);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,11 +20,17 @@ function ConnectionStatuses(props) {
         dispatch(fetchConnectionStatuses(connectionStatuses));
     }, []);
 
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
+
     const columns = [
         {
             title: "#",
             key: "index",
-            render: (text, record, index) => index,
+            render: (text, record, index) => index + 1,
         },
         {
             title: "Name",

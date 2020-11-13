@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     serviceFormStatuses: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const serviceFormStatusSlice = createSlice({
@@ -24,7 +24,10 @@ const serviceFormStatusSlice = createSlice({
             );
         },
         removeServiceFormStatus: (state, action) => {
-            state.serviceFormStatuses = state.serviceFormStatuses.filter((serviceFormStatus) => serviceFormStatus.Id !== action.payload);
+            state.serviceFormStatuses = state.serviceFormStatuses.filter((serviceFormStatus) => serviceFormStatus.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

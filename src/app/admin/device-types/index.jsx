@@ -17,13 +17,19 @@ function DeviceTypes(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentDeviceType, setCurrentDeviceType] = useState(null);
 
-    const { deviceTypes, isLoading } = useSelector((state) => state.adminDeviceType);
+    const { deviceTypes, isLoading, isSucceed } = useSelector((state) => state.adminDeviceType);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Device types";
         dispatch(fetchDeviceTypes(deviceTypes));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {

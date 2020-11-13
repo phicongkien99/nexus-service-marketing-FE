@@ -12,7 +12,7 @@ function Areas(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentArea, setCurrentArea] = useState(null);
 
-    const { areas, isLoading } = useSelector((state) => state.adminArea);
+    const { areas, isLoading, isSucceed } = useSelector((state) => state.adminArea);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,11 +20,17 @@ function Areas(props) {
         dispatch(fetchAreas(areas));
     }, []);
 
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
+
     const columns = [
         {
             title: "#",
             key: "index",
-            render: (text, record, index) => index,
+            render: (text, record, index) => index + 1,
         },
         {
             title: "Name",

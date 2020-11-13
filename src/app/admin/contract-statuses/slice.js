@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     contractStatuses: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const contractStatusSlice = createSlice({
@@ -24,7 +24,10 @@ const contractStatusSlice = createSlice({
             );
         },
         removeContractStatus: (state, action) => {
-            state.contractStatuses = state.contractStatuses.filter((contractStatus) => contractStatus.Id !== action.payload);
+            state.contractStatuses = state.contractStatuses.filter((contractStatus) => contractStatus.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

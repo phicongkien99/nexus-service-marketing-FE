@@ -12,7 +12,7 @@ function Devices(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentDevice, setCurrentDevice] = useState(null);
 
-    const { devices, isLoading } = useSelector((state) => state.adminDevice);
+    const { devices, isLoading, isSucceed } = useSelector((state) => state.adminDevice);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,21 +20,22 @@ function Devices(props) {
         dispatch(fetchDevices(devices));
     }, []);
 
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
+
     const columns = [
         {
             title: "#",
             key: "index",
-            render: (text, record, index) => index,
+            render: (text, record, index) => index + 1,
         },
         {
             title: "Name",
             dataIndex: "Name",
             key: "Name",
-        },
-        {
-            title: "Short name",
-            dataIndex: "ShortName",
-            key: "ShortName",
         },
         {
             title: "Action",

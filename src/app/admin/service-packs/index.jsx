@@ -12,13 +12,19 @@ function ServicePacks(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentServicePack, setCurrentServicePack] = useState(null);
 
-    const { servicePacks, isLoading } = useSelector((state) => state.adminServicePack);
+    const { servicePacks, isLoading, isSucceed } = useSelector((state) => state.adminServicePack);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Service packs";
         dispatch(fetchServicePacks(servicePacks));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {

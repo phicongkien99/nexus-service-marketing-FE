@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     manufacturers: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const manufacturerSlice = createSlice({
@@ -24,7 +24,10 @@ const manufacturerSlice = createSlice({
             );
         },
         removeManufacturer: (state, action) => {
-            state.manufacturers = state.manufacturers.filter((manufacturer) => manufacturer.Id !== action.payload);
+            state.manufacturers = state.manufacturers.filter((manufacturer) => manufacturer.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

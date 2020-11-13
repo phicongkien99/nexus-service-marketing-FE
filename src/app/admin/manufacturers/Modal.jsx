@@ -12,7 +12,7 @@ function ManufacturerModal({ open, onConfirm, onCancel, manufacturer, isLoading 
         }
     }, [open]);
 
-    const initManufacturer = manufacturer || { Name: "", Description: "" };
+    const initManufacturer = manufacturer || { Name: "" };
 
     const onSubmitForm = async () => {
         try {
@@ -44,13 +44,6 @@ function ManufacturerModal({ open, onConfirm, onCancel, manufacturer, isLoading 
                     label="Name"
                     name="Name"
                     rules={[{ required: true, message: "Please input your manufacturer's name!" }]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Description"
-                    name="Description"
-                    rules={[{ required: true, message: "Please input your manufacturer's description!" }]}
                 >
                     <Input />
                 </Form.Item>

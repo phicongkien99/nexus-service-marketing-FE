@@ -12,13 +12,19 @@ function Customers(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentCustomer, setCurrentCustomer] = useState(null);
 
-    const { customers, isLoading } = useSelector((state) => state.adminCustomer);
+    const { customers, isLoading, isSucceed } = useSelector((state) => state.adminCustomer);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Customers";
         dispatch(fetchCustomers(customers));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {

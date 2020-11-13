@@ -12,7 +12,7 @@ function ContractStatuses(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentContractStatus, setCurrentContractStatus] = useState(null);
 
-    const { contractStatuses, isLoading } = useSelector((state) => state.adminContractStatus);
+    const { contractStatuses, isLoading, isSucceed } = useSelector((state) => state.adminContractStatus);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,11 +20,17 @@ function ContractStatuses(props) {
         dispatch(fetchContractStatuses(contractStatuses));
     }, []);
 
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
+
     const columns = [
         {
             title: "#",
             key: "index",
-            render: (text, record, index) => index,
+            render: (text, record, index) => index + 1,
         },
         {
             title: "Name",

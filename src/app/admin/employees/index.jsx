@@ -12,13 +12,19 @@ function Employees(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentEmployee, setCurrentEmployee] = useState(null);
 
-    const { employees, isLoading } = useSelector((state) => state.adminEmployee);
+    const { employees, isLoading, isSucceed } = useSelector((state) => state.adminEmployee);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Employees";
         dispatch(fetchEmployees(employees));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {
@@ -47,16 +53,21 @@ function Employees(props) {
             key: "Phone",
         },
         {
+            title: "Role",
+            dataIndex: "Role",
+            key: "Role",
+        },
+        {
             title: "Action",
             key: "action",
             className: "min-width",
             render: (text, record) => (
                 <Space>
-                    <Button
+                    {/* <Button
                         className="btn--yellow"
                         icon={<EditOutlined />}
                         onClick={() => handleUpdate(record)}
-                    />
+                    /> */}
                     <Button
                         className="btn--red"
                         icon={<DeleteOutlined />}
@@ -80,6 +91,7 @@ function Employees(props) {
 
     const handleConfirm = (employee) => {
         if (currentEmployee) {
+            delete employee.Password;
             dispatch(updateEmployee(employee));
         } else {
             dispatch(createEmployee(employee));

@@ -12,13 +12,19 @@ function ServiceForms(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentServiceForm, setCurrentServiceForm] = useState(null);
 
-    const { serviceForms, isLoading } = useSelector((state) => state.adminServiceForm);
+    const { serviceForms, isLoading, isSucceed } = useSelector((state) => state.adminServiceForm);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Service forms";
         dispatch(fetchServiceForms(serviceForms));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {

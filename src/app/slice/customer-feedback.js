@@ -4,7 +4,7 @@ import axiosClient from "../../utils/axiosClient";
 const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
-    isLoading: false,
+    isLoading: false, isSucceed: false,
     isReceived: false,
 };
 
@@ -12,6 +12,9 @@ const customerFeedbackSlice = createSlice({
     name: "userCustomerFeedbacks",
     initialState: defaultState,
     reducers: {
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
+        },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
         },

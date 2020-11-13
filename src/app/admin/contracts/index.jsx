@@ -12,13 +12,19 @@ function Contracts(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentContract, setCurrentContract] = useState(null);
 
-    const { contracts, isLoading } = useSelector((state) => state.adminContract);
+    const { contracts, isLoading, isSucceed } = useSelector((state) => state.adminContract);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Contracts";
         dispatch(fetchContracts(contracts));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {

@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     deviceTypes: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const deviceTypeSlice = createSlice({
@@ -24,7 +24,10 @@ const deviceTypeSlice = createSlice({
             );
         },
         removeDeviceType: (state, action) => {
-            state.deviceTypes = state.deviceTypes.filter((deviceType) => deviceType.Id !== action.payload);
+            state.deviceTypes = state.deviceTypes.filter((deviceType) => deviceType.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

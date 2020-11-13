@@ -12,13 +12,19 @@ function ImportReceipts(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentImportReceipt, setCurrentImportReceipt] = useState(null);
 
-    const { importReceipts, isLoading } = useSelector((state) => state.adminImportReceipt);
+    const { importReceipts, isLoading, isSucceed } = useSelector((state) => state.adminImportReceipt);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "ImportReceipts";
         dispatch(fetchImportReceipts(importReceipts));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {

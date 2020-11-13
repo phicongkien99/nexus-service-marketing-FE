@@ -12,13 +12,19 @@ function Manufacturers(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentManufacturer, setCurrentManufacturer] = useState(null);
 
-    const { manufacturers, isLoading } = useSelector((state) => state.adminManufacturer);
+    const { manufacturers, isLoading, isSucceed } = useSelector((state) => state.adminManufacturer);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Manufacturers";
         dispatch(fetchManufacturers(manufacturers));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {
@@ -30,11 +36,6 @@ function Manufacturers(props) {
             title: "Name",
             dataIndex: "Name",
             key: "Name",
-        },
-        {
-            title: "Description",
-            dataIndex: "Description",
-            key: "Description",
         },
         {
             title: "Action",

@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     fees: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const feeSlice = createSlice({
@@ -24,7 +24,10 @@ const feeSlice = createSlice({
             );
         },
         removeFee: (state, action) => {
-            state.fees = state.fees.filter((fee) => fee.Id !== action.payload);
+            state.fees = state.fees.filter((fee) => fee.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

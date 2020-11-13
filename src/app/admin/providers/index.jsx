@@ -12,13 +12,19 @@ function Providers(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentProvider, setCurrentProvider] = useState(null);
 
-    const { providers, isLoading } = useSelector((state) => state.adminProvider);
+    const { providers, isLoading, isSucceed } = useSelector((state) => state.adminProvider);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Providers";
         dispatch(fetchProviders(providers));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {

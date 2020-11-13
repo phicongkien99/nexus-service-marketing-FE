@@ -17,13 +17,19 @@ function ConnectionTypes(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentConnectionType, setCurrentConnectionType] = useState(null);
 
-    const { connectionTypes, isLoading } = useSelector((state) => state.adminConnectionType);
+    const { connectionTypes, isLoading, isSucceed } = useSelector((state) => state.adminConnectionType);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Connection types";
         dispatch(fetchConnectionTypes(connectionTypes));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {

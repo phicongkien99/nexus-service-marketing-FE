@@ -12,13 +12,19 @@ function Fees(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentFee, setCurrentFee] = useState(null);
 
-    const { fees, isLoading } = useSelector((state) => state.adminFee);
+    const { fees, isLoading, isSucceed } = useSelector((state) => state.adminFee);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Fees";
         dispatch(fetchFees(fees));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {

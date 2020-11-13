@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     stores: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const storeSlice = createSlice({
@@ -24,7 +24,10 @@ const storeSlice = createSlice({
             );
         },
         removeStore: (state, action) => {
-            state.stores = state.stores.filter((store) => store.Id !== action.payload);
+            state.stores = state.stores.filter((store) => store.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

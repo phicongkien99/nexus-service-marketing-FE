@@ -1,8 +1,8 @@
 export default {
     ROLES: {
-        ADMIN: "ADMIN",
-        EMPLOYEE: "EMPLOYEE",
-        TECHNICIAN: "TECHNICIAN",
-        ACCOUNTANT: "ACCOUNTANT",
+        ADMIN: "admin",
+        EMPLOYEE: "employee",
+        TECHNICIAN: "technician",
+        ACCOUNTANT: "accountant",
     },
 };

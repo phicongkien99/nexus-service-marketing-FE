@@ -12,13 +12,19 @@ function Stores(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentStore, setCurrentStore] = useState(null);
 
-    const { stores, isLoading } = useSelector((state) => state.adminStore);
+    const { stores, isLoading, isSucceed } = useSelector((state) => state.adminStore);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Stores";
         dispatch(fetchStores(stores));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {

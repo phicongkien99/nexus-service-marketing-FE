@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     connectionTypes: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const connectionTypeSlice = createSlice({
@@ -14,6 +14,9 @@ const connectionTypeSlice = createSlice({
     reducers: {
         setConnectionTypes: (state, action) => {
             state.connectionTypes = action.payload;
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

@@ -5,7 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     importReceipts: [],
-    isLoading: false,
+    isLoading: false, isSucceed: false,
 };
 
 const importReceiptSlice = createSlice({
@@ -24,7 +24,10 @@ const importReceiptSlice = createSlice({
             );
         },
         removeImportReceipt: (state, action) => {
-            state.importReceipts = state.importReceipts.filter((importReceipt) => importReceipt.Id !== action.payload);
+            state.importReceipts = state.importReceipts.filter((importReceipt) => importReceipt.Id !== action.payload.Id);
+        },
+        setIsSucceed: (state, action) => {
+            state.isSucceed = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

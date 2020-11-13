@@ -5,13 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCustomerFeedbacks, createCustomerFeedback, updateCustomerFeedback, deleteCustomerFeedback } from "./slice";
 
 function CustomerFeedbacks(props) {
-    const { customerFeedbacks, isLoading } = useSelector((state) => state.adminCustomerFeedback);
+    const { customerFeedbacks, isLoading, isSucceed } = useSelector((state) => state.adminCustomerFeedback);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "CustomerFeedbacks";
         dispatch(fetchCustomerFeedbacks(customerFeedbacks));
     }, []);
+
+    useEffect(() => {
+        if (isSucceed) {
+            dispatch(fetch());
+        }
+    }, [isSucceed]);
 
     const columns = [
         {
@@ -20,24 +26,14 @@ function CustomerFeedbacks(props) {
             render: (text, record, index) => index + 1,
         },
         {
-            title: "Name",
+            title: "Customer name",
             dataIndex: "Name",
             key: "Name",
         },
         {
-            title: "Address",
-            dataIndex: "Address",
-            key: "Address",
-        },
-        {
-            title: "Email",
-            dataIndex: "Email",
-            key: "Email",
-        },
-        {
-            title: "Phone number",
-            dataIndex: "Phone",
-            key: "Phone",
+            title: "Content",
+            dataIndex: "Content",
+            key: "Content",
         },
     ];
 

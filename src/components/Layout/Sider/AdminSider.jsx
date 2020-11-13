@@ -76,9 +76,9 @@ function AdminSider(props) {
                     <Menu.Item key="connection-statuses">
                         <Link to="/admin/attribute/connection-statuses">Connection statuses</Link>
                     </Menu.Item>
-                    <Menu.Item key="contract-statuses">
+                    {/* <Menu.Item key="contract-statuses">
                         <Link to="/admin/attribute/contract-statuses">Contract statuses</Link>
-                    </Menu.Item>
+                    </Menu.Item> */}
                     <Menu.Item key="service-form-statuses">
                         <Link to="/admin/attribute/service-form-statuses">Service form statuses</Link>
                     </Menu.Item>
