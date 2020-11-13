@@ -65,7 +65,7 @@ function fetchDevices(devices) {
 function createDevice(device) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/device",
                 method: "post",
@@ -83,7 +83,7 @@ function createDevice(device) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createDevice(device) {
 function updateDevice(device) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/device/${device.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateDevice(device) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateDevice(device) {
 function deleteDevice(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/device/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteDevice(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

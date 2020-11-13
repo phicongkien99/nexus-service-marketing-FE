@@ -65,7 +65,7 @@ function fetchManufacturers(manufacturers) {
 function createManufacturer(manufacturer) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/manufacturer",
                 method: "post",
@@ -83,7 +83,7 @@ function createManufacturer(manufacturer) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createManufacturer(manufacturer) {
 function updateManufacturer(manufacturer) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/manufacturer/${manufacturer.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateManufacturer(manufacturer) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateManufacturer(manufacturer) {
 function deleteManufacturer(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/manufacturer/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteManufacturer(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

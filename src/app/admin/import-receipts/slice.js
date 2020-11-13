@@ -65,7 +65,7 @@ function fetchImportReceipts(importReceipts) {
 function createImportReceipt(importReceipt) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/importReceipt",
                 method: "post",
@@ -83,7 +83,7 @@ function createImportReceipt(importReceipt) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createImportReceipt(importReceipt) {
 function updateImportReceipt(importReceipt) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/importReceipt/${importReceipt.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateImportReceipt(importReceipt) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateImportReceipt(importReceipt) {
 function deleteImportReceipt(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/importReceipt/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteImportReceipt(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

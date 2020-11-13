@@ -458,7 +458,7 @@ function ServicePack(props) {
                             <Col span={8}>
                                 <Row>
                                     <h1
-                                        className="text-orange front-size-20"
+                                        className="text-orange font-size-20"
                                         style={{ marginLeft: "4%" }}
                                     >
                                         Apply only at Nexus Service
@@ -487,7 +487,7 @@ function ServicePack(props) {
                             <Col span={8}>
                                 <Row>
                                     <h1
-                                        className="text-orange front-size-20"
+                                        className="text-orange font-size-20"
                                     >
                                         Apply only at Nexus Service
                                     </h1>
@@ -532,7 +532,7 @@ function ServicePack(props) {
                             <Col span={8}>
                                 <Row>
                                     <h1
-                                        className="text-orange front-size-20"
+                                        className="text-orange font-size-20"
                                         style={{ marginLeft: "4%" }}
                                     >
                                         Apply only at Nexus Service

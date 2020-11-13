@@ -101,7 +101,7 @@ function Stores(props) {
     const handleCloseStore = (store) => (e) => {
         const msg = store["IsClosed"] ? "Are you sure to open this store?" : "Are you sure to close this store?";
         if (window.confirm(msg)) {
-
+            dispatch(updateStore({...store, IsClosed: store["IsClosed"] ? 0 : 1}));
         }
     }
 

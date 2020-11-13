@@ -65,7 +65,7 @@ function fetchContracts(contracts) {
 function createContract(contract) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/contract",
                 method: "post",
@@ -83,7 +83,7 @@ function createContract(contract) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createContract(contract) {
 function updateContract(contract) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/contract/${contract.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateContract(contract) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateContract(contract) {
 function deleteContract(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/contract/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteContract(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

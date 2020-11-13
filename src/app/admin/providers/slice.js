@@ -65,7 +65,7 @@ function fetchProviders(providers) {
 function createProvider(provider) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/provider",
                 method: "post",
@@ -83,7 +83,7 @@ function createProvider(provider) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createProvider(provider) {
 function updateProvider(provider) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/provider/${provider.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateProvider(provider) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateProvider(provider) {
 function deleteProvider(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/provider/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteProvider(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

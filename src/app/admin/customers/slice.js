@@ -65,7 +65,7 @@ function fetchCustomers(customers) {
 function createCustomer(customer) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/customer",
                 method: "post",
@@ -83,7 +83,7 @@ function createCustomer(customer) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createCustomer(customer) {
 function updateCustomer(customer) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/customer/${customer.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateCustomer(customer) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateCustomer(customer) {
 function deleteCustomer(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/customer/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteCustomer(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

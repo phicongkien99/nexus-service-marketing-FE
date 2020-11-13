@@ -65,7 +65,7 @@ function fetchConnectionStatuses(connectionStatuses) {
 function createConnectionStatus(connectionStatus) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/connectionstatus",
                 method: "post",
@@ -83,7 +83,7 @@ function createConnectionStatus(connectionStatus) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createConnectionStatus(connectionStatus) {
 function updateConnectionStatus(connectionStatus) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/connectionstatus/${connectionStatus.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateConnectionStatus(connectionStatus) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateConnectionStatus(connectionStatus) {
 function deleteConnectionStatus(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/connectionstatus/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteConnectionStatus(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

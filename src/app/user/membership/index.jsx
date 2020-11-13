@@ -27,10 +27,10 @@ function Membership(props) {
                     <Image width={156} height={52} src={"https://id.fpt.vn/images/logo.png"} />
                 </Row>
                 <Row className="mt-10">
-                    <h4 className="front-size-30">LOOK UP CONTRACT</h4>
+                    <h4 className="font-size-30">LOOK UP CONTRACT</h4>
                 </Row>
                 <Row className="mt-3">
-                    <label className="front-size-15">Your Nexus-Service contract code</label>
+                    <label className="font-size-15">Your Nexus-Service contract code</label>
                 </Row>
                 <Row className="mt-20">
                     <Col span={8}>

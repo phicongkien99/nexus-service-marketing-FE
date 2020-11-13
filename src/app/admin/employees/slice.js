@@ -65,7 +65,7 @@ function fetchEmployees(employees) {
 function createEmployee(employee) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/employee",
                 method: "post",
@@ -83,7 +83,7 @@ function createEmployee(employee) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createEmployee(employee) {
 function updateEmployee(employee) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/employee/${employee.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateEmployee(employee) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateEmployee(employee) {
 function deleteEmployee(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/employee/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteEmployee(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

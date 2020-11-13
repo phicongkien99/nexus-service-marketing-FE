@@ -65,7 +65,7 @@ function fetchCustomerFeedbacks(customerFeedbacks) {
 function createCustomerFeedback(customerFeedback) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/customerFeedback",
                 method: "post",
@@ -83,7 +83,7 @@ function createCustomerFeedback(customerFeedback) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createCustomerFeedback(customerFeedback) {
 function updateCustomerFeedback(customerFeedback) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/customerFeedback/${customerFeedback.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateCustomerFeedback(customerFeedback) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateCustomerFeedback(customerFeedback) {
 function deleteCustomerFeedback(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/customerFeedback/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteCustomerFeedback(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

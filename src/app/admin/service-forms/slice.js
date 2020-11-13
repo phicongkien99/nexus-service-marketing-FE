@@ -65,7 +65,7 @@ function fetchServiceForms(serviceForms) {
 function createServiceForm(serviceForm) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/serviceform",
                 method: "post",
@@ -84,7 +84,7 @@ function createServiceForm(serviceForm) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -92,7 +92,7 @@ function createServiceForm(serviceForm) {
 function updateServiceForm(serviceForm) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/serviceform/${serviceForm.Id}`,
                 method: "put",
@@ -111,7 +111,7 @@ function updateServiceForm(serviceForm) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -119,7 +119,7 @@ function updateServiceForm(serviceForm) {
 function deleteServiceForm(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/serviceform/${id}`,
                 method: "delete",
@@ -137,7 +137,7 @@ function deleteServiceForm(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

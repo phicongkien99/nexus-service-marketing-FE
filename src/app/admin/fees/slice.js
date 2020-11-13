@@ -65,7 +65,7 @@ function fetchFees(fees) {
 function createFee(fee) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/fee",
                 method: "post",
@@ -83,7 +83,7 @@ function createFee(fee) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createFee(fee) {
 function updateFee(fee) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/fee/${fee.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateFee(fee) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateFee(fee) {
 function deleteFee(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/fee/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteFee(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

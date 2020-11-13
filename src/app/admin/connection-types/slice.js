@@ -65,7 +65,7 @@ function fetchConnectionTypes(connectionTypes) {
 function createConnectionType(connectionType) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/connectionType",
                 method: "post",
@@ -83,7 +83,7 @@ function createConnectionType(connectionType) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -91,7 +91,7 @@ function createConnectionType(connectionType) {
 function updateConnectionType(connectionType) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/connectionType/${connectionType.Id}`,
                 method: "put",
@@ -109,7 +109,7 @@ function updateConnectionType(connectionType) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -117,7 +117,7 @@ function updateConnectionType(connectionType) {
 function deleteConnectionType(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/connectionType/${id}`,
                 method: "delete",
@@ -134,7 +134,7 @@ function deleteConnectionType(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }

@@ -17,8 +17,10 @@ import adminContract from "./admin/contracts/slice";
 import adminServicePack from "./admin/service-packs/slice";
 import adminServiceForm from "./admin/service-forms/slice";
 import adminImportReceipt from "./admin/import-receipts/slice";
+//----------------
 import userServicePack from "./slice/service-pack";
 import userConnectionType from "./slice/connection-type";
+import userCustomerFeedback from "./slice/customer-feedback";
 
 const rootReducer = combineReducers({
     adminStore,
@@ -39,7 +41,9 @@ const rootReducer = combineReducers({
     adminCustomerFeedback,
     adminImportReceipt,
     adminServiceForm,
+    //------------------------------
     userServicePack,
+    userCustomerFeedback,
     userConnectionType,
 });
 

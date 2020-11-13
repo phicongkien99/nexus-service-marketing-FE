@@ -65,7 +65,7 @@ function fetchServicePacks(servicePacks) {
 function createServicePack(servicePack) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/servicepack",
                 method: "post",
@@ -84,7 +84,7 @@ function createServicePack(servicePack) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -92,7 +92,7 @@ function createServicePack(servicePack) {
 function updateServicePack(servicePack) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/servicepack/${servicePack.Id}`,
                 method: "put",
@@ -111,7 +111,7 @@ function updateServicePack(servicePack) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
@@ -119,7 +119,7 @@ function updateServicePack(servicePack) {
 function deleteServicePack(id) {
     return async (dispatch) => {
         try {
-            setIsLoading(true);
+            dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: `/servicepack/${id}`,
                 method: "delete",
@@ -137,7 +137,7 @@ function deleteServicePack(id) {
             console.error(e);
             toast.error(e);
         } finally {
-            setIsLoading(false);
+            dispatch(setIsLoading(false));
         }
     };
 }
