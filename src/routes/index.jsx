@@ -22,8 +22,10 @@ const AdminDeviceTypes = lazy(() => import("../app/admin/device-types"));
 const AdminDevices = lazy(() => import("../app/admin/devices"));
 const AdminCustomers = lazy(() => import("../app/admin/customers"));
 const AdminContracts = lazy(() => import("../app/admin/contracts"));
+const AdminServiceForms = lazy(() => import("../app/admin/service-forms"));
 const AdminCustomerFeedbacks = lazy(() => import("../app/admin/customer-feedbacks"));
 const AdminFees = lazy(() => import("../app/admin/fees"));
+const AdminImportReceipts = lazy(() => import("../app/admin/import-receipts"));
 // USER
 const HomePage = lazy(() => import("../app/user/home-page"));
 const ServicePack = lazy(() => import("../app/user/service-pack"));
@@ -38,22 +40,28 @@ function Routes() {
                     <Redirect to="/admin/dashboard" />
                 </Route>
                 <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/dashboard" component={Dashboard} />
+
                 <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/stores" component={AdminStores} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/providers" component={AdminProviders} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/manufacturers" component={AdminManufacturers} />
                 <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/employees" component={AdminEmployees} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/fees" component={AdminFees} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/connection-types" component={AdminConnectionTypes} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/device-types" component={AdminDeviceTypes} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/devices" component={AdminDevices} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/connection-statuses" component={AdminConnectionStatuses} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/contract-statuses" component={AdminContractStatuses} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/service-form-statuses" component={AdminServiceFormStatuses} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/areas" component={AdminAreas} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/customers" component={AdminCustomers} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/customer-feedbacks" component={AdminCustomerFeedbacks} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/contracts" component={AdminContracts} />
-                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/service-packs" component={AdminServicePacks} />
+
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/service/customers" component={AdminCustomers} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/service/customer-feedbacks" component={AdminCustomerFeedbacks} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/service/contracts" component={AdminContracts} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/service/service-packs" component={AdminServicePacks} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/service/service-forms" component={AdminServiceForms} />
+
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/storage/providers" component={AdminProviders} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/storage/manufacturers" component={AdminManufacturers} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/storage/devices" component={AdminDevices} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/storage/import-receipts" component={AdminImportReceipts} />
+
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/attribute/fees" component={AdminFees} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/attribute/connection-types" component={AdminConnectionTypes} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/attribute/device-types" component={AdminDeviceTypes} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/attribute/connection-statuses" component={AdminConnectionStatuses} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/attribute/contract-statuses" component={AdminContractStatuses} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/attribute/service-form-statuses" component={AdminServiceFormStatuses} />
+                <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/attribute/areas" component={AdminAreas} />
                 <Route exact path="/admin/login" component={Login} />
                 <UserRoute exact path="/service-pack" component={ServicePack} />
                 <UserRoute exact path="/membership" component={Membership} />

@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import StoreModal from "./Modal";
-import { fetchStores, createStore, updateStore, deleteStore } from "./slice";
+import ServiceFormModal from "./Modal";
+import { fetchServiceForms, createServiceForm, updateServiceForm, deleteServiceForm } from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 
-function Stores(props) {
+function ServiceForms(props) {
     const [openModal, setOpenModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [currentStore, setCurrentStore] = useState(null);
+    const [currentServiceForm, setCurrentServiceForm] = useState(null);
 
-    const { stores, isLoading } = useSelector((state) => state.adminStore);
+    const { serviceForms, isLoading } = useSelector((state) => state.adminServiceForm);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "Stores";
-        dispatch(fetchStores(stores));
+        document.title = "Service forms";
+        dispatch(fetchServiceForms(serviceForms));
     }, []);
 
     const columns = [
@@ -32,19 +32,14 @@ function Stores(props) {
             key: "Name",
         },
         {
-            title: "Address",
-            dataIndex: "Address",
-            key: "Address",
+            title: "Description",
+            dataIndex: "Description",
+            key: "Description",
         },
         {
-            title: "Status",
-            dataIndex: "IsClosed",
-            key: "IsClosed",
-            render: (text, record) => (
-                <Tag style={{ cursor: "pointer" }} onClick={handleCloseStore(record)} color={record["IsClosed"] ? "red" : "green"}>
-                    {record["IsClosed"] ? "Closed" : "Opening"}
-                </Tag>
-            ),
+            title: "Connection type",
+            dataIndex: "ConnectionTypeName",
+            key: "ConnectionTypeName",
         },
         {
             title: "Action",
@@ -52,8 +47,16 @@ function Stores(props) {
             className: "min-width",
             render: (text, record) => (
                 <Space>
-                    <Button className="btn--yellow" icon={<EditOutlined />} onClick={() => handleUpdate(record)} />
-                    <Button className="btn--red" icon={<DeleteOutlined />} onClick={() => handleDelete(record)} />
+                    <Button
+                        className="btn--yellow"
+                        icon={<EditOutlined />}
+                        onClick={() => handleUpdate(record)}
+                    />
+                    <Button
+                        className="btn--red"
+                        icon={<DeleteOutlined />}
+                        onClick={() => handleDelete(record)}
+                    />
                 </Space>
             ),
         },
@@ -65,49 +68,42 @@ function Stores(props) {
         setOpenModal(true);
     };
 
-    const handleUpdate = (store) => {
-        setCurrentStore(store);
+    const handleUpdate = (serviceForm) => {
+        setCurrentServiceForm(serviceForm);
         setOpenModal(true);
     };
 
-    const handleConfirm = (store) => {
-        if (currentStore) {
-            dispatch(updateStore(store));
+    const handleConfirm = (serviceForm) => {
+        if (currentServiceForm) {
+            dispatch(updateServiceForm(serviceForm));
         } else {
-            dispatch(createStore(store));
+            dispatch(createServiceForm(serviceForm));
         }
     };
 
     const handleCancel = () => {
         setOpenModal(false);
-        setCurrentStore(null);
+        setCurrentServiceForm(null);
     };
 
-    const handleDelete = (store) => {
-        setCurrentStore(store);
+    const handleDelete = (serviceForm) => {
+        setCurrentServiceForm(serviceForm);
         setOpenDeleteModal(true);
     };
 
     const handleCancelDelete = () => {
-        setCurrentStore(null);
+        setCurrentServiceForm(null);
         setOpenDeleteModal(false);
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteStore(currentStore["Id"]));
+        dispatch(deleteServiceForm(currentServiceForm["Id"]));
         setOpenDeleteModal(false);
     };
 
-    const handleCloseStore = (store) => (e) => {
-        const msg = store["IsClosed"] ? "Are you sure to open this store?" : "Are you sure to close this store?";
-        if (window.confirm(msg)) {
-
-        }
-    }
-
     return (
         <>
-            <PageHeader title="Stores" ghost={false} />
+            <PageHeader title="Service forms" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Button
@@ -120,23 +116,22 @@ function Stores(props) {
                     </Button>
                     <Table
                         loading={isLoading}
-                        dataSource={stores}
+                        dataSource={serviceForms}
                         columns={columns}
-                        onChange={handleChangeTable}
-                        rowKey="Id"
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>
-            <StoreModal
+            <ServiceFormModal
                 open={openModal}
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
-                store={currentStore}
+                serviceForm={currentServiceForm}
                 isLoading={isLoading}
             />
             <ConfirmModal
                 open={openDeleteModal}
-                message="Are you sure to close this store?"
+                message="Are you sure to delete this service form?"
                 onCancel={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 isLoading={isLoading}
@@ -145,8 +140,8 @@ function Stores(props) {
     );
 }
 
-Stores.propTypes = {};
+ServiceForms.propTypes = {};
 
-Stores.defaultProps = {};
+ServiceForms.defaultProps = {};
 
-export default Stores;
+export default ServiceForms;

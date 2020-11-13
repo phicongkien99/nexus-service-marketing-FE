@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import StoreModal from "./Modal";
-import { fetchStores, createStore, updateStore, deleteStore } from "./slice";
+import ImportReceiptModal from "./Modal";
+import { fetchImportReceipts, createImportReceipt, updateImportReceipt, deleteImportReceipt } from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 
-function Stores(props) {
+function ImportReceipts(props) {
     const [openModal, setOpenModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [currentStore, setCurrentStore] = useState(null);
+    const [currentImportReceipt, setCurrentImportReceipt] = useState(null);
 
-    const { stores, isLoading } = useSelector((state) => state.adminStore);
+    const { importReceipts, isLoading } = useSelector((state) => state.adminImportReceipt);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "Stores";
-        dispatch(fetchStores(stores));
+        document.title = "ImportReceipts";
+        dispatch(fetchImportReceipts(importReceipts));
     }, []);
 
     const columns = [
@@ -40,9 +40,9 @@ function Stores(props) {
             title: "Status",
             dataIndex: "IsClosed",
             key: "IsClosed",
-            render: (text, record) => (
-                <Tag style={{ cursor: "pointer" }} onClick={handleCloseStore(record)} color={record["IsClosed"] ? "red" : "green"}>
-                    {record["IsClosed"] ? "Closed" : "Opening"}
+            render: (isClosed) => (
+                <Tag color={isClosed ? "red" : "green"}>
+                    {isClosed ? "Deactivated" : "Activating"}
                 </Tag>
             ),
         },
@@ -52,8 +52,16 @@ function Stores(props) {
             className: "min-width",
             render: (text, record) => (
                 <Space>
-                    <Button className="btn--yellow" icon={<EditOutlined />} onClick={() => handleUpdate(record)} />
-                    <Button className="btn--red" icon={<DeleteOutlined />} onClick={() => handleDelete(record)} />
+                    <Button
+                        className="btn--yellow"
+                        icon={<EditOutlined />}
+                        onClick={() => handleUpdate(record)}
+                    />
+                    <Button
+                        className="btn--red"
+                        icon={<DeleteOutlined />}
+                        onClick={() => handleDelete(record)}
+                    />
                 </Space>
             ),
         },
@@ -65,49 +73,42 @@ function Stores(props) {
         setOpenModal(true);
     };
 
-    const handleUpdate = (store) => {
-        setCurrentStore(store);
+    const handleUpdate = (importReceipt) => {
+        setCurrentImportReceipt(importReceipt);
         setOpenModal(true);
     };
 
-    const handleConfirm = (store) => {
-        if (currentStore) {
-            dispatch(updateStore(store));
+    const handleConfirm = (importReceipt) => {
+        if (currentImportReceipt) {
+            dispatch(updateImportReceipt(importReceipt));
         } else {
-            dispatch(createStore(store));
+            dispatch(createImportReceipt(importReceipt));
         }
     };
 
     const handleCancel = () => {
         setOpenModal(false);
-        setCurrentStore(null);
+        setCurrentImportReceipt(null);
     };
 
-    const handleDelete = (store) => {
-        setCurrentStore(store);
+    const handleDelete = (importReceipt) => {
+        setCurrentImportReceipt(importReceipt);
         setOpenDeleteModal(true);
     };
 
     const handleCancelDelete = () => {
-        setCurrentStore(null);
+        setCurrentImportReceipt(null);
         setOpenDeleteModal(false);
     };
 
     const handleConfirmDelete = () => {
-        dispatch(deleteStore(currentStore["Id"]));
+        dispatch(deleteImportReceipt(currentImportReceipt["Id"]));
         setOpenDeleteModal(false);
     };
 
-    const handleCloseStore = (store) => (e) => {
-        const msg = store["IsClosed"] ? "Are you sure to open this store?" : "Are you sure to close this store?";
-        if (window.confirm(msg)) {
-
-        }
-    }
-
     return (
         <>
-            <PageHeader title="Stores" ghost={false} />
+            <PageHeader title="ImportReceipts" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Button
@@ -120,23 +121,22 @@ function Stores(props) {
                     </Button>
                     <Table
                         loading={isLoading}
-                        dataSource={stores}
+                        dataSource={importReceipts}
                         columns={columns}
-                        onChange={handleChangeTable}
-                        rowKey="Id"
+                        onChange={handleChangeTable} rowKey="Id"
                     />
                 </Col>
             </Row>
-            <StoreModal
+            <ImportReceiptModal
                 open={openModal}
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
-                store={currentStore}
+                importReceipt={currentImportReceipt}
                 isLoading={isLoading}
             />
             <ConfirmModal
                 open={openDeleteModal}
-                message="Are you sure to close this store?"
+                message="Are you sure to close this importReceipt?"
                 onCancel={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 isLoading={isLoading}
@@ -145,8 +145,8 @@ function Stores(props) {
     );
 }
 
-Stores.propTypes = {};
+ImportReceipts.propTypes = {};
 
-Stores.defaultProps = {};
+ImportReceipts.defaultProps = {};
 
-export default Stores;
+export default ImportReceipts;
