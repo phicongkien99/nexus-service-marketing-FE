@@ -40,6 +40,7 @@ function createCustomerFeedback(customerFeedback) {
                 }
             });
             let IdCustomer = null;
+            console.log(findCustomerResp)
             if (findCustomerResp.IsSuccess && findCustomerResp.DataResult) {
                 IdCustomer = findCustomerResp.DataResult.Id;
             }

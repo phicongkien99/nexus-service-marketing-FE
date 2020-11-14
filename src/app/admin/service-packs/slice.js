@@ -5,7 +5,8 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     servicePacks: [],
-    isLoading: false, isSucceed: false,
+    isLoading: false,
+    isSucceed: false,
 };
 
 const servicePackSlice = createSlice({
@@ -24,7 +25,9 @@ const servicePackSlice = createSlice({
             );
         },
         removeServicePack: (state, action) => {
-            state.servicePacks = state.servicePacks.filter((servicePack) => servicePack.Id !== action.payload.Id);
+            state.servicePacks = state.servicePacks.filter(
+                (servicePack) => servicePack.Id !== action.payload.Id
+            );
         },
         setIsSucceed: (state, action) => {
             state.isSucceed = action.payload;
@@ -37,7 +40,13 @@ const servicePackSlice = createSlice({
 
 const { actions, reducer } = servicePackSlice;
 
-export const { setServicePacks, addServicePack, editServicePack, removeServicePack, setIsLoading } = actions;
+export const {
+    setServicePacks,
+    addServicePack,
+    editServicePack,
+    removeServicePack,
+    setIsLoading,
+} = actions;
 
 function fetchServicePacks(servicePacks) {
     return async (dispatch) => {
@@ -75,9 +84,20 @@ function createServicePack(servicePack) {
                 data: servicePack,
             });
             if (resp.IsSuccess) {
-                console.log(resp)
                 if (resp.DataResult) {
-                    dispatch(addServicePack(resp.DataResult));
+                    const newObject = resp.DataResult;
+                    for (let i = servicePack.Fees.length - 1; i >= 0; i--) {
+                        const createObj = {
+                            ...servicePack.Fees[i],
+                            IdServicePack: newObject["Id"],
+                        };
+                        let createPackFeeResp = await axiosClient({
+                            url: "/servicepackfee",
+                            method: "post",
+                            data: createObj,
+                        });
+                    }
+                    dispatch(addServicePack(newObject));
                 }
                 toast.success("Create servicePack succeed!");
             } else {

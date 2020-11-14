@@ -1,18 +1,23 @@
 import React, { useEffect } from "react";
-import { Modal, Form, Input, Select } from "antd";
+import { Modal, Form, Input, Select, Button, Space } from "antd";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchConnectionTypes } from "../connection-types/slice";
+import { fetchFees } from "../fees/slice";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+
 function ServicePackModal({ open, onConfirm, onCancel, servicePack, isLoading }) {
     const [form] = Form.useForm();
 
     const { connectionTypes } = useSelector((state) => state.adminConnectionType);
+    const { fees } = useSelector((state) => state.adminFee);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchConnectionTypes(connectionTypes));
+        dispatch(fetchFees(fees));
     }, []);
 
     useEffect(() => {
@@ -72,10 +77,64 @@ function ServicePackModal({ open, onConfirm, onCancel, servicePack, isLoading })
                 >
                     <Select>
                         {connectionTypes.map((ct) => (
-                            <Select.Option key={ct["Id"]} value={ct["Id"]}>{ct["Name"]}</Select.Option>
+                            <Select.Option key={ct["Id"]} value={ct["Id"]}>
+                                {ct["Name"]}
+                            </Select.Option>
                         ))}
                     </Select>
                 </Form.Item>
+                <Form.List name="Fees">
+                    {(fields, { add, remove }) => (
+                        <>
+                            {fields.map((field) => (
+                                <Space key={field.key} align="baseline">
+                                    <Form.Item noStyle>
+                                        <Form.Item
+                                            {...field}
+                                            label="Fee"
+                                            name={[field.name, "IdFee"]}
+                                            fieldKey={[field.fieldKey, "IdFee"]}
+                                            rules={[{ required: true, message: "Missing fee" }]}
+                                        >
+                                            <Select style={{ width: 130 }}>
+                                                {fees.map((item) => (
+                                                    <Select.Option
+                                                        key={item["Id"]}
+                                                        value={item["Id"]}
+                                                    >
+                                                        {item["Name"]}
+                                                    </Select.Option>
+                                                ))}
+                                            </Select>
+                                        </Form.Item>
+                                    </Form.Item>
+                                    <Form.Item
+                                        {...field}
+                                        label="Value"
+                                        name={[field.name, "Value"]}
+                                        fieldKey={[field.fieldKey, "Value"]}
+                                        rules={[{ required: true, message: "Missing value" }]}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+
+                                    <MinusCircleOutlined onClick={() => remove(field.name)} />
+                                </Space>
+                            ))}
+
+                            <Form.Item wrapperCol={{ span: 24 }}>
+                                <Button
+                                    type="dashed"
+                                    onClick={() => add()}
+                                    block
+                                    icon={<PlusOutlined />}
+                                >
+                                    Add fee
+                                </Button>
+                            </Form.Item>
+                        </>
+                    )}
+                </Form.List>
             </Form>
         </Modal>
     );
