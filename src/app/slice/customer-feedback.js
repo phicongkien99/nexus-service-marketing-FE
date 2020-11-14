@@ -4,7 +4,8 @@ import axiosClient from "../../utils/axiosClient";
 const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
-    isLoading: false, isSucceed: false,
+    isLoading: false,
+    isSucceed: false,
     isReceived: false,
 };
 
@@ -37,25 +38,35 @@ function createCustomerFeedback(customerFeedback) {
                 method: "get",
                 params: {
                     phone: customerFeedback.Phone,
-                }
+                },
             });
             let IdCustomer = null;
-            console.log(findCustomerResp)
             if (findCustomerResp.IsSuccess && findCustomerResp.DataResult) {
                 IdCustomer = findCustomerResp.DataResult.Id;
+            } else {
+                const createCustomerResp = await axiosClient({
+                    url: "/customer",
+                    method: "post",
+                    data: customerFeedback,
+                });
+                if (createCustomerResp.IsSuccess && createCustomerResp.DataResult) {
+                    IdCustomer = createCustomerResp.DataResult.Id;
+                }
             }
-            // const resp = await axiosClient({
-            //     url: "/customerFeedback",
-            //     method: "post",
-            //     data: customerFeedback,
-            // });
-            // if (resp.IsSuccess && resp.DataResult) {
-            //     toast.success("Your feedback has been received! Thanks for supporting us.");
-            //     dispatch(setIsReceived(true));
-            // } else {
-            //     toast.error("Something has gone wrong! Please try again later.");
-            //     throw resp.ErrorMsg;
-            // }
+            if (IdCustomer) {
+                const resp = await axiosClient({
+                    url: "/customerFeedback",
+                    method: "post",
+                    data: { Content: customerFeedback.Content, IdCustomer },
+                });
+                if (resp.IsSuccess && resp.DataResult) {
+                    toast.success("Your feedback has been received! Thanks for supporting us.");
+                    dispatch(setIsReceived(true));
+                } else {
+                    toast.error("Something has gone wrong! Please try again later.");
+                    throw resp.ErrorMsg;
+                }
+            }
         } catch (e) {
             console.error(e);
         } finally {

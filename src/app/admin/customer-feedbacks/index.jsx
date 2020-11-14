@@ -9,7 +9,7 @@ function CustomerFeedbacks(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "CustomerFeedbacks";
+        document.title = "Customer Feedbacks";
         dispatch(fetchCustomerFeedbacks(customerFeedbacks));
     }, []);
 
@@ -27,8 +27,13 @@ function CustomerFeedbacks(props) {
         },
         {
             title: "Customer name",
-            dataIndex: "Name",
             key: "Name",
+            render: (text, record) => record["Customer"]["Name"]
+        },
+        {
+            title: "Customer phone",
+            key: "Phone",
+            render: (text, record) => record["Customer"]["Phone"]
         },
         {
             title: "Content",
@@ -41,7 +46,7 @@ function CustomerFeedbacks(props) {
 
     return (
         <>
-            <PageHeader title="CustomerFeedbacks" ghost={false} />
+            <PageHeader title="Customer Feedbacks" ghost={false} />
             <Row className="white-background mt-15">
                 <Col span={22} offset={1} className="mt-15">
                     <Table

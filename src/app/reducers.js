@@ -21,6 +21,7 @@ import adminImportReceipt from "./admin/import-receipts/slice";
 import userServicePack from "./slice/service-pack";
 import userConnectionType from "./slice/connection-type";
 import userCustomerFeedback from "./slice/customer-feedback";
+import userRegister from "./slice/register";
 
 const rootReducer = combineReducers({
     adminStore,
@@ -45,6 +46,7 @@ const rootReducer = combineReducers({
     userServicePack,
     userCustomerFeedback,
     userConnectionType,
+    userRegister,
 });
 
 export default rootReducer;

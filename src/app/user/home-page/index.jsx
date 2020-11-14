@@ -33,20 +33,12 @@ function HomePage(props) {
                             </Link>
                         </Col>
                         <Col span={8} className="text-center">
-                            <Image src={Support} alt="Support" />
-                            <h2 className="text-green">Support</h2>
+                            <Link to="/feedback">
+                                <Image src={Support} alt="Support" />
+                                <h2 className="text-green">Feedback</h2>
+                            </Link>
                         </Col>
                     </Row>
-                </Col>
-            </Row>
-            <Row className="mt-15">
-                <Col span={16} offset={4}>
-                    <b style={{ fontSize: "18px" }}>Service Pack</b>
-                </Col>
-            </Row>
-            <Row>
-                <Col span={16} offset={4} id="home-page-carousel-service-pack">
-                    <HomePageCarouselServicePack />
                 </Col>
             </Row>
             <Row className="mt-15">
