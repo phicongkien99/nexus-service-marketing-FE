@@ -3,12 +3,12 @@ import { Row, Col } from "antd";
 import { Carousel, Button, Image } from "antd";
 import "./ServicePack.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchServicePacks } from "../../admin/service-packs/slice";
+import { fetchServicePacks } from "../../slice/service-pack";
 import { fetchConnectionTypes } from "../../admin/connection-types/slice";
 import { Link } from "react-router-dom";
 
 function ServicePack(props) {
-    const { servicePacks } = useSelector((state) => state.adminServicePack);
+    const { servicePacks } = useSelector((state) => state.userServicePack);
     const { connectionTypes } = useSelector((state) => state.adminConnectionType);
 
     const dispatch = useDispatch();

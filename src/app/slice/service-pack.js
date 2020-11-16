@@ -5,7 +5,8 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     servicePacks: [],
-    isLoading: false, isSucceed: false,
+    isLoading: false,
+    isSucceed: false,
 };
 
 const servicePackSlice = createSlice({
@@ -45,7 +46,6 @@ function fetchServicePacks(servicePacks) {
             }
         } catch (e) {
             console.error(e);
-            toast.error(e);
         } finally {
             if (servicePacks.length === 0) {
                 dispatch(setIsLoading(false));

@@ -8,7 +8,7 @@ function Register({history, location: {search}}) {
     const dispatch = useDispatch();
 
     const { } = useSelector(state => state.userRegister);
-    const { servicePacks } = useSelector(state => state.adminServicePack);
+    const { servicePacks } = useSelector(state => state.userServicePack);
 
     useEffect(() => {
         const searchObj = qs.parse(search);

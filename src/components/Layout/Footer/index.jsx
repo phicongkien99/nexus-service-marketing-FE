@@ -77,7 +77,7 @@ function UserFooter(props) {
                                         </Link>
                                     </Row>
                                     <Row style={rowStyle}>
-                                        <Link style={textWhite} to="">
+                                        <Link style={textWhite} to="/feedback">
                                             Feedback
                                         </Link>
                                     </Row>
@@ -94,12 +94,12 @@ function UserFooter(props) {
                                 <Col span={12}>
                                     <h3 className="text-orange">New to Nexus Service?</h3>
                                     <Row>
-                                        <Link style={textWhite} to="">
+                                        <Link style={textWhite} to="/register">
                                             Online Registrantion
                                         </Link>
                                     </Row>
                                     <Row style={rowStyle}>
-                                        <Link style={textWhite} to="">
+                                        <Link style={textWhite} to="/service-pack">
                                             Product & Services
                                         </Link>
                                     </Row>
@@ -236,8 +236,8 @@ function UserFooter(props) {
                                     </Link>
                                 </Col>
                                 <Col span={8}>
-                                    <Link to="">
-                                        <h4 style={textWhite}>ONLINE REGISTRANTION</h4>
+                                    <Link to="/register">
+                                        <h4 style={textWhite}>ONLINE REGISTRATION</h4>
                                     </Link>
                                 </Col>
                                 <Col span={8}>
