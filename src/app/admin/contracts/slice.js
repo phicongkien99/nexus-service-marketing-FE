@@ -37,7 +37,7 @@ const contractSlice = createSlice({
 
 const { actions, reducer } = contractSlice;
 
-export const { setContracts, addContract, editContract, removeContract, setIsLoading } = actions;
+export const { setContracts, addContract, editContract, removeContract, setIsLoading, setIsSucceed } = actions;
 
 function fetchContracts(contracts) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchContracts(contracts) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setContracts(resp.ListDataResult));
+                dispatch(setContracts(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createContract(contract) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addContract(resp.DataResult));
+                    dispatch(addContract(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create contract succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateContract(contract) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editContract(resp.DataResult));
+                    dispatch(editContract(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update contract succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteContract(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeContract(resp.DataResult));
+                    dispatch(removeContract(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete contract succeed!");
             } else {

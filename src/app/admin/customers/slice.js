@@ -37,7 +37,7 @@ const customerSlice = createSlice({
 
 const { actions, reducer } = customerSlice;
 
-export const { setCustomers, addCustomer, editCustomer, removeCustomer, setIsLoading } = actions;
+export const { setCustomers, addCustomer, editCustomer, removeCustomer, setIsLoading, setIsSucceed } = actions;
 
 function fetchCustomers(customers) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchCustomers(customers) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setCustomers(resp.ListDataResult));
+                dispatch(setCustomers(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createCustomer(customer) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addCustomer(resp.DataResult));
+                    dispatch(addCustomer(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create customer succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateCustomer(customer) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editCustomer(resp.DataResult));
+                    dispatch(editCustomer(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update customer succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteCustomer(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeCustomer(resp.DataResult));
+                    dispatch(removeCustomer(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete customer succeed!");
             } else {

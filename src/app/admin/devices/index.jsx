@@ -19,10 +19,10 @@ function Devices(props) {
         document.title = "Devices";
         dispatch(fetchDevices(devices));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchDevices(devices));
         }
     }, [isSucceed]);
 
@@ -40,7 +40,7 @@ function Devices(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

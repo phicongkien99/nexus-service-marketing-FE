@@ -24,10 +24,10 @@ function ConnectionTypes(props) {
         document.title = "Connection types";
         dispatch(fetchConnectionTypes(connectionTypes));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchConnectionTypes(connectionTypes));
         }
     }, [isSucceed]);
 
@@ -50,7 +50,7 @@ function ConnectionTypes(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

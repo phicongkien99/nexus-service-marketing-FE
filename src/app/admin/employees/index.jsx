@@ -19,10 +19,10 @@ function Employees(props) {
         document.title = "Employees";
         dispatch(fetchEmployees(employees));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchEmployees(employees));
         }
     }, [isSucceed]);
 
@@ -60,7 +60,7 @@ function Employees(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     {/* <Button

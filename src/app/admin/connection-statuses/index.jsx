@@ -19,10 +19,10 @@ function ConnectionStatuses(props) {
         document.title = "Connection statuses";
         dispatch(fetchConnectionStatuses(connectionStatuses));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchConnectionStatuses(connectionStatuses));
         }
     }, [isSucceed]);
 
@@ -45,7 +45,7 @@ function ConnectionStatuses(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

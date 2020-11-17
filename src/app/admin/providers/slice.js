@@ -37,7 +37,7 @@ const providerSlice = createSlice({
 
 const { actions, reducer } = providerSlice;
 
-export const { setProviders, addProvider, editProvider, removeProvider, setIsLoading } = actions;
+export const { setProviders, addProvider, editProvider, removeProvider, setIsLoading, setIsSucceed } = actions;
 
 function fetchProviders(providers) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchProviders(providers) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setProviders(resp.ListDataResult));
+                dispatch(setProviders(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createProvider(provider) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addProvider(resp.DataResult));
+                    dispatch(addProvider(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create provider succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateProvider(provider) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editProvider(resp.DataResult));
+                    dispatch(editProvider(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update provider succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteProvider(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeProvider(resp.DataResult));
+                    dispatch(removeProvider(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete provider succeed!");
             } else {

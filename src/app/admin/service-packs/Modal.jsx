@@ -26,7 +26,12 @@ function ServicePackModal({ open, onConfirm, onCancel, servicePack, isLoading })
         }
     }, [open]);
 
-    const initServicePack = servicePack || { Name: "", Description: "", IdConnectionType: "" };
+    const initServicePack = servicePack ? { ...servicePack, ListDataTemp: servicePack["ListServicePackFee"] } : {
+        Name: "",
+        Description: "",
+        IdConnectionType: "",
+        ListDataTemp: [],
+    };
 
     const onSubmitForm = async () => {
         try {
@@ -83,7 +88,7 @@ function ServicePackModal({ open, onConfirm, onCancel, servicePack, isLoading })
                         ))}
                     </Select>
                 </Form.Item>
-                <Form.List name="Fees">
+                <Form.List name="ListDataTemp">
                     {(fields, { add, remove }) => (
                         <>
                             {fields.map((field) => (
@@ -98,10 +103,7 @@ function ServicePackModal({ open, onConfirm, onCancel, servicePack, isLoading })
                                         >
                                             <Select style={{ width: 130 }}>
                                                 {fees.map((item) => (
-                                                    <Select.Option
-                                                        key={item["Id"]}
-                                                        value={item["Id"]}
-                                                    >
+                                                    <Select.Option key={item["Id"]} value={item["Id"]}>
                                                         {item["Name"]}
                                                     </Select.Option>
                                                 ))}
@@ -123,12 +125,7 @@ function ServicePackModal({ open, onConfirm, onCancel, servicePack, isLoading })
                             ))}
 
                             <Form.Item wrapperCol={{ span: 24 }}>
-                                <Button
-                                    type="dashed"
-                                    onClick={() => add()}
-                                    block
-                                    icon={<PlusOutlined />}
-                                >
+                                <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                                     Add fee
                                 </Button>
                             </Form.Item>

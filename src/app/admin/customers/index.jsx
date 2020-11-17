@@ -19,10 +19,10 @@ function Customers(props) {
         document.title = "Customers";
         dispatch(fetchCustomers(customers));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchCustomers(customers));
         }
     }, [isSucceed]);
 
@@ -55,7 +55,7 @@ function Customers(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

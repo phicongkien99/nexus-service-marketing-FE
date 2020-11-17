@@ -37,7 +37,7 @@ const employeeSlice = createSlice({
 
 const { actions, reducer } = employeeSlice;
 
-export const { setEmployees, addEmployee, editEmployee, removeEmployee, setIsLoading } = actions;
+export const { setEmployees, addEmployee, editEmployee, removeEmployee, setIsLoading, setIsSucceed } = actions;
 
 function fetchEmployees(employees) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchEmployees(employees) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setEmployees(resp.ListDataResult));
+                dispatch(setEmployees(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createEmployee(employee) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addEmployee(resp.DataResult));
+                    dispatch(addEmployee(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create employee succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateEmployee(employee) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editEmployee(resp.DataResult));
+                    dispatch(editEmployee(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update employee succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteEmployee(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeEmployee(resp.DataResult));
+                    dispatch(removeEmployee(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete employee succeed!");
             } else {

@@ -37,7 +37,7 @@ const areaSlice = createSlice({
 
 const { actions, reducer } = areaSlice;
 
-export const { setAreas, addArea, editArea, removeArea, setIsLoading } = actions;
+export const { setAreas, addArea, editArea, removeArea, setIsLoading, setIsSucceed } = actions;
 
 function fetchAreas(areas) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchAreas(areas) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setAreas(resp.ListDataResult));
+                dispatch(setAreas(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createArea(area) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addArea(resp.DataResult));
+                    dispatch(addArea(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create area succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateArea(area) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editArea(resp.DataResult));
+                    dispatch(editArea(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update area succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteArea(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeArea(resp.DataResult));
+                    dispatch(removeArea(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete area succeed!");
             } else {

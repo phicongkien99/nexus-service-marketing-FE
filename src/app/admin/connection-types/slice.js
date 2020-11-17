@@ -37,7 +37,7 @@ const connectionTypeSlice = createSlice({
 
 const { actions, reducer } = connectionTypeSlice;
 
-export const { setConnectionTypes, addConnectionType, editConnectionType, removeConnectionType, setIsLoading } = actions;
+export const { setConnectionTypes, addConnectionType, editConnectionType, removeConnectionType, setIsLoading, setIsSucceed } = actions;
 
 function fetchConnectionTypes(connectionTypes) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchConnectionTypes(connectionTypes) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setConnectionTypes(resp.ListDataResult));
+                dispatch(setConnectionTypes(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createConnectionType(connectionType) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addConnectionType(resp.DataResult));
+                    dispatch(addConnectionType(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create connection type succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateConnectionType(connectionType) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editConnectionType(resp.DataResult));
+                    dispatch(editConnectionType(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update connection type succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteConnectionType(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeConnectionType(resp.DataResult));
+                    dispatch(removeConnectionType(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete connection type succeed!");
             } else {

@@ -37,7 +37,7 @@ const customerFeedbackSlice = createSlice({
 
 const { actions, reducer } = customerFeedbackSlice;
 
-export const { setCustomerFeedbacks, addCustomerFeedback, editCustomerFeedback, removeCustomerFeedback, setIsLoading } = actions;
+export const { setCustomerFeedbacks, addCustomerFeedback, editCustomerFeedback, removeCustomerFeedback, setIsLoading, setIsSucceed } = actions;
 
 function fetchCustomerFeedbacks(customerFeedbacks) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchCustomerFeedbacks(customerFeedbacks) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setCustomerFeedbacks(resp.ListDataResult));
+                dispatch(setCustomerFeedbacks(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createCustomerFeedback(customerFeedback) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addCustomerFeedback(resp.DataResult));
+                    dispatch(addCustomerFeedback(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create customerFeedback succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateCustomerFeedback(customerFeedback) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editCustomerFeedback(resp.DataResult));
+                    dispatch(editCustomerFeedback(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update customerFeedback succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteCustomerFeedback(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeCustomerFeedback(resp.DataResult));
+                    dispatch(removeCustomerFeedback(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete customerFeedback succeed!");
             } else {

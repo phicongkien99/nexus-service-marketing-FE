@@ -5,7 +5,8 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     serviceForms: [],
-    isLoading: false, isSucceed: false,
+    isLoading: false,
+    isSucceed: false,
 };
 
 const serviceFormSlice = createSlice({
@@ -37,7 +38,14 @@ const serviceFormSlice = createSlice({
 
 const { actions, reducer } = serviceFormSlice;
 
-export const { setServiceForms, addServiceForm, editServiceForm, removeServiceForm, setIsLoading } = actions;
+export const {
+    setServiceForms,
+    addServiceForm,
+    editServiceForm,
+    removeServiceForm,
+    setIsLoading,
+    setIsSucceed,
+} = actions;
 
 function fetchServiceForms(serviceForms) {
     return async (dispatch) => {
@@ -51,6 +59,7 @@ function fetchServiceForms(serviceForms) {
             });
             if (resp.IsSuccess) {
                 dispatch(setServiceForms(resp.ListDataResult));
+                dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -69,15 +78,30 @@ function createServiceForm(serviceForm) {
     return async (dispatch) => {
         try {
             dispatch(setIsLoading(true));
+            if (!serviceForm["IdCustomer"]) {
+                const createCustomerResp = await axiosClient({
+                    url: "/customer",
+                    method: "post",
+                    data: {
+                        Address: serviceForm["CAddress"],
+                        Name: serviceForm["CName"],
+                        Phone: serviceForm["CPhone"],
+                        Email: ""
+                    },
+                });
+                if (createCustomerResp.IsSuccess && createCustomerResp.DataResult) {
+                    serviceForm["IdCustomer"] = createCustomerResp.DataResult.Id;
+                }
+            }
             const resp = await axiosClient({
                 url: "/serviceform",
                 method: "post",
                 data: serviceForm,
             });
             if (resp.IsSuccess) {
-                console.log(resp)
                 if (resp.DataResult) {
                     dispatch(addServiceForm(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Create serviceForm succeed!");
             } else {
@@ -102,9 +126,9 @@ function updateServiceForm(serviceForm) {
                 data: serviceForm,
             });
             if (resp.IsSuccess) {
-                console.log(resp);
                 if (resp.DataResult) {
                     dispatch(editServiceForm(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Update serviceForm succeed!");
             } else {
@@ -128,9 +152,10 @@ function deleteServiceForm(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                console.log(resp);
+                
                 if (resp.DataResult) {
                     dispatch(removeServiceForm(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete serviceForm succeed!");
             } else {

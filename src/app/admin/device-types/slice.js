@@ -37,7 +37,7 @@ const deviceTypeSlice = createSlice({
 
 const { actions, reducer } = deviceTypeSlice;
 
-export const { setDeviceTypes, addDeviceType, editDeviceType, removeDeviceType, setIsLoading } = actions;
+export const { setDeviceTypes, addDeviceType, editDeviceType, removeDeviceType, setIsLoading, setIsSucceed } = actions;
 
 function fetchDeviceTypes(deviceTypes) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchDeviceTypes(deviceTypes) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setDeviceTypes(resp.ListDataResult));
+                dispatch(setDeviceTypes(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createDeviceType(deviceType) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addDeviceType(resp.DataResult));
+                    dispatch(addDeviceType(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create device type succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateDeviceType(deviceType) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editDeviceType(resp.DataResult));
+                    dispatch(editDeviceType(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update device type succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteDeviceType(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeDeviceType(resp.DataResult));
+                    dispatch(removeDeviceType(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete device type succeed!");
             } else {

@@ -13,16 +13,17 @@ function ServiceFormStatuses(props) {
     const [currentServiceFormStatus, setCurrentServiceFormStatus] = useState(null);
 
     const { serviceFormStatuses, isLoading, isSucceed } = useSelector((state) => state.adminServiceFormStatus);
+    
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Service form statuses";
         dispatch(fetchServiceFormStatuses(serviceFormStatuses));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchServiceFormStatuses(serviceFormStatuses));
         }
     }, [isSucceed]);
 
@@ -45,7 +46,7 @@ function ServiceFormStatuses(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

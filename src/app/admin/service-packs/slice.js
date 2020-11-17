@@ -46,6 +46,7 @@ export const {
     editServicePack,
     removeServicePack,
     setIsLoading,
+    setIsSucceed
 } = actions;
 
 function fetchServicePacks(servicePacks) {
@@ -59,7 +60,7 @@ function fetchServicePacks(servicePacks) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setServicePacks(resp.ListDataResult));
+                dispatch(setServicePacks(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -98,6 +99,7 @@ function createServicePack(servicePack) {
                         });
                     }
                     dispatch(addServicePack(newObject));
+                    dispatch(setIsSucceed(false));
                 }
                 toast.success("Create servicePack succeed!");
             } else {
@@ -122,11 +124,11 @@ function updateServicePack(servicePack) {
                 data: servicePack,
             });
             if (resp.IsSuccess) {
-                console.log(resp);
                 if (resp.DataResult) {
-                    dispatch(editServicePack(resp.DataResult));
+                    dispatch(editServicePack(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update servicePack succeed!");
+                dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -148,9 +150,9 @@ function deleteServicePack(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                console.log(resp);
+                
                 if (resp.DataResult) {
-                    dispatch(removeServicePack(resp.DataResult));
+                    dispatch(removeServicePack(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete servicePack succeed!");
             } else {

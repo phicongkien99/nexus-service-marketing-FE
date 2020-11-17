@@ -22,7 +22,7 @@ function Stores(props) {
 
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchStores(stores));
         }
     }, [isSucceed]);
 
@@ -55,7 +55,7 @@ function Stores(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button className="btn--yellow" icon={<EditOutlined />} onClick={() => handleUpdate(record)} />

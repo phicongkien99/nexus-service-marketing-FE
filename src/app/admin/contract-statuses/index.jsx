@@ -19,10 +19,10 @@ function ContractStatuses(props) {
         document.title = "Contract statuses";
         dispatch(fetchContractStatuses(contractStatuses));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchContractStatuses(contractStatuses));
         }
     }, [isSucceed]);
 
@@ -45,7 +45,7 @@ function ContractStatuses(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

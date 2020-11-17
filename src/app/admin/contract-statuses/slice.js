@@ -37,7 +37,7 @@ const contractStatusSlice = createSlice({
 
 const { actions, reducer } = contractStatusSlice;
 
-export const { setContractStatuses, addContractStatus, editContractStatus, removeContractStatus, setIsLoading } = actions;
+export const { setContractStatuses, addContractStatus, editContractStatus, removeContractStatus, setIsLoading, setIsSucceed } = actions;
 
 function fetchContractStatuses(contractStatuses) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchContractStatuses(contractStatuses) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setContractStatuses(resp.ListDataResult));
+                dispatch(setContractStatuses(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createContractStatus(contractStatus) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addContractStatus(resp.DataResult));
+                    dispatch(addContractStatus(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create contract status succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateContractStatus(contractStatus) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editContractStatus(resp.DataResult));
+                    dispatch(editContractStatus(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update contract status succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteContractStatus(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeContractStatus(resp.DataResult));
+                    dispatch(removeContractStatus(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete contract status succeed!");
             } else {

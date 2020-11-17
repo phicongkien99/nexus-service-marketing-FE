@@ -37,7 +37,7 @@ const serviceFormStatusSlice = createSlice({
 
 const { actions, reducer } = serviceFormStatusSlice;
 
-export const { setServiceFormStatuses, addServiceFormStatus, editServiceFormStatus, removeServiceFormStatus, setIsLoading } = actions;
+export const { setServiceFormStatuses, addServiceFormStatus, editServiceFormStatus, removeServiceFormStatus, setIsLoading, setIsSucceed } = actions;
 
 function fetchServiceFormStatuses(serviceFormStatuses) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchServiceFormStatuses(serviceFormStatuses) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setServiceFormStatuses(resp.ListDataResult));
+                dispatch(setServiceFormStatuses(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createServiceFormStatus(serviceFormStatus) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addServiceFormStatus(resp.DataResult));
+                    dispatch(addServiceFormStatus(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create service form status succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateServiceFormStatus(serviceFormStatus) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editServiceFormStatus(resp.DataResult));
+                    dispatch(editServiceFormStatus(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update service form status succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteServiceFormStatus(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeServiceFormStatus(resp.DataResult));
+                    dispatch(removeServiceFormStatus(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete service form status succeed!");
             } else {

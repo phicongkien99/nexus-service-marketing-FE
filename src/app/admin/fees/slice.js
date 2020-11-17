@@ -37,7 +37,7 @@ const feeSlice = createSlice({
 
 const { actions, reducer } = feeSlice;
 
-export const { setFees, addFee, editFee, removeFee, setIsLoading } = actions;
+export const { setFees, addFee, editFee, removeFee, setIsLoading, setIsSucceed } = actions;
 
 function fetchFees(fees) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchFees(fees) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setFees(resp.ListDataResult));
+                dispatch(setFees(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createFee(fee) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addFee(resp.DataResult));
+                    dispatch(addFee(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create fee succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateFee(fee) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editFee(resp.DataResult));
+                    dispatch(editFee(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update fee succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteFee(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeFee(resp.DataResult));
+                    dispatch(removeFee(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete fee succeed!");
             } else {

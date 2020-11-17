@@ -37,7 +37,7 @@ const storeSlice = createSlice({
 
 const { actions, reducer } = storeSlice;
 
-export const { setStores, addStore, editStore, removeStore, setIsLoading } = actions;
+export const { setStores, addStore, editStore, removeStore, setIsLoading, setIsSucceed } = actions;
 
 function fetchStores(stores) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchStores(stores) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setStores(resp.ListDataResult));
+                dispatch(setStores(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createStore(store) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addStore(resp.DataResult));
+                    dispatch(addStore(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create store succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateStore(store) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editStore(resp.DataResult));
+                    dispatch(editStore(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update store succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteStore(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeStore(resp.DataResult));
+                    dispatch(removeStore(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete store succeed!");
             } else {

@@ -26,7 +26,7 @@ const connectionTypeSlice = createSlice({
 
 const { actions, reducer } = connectionTypeSlice;
 
-export const { setConnectionTypes, setIsLoading } = actions;
+export const { setConnectionTypes, setIsLoading, setIsSucceed } = actions;
 
 function fetchConnectionTypes(connectionTypes) {
     return async (dispatch) => {

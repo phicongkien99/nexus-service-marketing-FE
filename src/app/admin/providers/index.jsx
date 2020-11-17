@@ -19,10 +19,10 @@ function Providers(props) {
         document.title = "Providers";
         dispatch(fetchProviders(providers));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchProviders(providers));
         }
     }, [isSucceed]);
 
@@ -55,7 +55,7 @@ function Providers(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

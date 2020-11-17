@@ -12,10 +12,10 @@ function CustomerFeedbacks(props) {
         document.title = "Customer Feedbacks";
         dispatch(fetchCustomerFeedbacks(customerFeedbacks));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchCustomerFeedbacks(customerFeedbacks));
         }
     }, [isSucceed]);
 

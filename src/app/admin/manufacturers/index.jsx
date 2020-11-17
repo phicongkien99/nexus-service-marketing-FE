@@ -19,10 +19,10 @@ function Manufacturers(props) {
         document.title = "Manufacturers";
         dispatch(fetchManufacturers(manufacturers));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchManufacturers(manufacturers));
         }
     }, [isSucceed]);
 
@@ -40,7 +40,7 @@ function Manufacturers(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

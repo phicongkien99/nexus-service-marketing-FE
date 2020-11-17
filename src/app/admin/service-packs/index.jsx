@@ -22,7 +22,7 @@ function ServicePacks(props) {
 
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchServicePacks(servicePacks));
         }
     }, [isSucceed]);
 
@@ -50,19 +50,11 @@ function ServicePacks(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+
             render: (text, record) => (
                 <Space>
-                    <Button
-                        className="btn--yellow"
-                        icon={<EditOutlined />}
-                        onClick={() => handleUpdate(record)}
-                    />
-                    <Button
-                        className="btn--red"
-                        icon={<DeleteOutlined />}
-                        onClick={() => handleDelete(record)}
-                    />
+                    <Button className="btn--yellow" icon={<EditOutlined />} onClick={() => handleUpdate(record)} />
+                    <Button className="btn--red" icon={<DeleteOutlined />} onClick={() => handleDelete(record)} />
                 </Space>
             ),
         },
@@ -81,7 +73,12 @@ function ServicePacks(props) {
 
     const handleConfirm = (servicePack) => {
         if (currentServicePack) {
-            dispatch(updateServicePack(servicePack));
+            const newListDataTemp = [...servicePack["ListDataTemp"]];
+            newListDataTemp.forEach((data) => {
+                data["IdServicePack"] = servicePack.Id;
+                data["IsDeleted"] = 0;
+            });
+            dispatch(updateServicePack({ ...servicePack, ListDataTemp: newListDataTemp }));
         } else {
             dispatch(createServicePack(servicePack));
         }
@@ -124,7 +121,8 @@ function ServicePacks(props) {
                         loading={isLoading}
                         dataSource={servicePacks}
                         columns={columns}
-                        onChange={handleChangeTable} rowKey="Id"
+                        onChange={handleChangeTable}
+                        rowKey="Id"
                     />
                 </Col>
             </Row>

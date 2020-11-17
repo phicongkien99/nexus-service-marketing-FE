@@ -27,7 +27,7 @@ const servicePackSlice = createSlice({
 
 const { actions, reducer } = servicePackSlice;
 
-export const { setServicePacks, setIsLoading } = actions;
+export const { setServicePacks, setIsLoading, setIsSucceed } = actions;
 
 function fetchServicePacks(servicePacks) {
     return async (dispatch) => {

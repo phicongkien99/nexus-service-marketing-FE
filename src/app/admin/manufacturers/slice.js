@@ -37,7 +37,7 @@ const manufacturerSlice = createSlice({
 
 const { actions, reducer } = manufacturerSlice;
 
-export const { setManufacturers, addManufacturer, editManufacturer, removeManufacturer, setIsLoading } = actions;
+export const { setManufacturers, addManufacturer, editManufacturer, removeManufacturer, setIsLoading, setIsSucceed } = actions;
 
 function fetchManufacturers(manufacturers) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchManufacturers(manufacturers) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setManufacturers(resp.ListDataResult));
+                dispatch(setManufacturers(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createManufacturer(manufacturer) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addManufacturer(resp.DataResult));
+                    dispatch(addManufacturer(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create manufacturer succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateManufacturer(manufacturer) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editManufacturer(resp.DataResult));
+                    dispatch(editManufacturer(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update manufacturer succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteManufacturer(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeManufacturer(resp.DataResult));
+                    dispatch(removeManufacturer(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete manufacturer succeed!");
             } else {

@@ -19,10 +19,10 @@ function Areas(props) {
         document.title = "Areas";
         dispatch(fetchAreas(areas));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchAreas(areas));
         }
     }, [isSucceed]);
 
@@ -45,7 +45,7 @@ function Areas(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

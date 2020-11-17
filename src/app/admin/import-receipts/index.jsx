@@ -19,10 +19,10 @@ function ImportReceipts(props) {
         document.title = "ImportReceipts";
         dispatch(fetchImportReceipts(importReceipts));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchImportReceipts(importReceipts));
         }
     }, [isSucceed]);
 
@@ -55,7 +55,7 @@ function ImportReceipts(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

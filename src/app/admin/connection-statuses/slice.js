@@ -37,7 +37,7 @@ const connectionStatusSlice = createSlice({
 
 const { actions, reducer } = connectionStatusSlice;
 
-export const { setConnectionStatuses, addConnectionStatus, editConnectionStatus, removeConnectionStatus, setIsLoading } = actions;
+export const { setConnectionStatuses, addConnectionStatus, editConnectionStatus, removeConnectionStatus, setIsLoading, setIsSucceed } = actions;
 
 function fetchConnectionStatuses(connectionStatuses) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchConnectionStatuses(connectionStatuses) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setConnectionStatuses(resp.ListDataResult));
+                dispatch(setConnectionStatuses(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createConnectionStatus(connectionStatus) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addConnectionStatus(resp.DataResult));
+                    dispatch(addConnectionStatus(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create connection status succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateConnectionStatus(connectionStatus) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editConnectionStatus(resp.DataResult));
+                    dispatch(editConnectionStatus(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update connection status succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteConnectionStatus(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeConnectionStatus(resp.DataResult));
+                    dispatch(removeConnectionStatus(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete connection status succeed!");
             } else {

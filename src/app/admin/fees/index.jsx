@@ -19,10 +19,10 @@ function Fees(props) {
         document.title = "Fees";
         dispatch(fetchFees(fees));
     }, []);
-
+    
     useEffect(() => {
         if (isSucceed) {
-            dispatch(fetch());
+            dispatch(fetchFees(fees));
         }
     }, [isSucceed]);
 
@@ -45,7 +45,7 @@ function Fees(props) {
         {
             title: "Action",
             key: "action",
-            className: "min-width",
+            
             render: (text, record) => (
                 <Space>
                     <Button

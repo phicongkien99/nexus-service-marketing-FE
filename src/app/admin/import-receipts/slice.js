@@ -37,7 +37,7 @@ const importReceiptSlice = createSlice({
 
 const { actions, reducer } = importReceiptSlice;
 
-export const { setImportReceipts, addImportReceipt, editImportReceipt, removeImportReceipt, setIsLoading } = actions;
+export const { setImportReceipts, addImportReceipt, editImportReceipt, removeImportReceipt, setIsLoading, setIsSucceed } = actions;
 
 function fetchImportReceipts(importReceipts) {
     return async (dispatch) => {
@@ -50,7 +50,7 @@ function fetchImportReceipts(importReceipts) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setImportReceipts(resp.ListDataResult));
+                dispatch(setImportReceipts(resp.ListDataResult));dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +76,7 @@ function createImportReceipt(importReceipt) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addImportReceipt(resp.DataResult));
+                    dispatch(addImportReceipt(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Create importReceipt succeed!");
             } else {
@@ -102,7 +102,7 @@ function updateImportReceipt(importReceipt) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editImportReceipt(resp.DataResult));
+                    dispatch(editImportReceipt(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Update importReceipt succeed!");
             } else {
@@ -127,7 +127,7 @@ function deleteImportReceipt(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeImportReceipt(resp.DataResult));
+                    dispatch(removeImportReceipt(resp.DataResult));dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete importReceipt succeed!");
             } else {
