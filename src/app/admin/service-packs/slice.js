@@ -46,7 +46,7 @@ export const {
     editServicePack,
     removeServicePack,
     setIsLoading,
-    setIsSucceed
+    setIsSucceed,
 } = actions;
 
 function fetchServicePacks(servicePacks) {
@@ -60,7 +60,8 @@ function fetchServicePacks(servicePacks) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setServicePacks(resp.ListDataResult));dispatch(setIsSucceed(false));
+                dispatch(setServicePacks(resp.ListDataResult));
+                dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -99,7 +100,7 @@ function createServicePack(servicePack) {
                         });
                     }
                     dispatch(addServicePack(newObject));
-                    dispatch(setIsSucceed(false));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Create servicePack succeed!");
             } else {
@@ -125,10 +126,10 @@ function updateServicePack(servicePack) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editServicePack(resp.DataResult));dispatch(setIsSucceed(true));
+                    dispatch(editServicePack(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Update servicePack succeed!");
-                dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -150,9 +151,9 @@ function deleteServicePack(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                
                 if (resp.DataResult) {
-                    dispatch(removeServicePack(resp.DataResult));dispatch(setIsSucceed(true));
+                    dispatch(removeServicePack(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete servicePack succeed!");
             } else {

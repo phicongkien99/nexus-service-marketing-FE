@@ -4,11 +4,17 @@ import { Button, Col, PageHeader, Row, Select, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined, EyeOutlined } from "@ant-design/icons";
 import ServiceFormModal from "./Modal";
-import { fetchServiceForms, createServiceForm, updateServiceForm, deleteServiceForm } from "./slice";
+import {
+    fetchServiceForms,
+    createServiceForm,
+    updateServiceForm,
+    deleteServiceForm,
+} from "./slice";
 import { fetchServicePacks } from "../service-packs/slice";
 import { fetchServiceFormStatuses } from "../service-form-statuses/slice";
 import { fetchAreas } from "../areas/slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
+import constants from "../../../utils/constants";
 
 function ServiceForms(props) {
     const [openModal, setOpenModal] = useState(false);
@@ -40,9 +46,9 @@ function ServiceForms(props) {
         const serviceForm = {
             ...data,
             IdServiceFormStatus: value,
-        }
-        dispatch(updateServiceForm(serviceForm))
-    }
+        };
+        dispatch(updateServiceForm(serviceForm));
+    };
 
     const columns = [
         {
@@ -59,7 +65,15 @@ function ServiceForms(props) {
             title: "Status",
             key: "status",
             render: (text, record) => (
-                <Select onSelect={handleChangeStatus(record)} defaultValue={record["IdServiceFormStatus"]} style={{width: "100%"}}>
+                <Select
+                    disabled={
+                        record["IdServiceFormStatus"] == constants.STATUSES.FINISHED ||
+                        record["IdServiceFormStatus"] == constants.STATUSES.REFUSED
+                    }
+                    onSelect={handleChangeStatus(record)}
+                    defaultValue={record["IdServiceFormStatus"]}
+                    style={{ width: "100%" }}
+                >
                     {serviceFormStatuses.map((item) => (
                         <Select.Option key={item["Id"]} value={item["Id"]}>
                             {item["Name"]}
@@ -71,13 +85,13 @@ function ServiceForms(props) {
         {
             title: "Action",
             key: "action",
-            
+
             render: (text, record) => (
                 <Space>
                     <Button type="primary" icon={<EyeOutlined />} />
                 </Space>
-            )
-        }
+            ),
+        },
     ];
 
     const handleChangeTable = (pagination, filters, sorter) => {};
