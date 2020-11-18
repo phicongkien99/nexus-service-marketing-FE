@@ -10,6 +10,7 @@ import { fetchServiceFormStatuses } from "../service-form-statuses/slice";
 import { fetchAreas } from "../areas/slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 import ViewModal from "./ViewModal";
+import constants from "../../../utils/constants";
 
 function ServiceForms(props) {
     const [openModal, setOpenModal] = useState(false);
@@ -42,9 +43,9 @@ function ServiceForms(props) {
         const serviceForm = {
             ...data,
             IdServiceFormStatus: value,
-        }
-        dispatch(updateServiceForm(serviceForm))
-    }
+        };
+        dispatch(updateServiceForm(serviceForm));
+    };
 
     const columns = [
         {
@@ -61,7 +62,15 @@ function ServiceForms(props) {
             title: "Status",
             key: "status",
             render: (text, record) => (
-                <Select onSelect={handleChangeStatus(record)} defaultValue={record["IdServiceFormStatus"]} style={{width: "100%"}}>
+                <Select
+                    disabled={
+                        record["IdServiceFormStatus"] == constants.STATUSES.FINISHED ||
+                        record["IdServiceFormStatus"] == constants.STATUSES.REFUSED
+                    }
+                    onSelect={handleChangeStatus(record)}
+                    defaultValue={record["IdServiceFormStatus"]}
+                    style={{ width: "100%" }}
+                >
                     {serviceFormStatuses.map((item) => (
                         <Select.Option key={item["Id"]} value={item["Id"]}>
                             {item["Name"]}
@@ -73,13 +82,13 @@ function ServiceForms(props) {
         {
             title: "Action",
             key: "action",
-            
+
             render: (text, record) => (
                 <Space>
                     <Button type="primary" onClick={() => handleViewServiceForm(record["Id"])} icon={<EyeOutlined />} />
                 </Space>
-            )
-        }
+            ),
+        },
     ];
 
     const handleChangeTable = (pagination, filters, sorter) => {};
