@@ -4,14 +4,16 @@ import { Button, Col, PageHeader, Row, Select, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined, EyeOutlined } from "@ant-design/icons";
 import ServiceFormModal from "./Modal";
-import { fetchServiceForms, createServiceForm, updateServiceForm, deleteServiceForm } from "./slice";
+import { fetchServiceForms, fetchServiceForm, createServiceForm, updateServiceForm, deleteServiceForm } from "./slice";
 import { fetchServicePacks } from "../service-packs/slice";
 import { fetchServiceFormStatuses } from "../service-form-statuses/slice";
 import { fetchAreas } from "../areas/slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
+import ViewModal from "./ViewModal";
 
 function ServiceForms(props) {
     const [openModal, setOpenModal] = useState(false);
+    const [openViewModal, setOpenViewModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentServiceForm, setCurrentServiceForm] = useState(null);
 
@@ -74,7 +76,7 @@ function ServiceForms(props) {
             
             render: (text, record) => (
                 <Space>
-                    <Button type="primary" icon={<EyeOutlined />} />
+                    <Button type="primary" onClick={() => handleViewServiceForm(record["Id"])} icon={<EyeOutlined />} />
                 </Space>
             )
         }
@@ -96,6 +98,7 @@ function ServiceForms(props) {
 
     const handleCancel = () => {
         setOpenModal(false);
+        setOpenViewModal(false);
         setCurrentServiceForm(null);
     };
 
@@ -108,6 +111,11 @@ function ServiceForms(props) {
         dispatch(deleteServiceForm(currentServiceForm["Id"]));
         setOpenDeleteModal(false);
     };
+
+    const handleViewServiceForm = (id) => {
+        dispatch(fetchServiceForm(id));
+        setOpenViewModal(true);
+    }
 
     return (
         <>
@@ -145,6 +153,7 @@ function ServiceForms(props) {
                 onConfirm={handleConfirmDelete}
                 isLoading={isLoading}
             />
+            <ViewModal open={openViewModal} onCancel={handleCancel} />
         </>
     );
 }

@@ -7,6 +7,7 @@ const defaultState = {
     serviceForms: [],
     isLoading: false,
     isSucceed: false,
+    detailServiceForm: {},
 };
 
 const serviceFormSlice = createSlice({
@@ -33,6 +34,9 @@ const serviceFormSlice = createSlice({
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
         },
+        setDetailServiceForm: (state, action) => {
+            state.detailServiceForm = action.payload;
+        },
     },
 });
 
@@ -45,6 +49,7 @@ export const {
     removeServiceForm,
     setIsLoading,
     setIsSucceed,
+    setDetailServiceForm,
 } = actions;
 
 function fetchServiceForms(serviceForms) {
@@ -74,6 +79,53 @@ function fetchServiceForms(serviceForms) {
     };
 }
 
+function fetchServiceForm(id) {
+    return async (dispatch) => {
+        try {
+            dispatch(setIsLoading(true));
+            const resp = await axiosClient({
+                url: `/serviceform/${id}`,
+                method: "get",
+            });
+            if (resp.IsSuccess && resp.DataResult) {
+                const detailServiceForm = {...resp.DataResult};
+                const areaResp = await axiosClient({
+                    url: `/area/${detailServiceForm["IdArea"]}`,
+                    method: "get",
+                });
+                if (areaResp.IsSuccess && areaResp.DataResult) {
+                    detailServiceForm["AreaName"] = areaResp.DataResult.Name;
+                }
+                const servicePackResp = await axiosClient({
+                    url: `/servicepack/${detailServiceForm["IdServicePack"]}`,
+                    method: "get",
+                });
+                if (servicePackResp.IsSuccess && servicePackResp.DataResult) {
+                    detailServiceForm["ServicePackName"] = servicePackResp.DataResult.Name;
+                    detailServiceForm["ServicePackType"] = servicePackResp.DataResult.ConnectionTypeName;
+                }
+                const customerResp = await axiosClient({
+                    url: `/customer/${detailServiceForm["IdCustomer"]}`,
+                    method: "get",
+                });
+                if (customerResp.IsSuccess && customerResp.DataResult) {
+                    detailServiceForm["CustomerName"] = customerResp.DataResult.Name;
+                    detailServiceForm["CustomerPhone"] = customerResp.DataResult.Phone;
+                    detailServiceForm["CustomerAddress"] = customerResp.DataResult.Address;
+                }
+                dispatch(setDetailServiceForm(detailServiceForm));
+            } else {
+                throw resp.ErrorMsg;
+            }
+        } catch (e) {
+            console.error(e);
+            toast.error(e);
+        } finally {
+            dispatch(setIsLoading(false));
+        }
+    };
+}
+
 function createServiceForm(serviceForm) {
     return async (dispatch) => {
         try {
@@ -86,7 +138,7 @@ function createServiceForm(serviceForm) {
                         Address: serviceForm["CAddress"],
                         Name: serviceForm["CName"],
                         Phone: serviceForm["CPhone"],
-                        Email: ""
+                        Email: "",
                     },
                 });
                 if (createCustomerResp.IsSuccess && createCustomerResp.DataResult) {
@@ -152,7 +204,6 @@ function deleteServiceForm(id) {
                 method: "delete",
             });
             if (resp.IsSuccess) {
-                
                 if (resp.DataResult) {
                     dispatch(removeServiceForm(resp.DataResult));
                     dispatch(setIsSucceed(true));
@@ -170,6 +221,6 @@ function deleteServiceForm(id) {
     };
 }
 
-export { fetchServiceForms, createServiceForm, updateServiceForm, deleteServiceForm };
+export { fetchServiceForms, fetchServiceForm, createServiceForm, updateServiceForm, deleteServiceForm };
 
 export default reducer;
