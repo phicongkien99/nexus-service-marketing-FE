@@ -46,7 +46,7 @@ function fetchImportReceipts(importReceipts) {
                 dispatch(setIsLoading(true));
             }
             const resp = await axiosClient({
-                url: "/importReceipt",
+                url: "/importreceipt",
                 method: "get",
             });
             if (resp.IsSuccess) {
@@ -70,13 +70,13 @@ function createImportReceipt(importReceipt) {
         try {
             dispatch(setIsLoading(true));
             const resp = await axiosClient({
-                url: "/importReceipt",
+                url: "/importreceipt",
                 method: "post",
                 data: importReceipt,
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addImportReceipt(resp.DataResult));dispatch(setIsSucceed(true));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Create importReceipt succeed!");
             } else {
@@ -96,13 +96,13 @@ function updateImportReceipt(importReceipt) {
         try {
             dispatch(setIsLoading(true));
             const resp = await axiosClient({
-                url: `/importReceipt/${importReceipt.Id}`,
+                url: `/importreceipt/${importReceipt.Id}`,
                 method: "put",
                 data: importReceipt,
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editImportReceipt(resp.DataResult));dispatch(setIsSucceed(true));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Update importReceipt succeed!");
             } else {
@@ -122,7 +122,7 @@ function deleteImportReceipt(id) {
         try {
             dispatch(setIsLoading(true));
             const resp = await axiosClient({
-                url: `/importReceipt/${id}`,
+                url: `/importreceipt/${id}`,
                 method: "delete",
             });
             if (resp.IsSuccess) {

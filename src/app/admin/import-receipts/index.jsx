@@ -4,7 +4,12 @@ import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import ImportReceiptModal from "./Modal";
-import { fetchImportReceipts, createImportReceipt, updateImportReceipt, deleteImportReceipt } from "./slice";
+import {
+    fetchImportReceipts,
+    createImportReceipt,
+    updateImportReceipt,
+    deleteImportReceipt,
+} from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 
 function ImportReceipts(props) {
@@ -12,14 +17,16 @@ function ImportReceipts(props) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentImportReceipt, setCurrentImportReceipt] = useState(null);
 
-    const { importReceipts, isLoading, isSucceed } = useSelector((state) => state.adminImportReceipt);
+    const { importReceipts, isLoading, isSucceed } = useSelector(
+        (state) => state.adminImportReceipt
+    );
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "ImportReceipts";
         dispatch(fetchImportReceipts(importReceipts));
     }, []);
-    
+
     useEffect(() => {
         if (isSucceed) {
             dispatch(fetchImportReceipts(importReceipts));
@@ -55,7 +62,7 @@ function ImportReceipts(props) {
         {
             title: "Action",
             key: "action",
-            
+
             render: (text, record) => (
                 <Space>
                     <Button
@@ -85,8 +92,16 @@ function ImportReceipts(props) {
     };
 
     const handleConfirm = (importReceipt) => {
+        importReceipt["TotalPrice"] = 0;
+        importReceipt.ListDataTemp.forEach(data => {
+            importReceipt["TotalPrice"] += parseInt(data["Price"]) * parseInt(data["Quantity"])
+        })
         if (currentImportReceipt) {
-            dispatch(updateImportReceipt(importReceipt));
+            const newListDataTemp = [...importReceipt["ListDataTemp"]];
+            newListDataTemp.forEach((data) => {
+                data["IdImportReceipt"] = importReceipt.Id;
+                data["IsDeleted"] = 0;
+            });
         } else {
             dispatch(createImportReceipt(importReceipt));
         }
@@ -129,7 +144,8 @@ function ImportReceipts(props) {
                         loading={isLoading}
                         dataSource={importReceipts}
                         columns={columns}
-                        onChange={handleChangeTable} rowKey="Id"
+                        onChange={handleChangeTable}
+                        rowKey="Id"
                     />
                 </Col>
             </Row>

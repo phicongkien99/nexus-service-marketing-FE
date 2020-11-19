@@ -87,19 +87,6 @@ function createServicePack(servicePack) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    const newObject = resp.DataResult;
-                    for (let i = servicePack.Fees.length - 1; i >= 0; i--) {
-                        const createObj = {
-                            ...servicePack.Fees[i],
-                            IdServicePack: newObject["Id"],
-                        };
-                        let createPackFeeResp = await axiosClient({
-                            url: "/servicepackfee",
-                            method: "post",
-                            data: createObj,
-                        });
-                    }
-                    dispatch(addServicePack(newObject));
                     dispatch(setIsSucceed(true));
                 }
                 toast.success("Create servicePack succeed!");
@@ -126,7 +113,6 @@ function updateServicePack(servicePack) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editServicePack(resp.DataResult));
                     dispatch(setIsSucceed(true));
                 }
                 toast.success("Update servicePack succeed!");
