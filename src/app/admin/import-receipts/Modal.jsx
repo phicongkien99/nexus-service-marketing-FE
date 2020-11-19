@@ -27,7 +27,7 @@ function ImportReceiptModal({ open, onConfirm, onCancel, importReceipt, isLoadin
     }, [open]);
 
     const initImportReceipt = importReceipt
-        ? { ...importReceipt, ListDataTemp: importReceipt["List"] }
+        ? { ...importReceipt, ListDataTemp: importReceipt["ListDetailImportReceipt"] }
         : {
               IdProvider: "",
               ListDataTemp: [],

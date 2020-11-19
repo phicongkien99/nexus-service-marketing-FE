@@ -5,7 +5,8 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     importReceipts: [],
-    isLoading: false, isSucceed: false,
+    isLoading: false,
+    isSucceed: false,
 };
 
 const importReceiptSlice = createSlice({
@@ -24,7 +25,9 @@ const importReceiptSlice = createSlice({
             );
         },
         removeImportReceipt: (state, action) => {
-            state.importReceipts = state.importReceipts.filter((importReceipt) => importReceipt.Id !== action.payload.Id);
+            state.importReceipts = state.importReceipts.filter(
+                (importReceipt) => importReceipt.Id !== action.payload.Id
+            );
         },
         setIsSucceed: (state, action) => {
             state.isSucceed = action.payload;
@@ -37,7 +40,14 @@ const importReceiptSlice = createSlice({
 
 const { actions, reducer } = importReceiptSlice;
 
-export const { setImportReceipts, addImportReceipt, editImportReceipt, removeImportReceipt, setIsLoading, setIsSucceed } = actions;
+export const {
+    setImportReceipts,
+    addImportReceipt,
+    editImportReceipt,
+    removeImportReceipt,
+    setIsLoading,
+    setIsSucceed,
+} = actions;
 
 function fetchImportReceipts(importReceipts) {
     return async (dispatch) => {
@@ -50,7 +60,8 @@ function fetchImportReceipts(importReceipts) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setImportReceipts(resp.ListDataResult));dispatch(setIsSucceed(false));
+                dispatch(setImportReceipts(resp.ListDataResult));
+                dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -72,7 +83,7 @@ function createImportReceipt(importReceipt) {
             const resp = await axiosClient({
                 url: "/importreceipt",
                 method: "post",
-                data: importReceipt,
+                data: { ...importReceipt, ImportDate: new Date() },
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
@@ -127,7 +138,8 @@ function deleteImportReceipt(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeImportReceipt(resp.DataResult));dispatch(setIsSucceed(true));
+                    dispatch(removeImportReceipt(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete importReceipt succeed!");
             } else {

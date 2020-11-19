@@ -35,24 +35,19 @@ function Contracts(props) {
             render: (text, record, index) => index + 1,
         },
         {
-            title: "Name",
-            dataIndex: "Name",
-            key: "Name",
+            title: "Contract ID",
+            dataIndex: "ContractId",
+            key: "ContractId",
         },
         {
-            title: "Address",
+            title: "Customer name",
+            key: "Name",
+            render: (text, record) => record["Customer"]["Name"]
+        },
+        {
+            title: "Location",
             dataIndex: "Address",
             key: "Address",
-        },
-        {
-            title: "Email",
-            dataIndex: "Email",
-            key: "Email",
-        },
-        {
-            title: "Phone number",
-            dataIndex: "Phone",
-            key: "Phone",
         },
         {
             title: "Action",

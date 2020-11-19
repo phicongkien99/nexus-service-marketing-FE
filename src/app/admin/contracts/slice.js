@@ -42,7 +42,7 @@ const contractSlice = createSlice({
 
 const { actions, reducer } = contractSlice;
 
-export const { setContracts, addContract, editContract, removeContract, setIsLoading, setIsSucceed } = actions;
+export const { setContracts, setDetailContract, addContract, editContract, removeContract, setIsLoading, setIsSucceed } = actions;
 
 function fetchContracts(contracts) {
     return async (dispatch) => {
@@ -71,17 +71,19 @@ function fetchContracts(contracts) {
     };
 }
 
-function fetchContract(ContractId) {
+function fetchContract(contractId) {
     return async (dispatch) => {
         try {
             dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/contract",
                 method: "get",
+                params: {
+                    contractId,
+                }
             });
-            if (resp.IsSuccess) {
-                dispatch(setContracts(resp.ListDataResult));
-                dispatch(setIsSucceed(false));
+            if (resp.IsSuccess && resp.DataResult) {
+                dispatch(setDetailContract(resp.DataResult));
             } else {
                 throw resp.ErrorMsg;
             }

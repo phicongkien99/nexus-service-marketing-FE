@@ -4,22 +4,16 @@ import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import ImportReceiptModal from "./Modal";
-import {
-    fetchImportReceipts,
-    createImportReceipt,
-    updateImportReceipt,
-    deleteImportReceipt,
-} from "./slice";
+import { fetchImportReceipts, createImportReceipt, updateImportReceipt, deleteImportReceipt } from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
+import moment from "moment";
 
 function ImportReceipts(props) {
     const [openModal, setOpenModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentImportReceipt, setCurrentImportReceipt] = useState(null);
 
-    const { importReceipts, isLoading, isSucceed } = useSelector(
-        (state) => state.adminImportReceipt
-    );
+    const { importReceipts, isLoading, isSucceed } = useSelector((state) => state.adminImportReceipt);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -40,24 +34,14 @@ function ImportReceipts(props) {
             render: (text, record, index) => index + 1,
         },
         {
-            title: "Name",
-            dataIndex: "Name",
-            key: "Name",
+            title: "Import date",
+            key: "ImportDate",
+            render: (text, record) => moment(record["ImportDate"]).format("YYYY-MM-DD"),
         },
         {
-            title: "Address",
-            dataIndex: "Address",
-            key: "Address",
-        },
-        {
-            title: "Status",
-            dataIndex: "IsClosed",
-            key: "IsClosed",
-            render: (isClosed) => (
-                <Tag color={isClosed ? "red" : "green"}>
-                    {isClosed ? "Deactivated" : "Activating"}
-                </Tag>
-            ),
+            title: "TotalPrice",
+            dataIndex: "TotalPrice",
+            key: "TotalPrice",
         },
         {
             title: "Action",
@@ -65,16 +49,7 @@ function ImportReceipts(props) {
 
             render: (text, record) => (
                 <Space>
-                    <Button
-                        className="btn--yellow"
-                        icon={<EditOutlined />}
-                        onClick={() => handleUpdate(record)}
-                    />
-                    <Button
-                        className="btn--red"
-                        icon={<DeleteOutlined />}
-                        onClick={() => handleDelete(record)}
-                    />
+                    <Button className="btn--yellow" icon={<EditOutlined />} onClick={() => handleUpdate(record)} />
                 </Space>
             ),
         },
@@ -93,9 +68,9 @@ function ImportReceipts(props) {
 
     const handleConfirm = (importReceipt) => {
         importReceipt["TotalPrice"] = 0;
-        importReceipt.ListDataTemp.forEach(data => {
-            importReceipt["TotalPrice"] += parseInt(data["Price"]) * parseInt(data["Quantity"])
-        })
+        importReceipt.ListDataTemp.forEach((data) => {
+            importReceipt["TotalPrice"] += parseInt(data["Price"]) * parseInt(data["Quantity"]);
+        });
         if (currentImportReceipt) {
             const newListDataTemp = [...importReceipt["ListDataTemp"]];
             newListDataTemp.forEach((data) => {
