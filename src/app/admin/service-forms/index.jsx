@@ -8,6 +8,7 @@ import { fetchServiceForms, fetchServiceForm, createServiceForm, updateServiceFo
 import { fetchServicePacks } from "../service-packs/slice";
 import { fetchServiceFormStatuses } from "../service-form-statuses/slice";
 import { fetchAreas } from "../areas/slice";
+import { createContract } from "../contracts/slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
 import ViewModal from "./ViewModal";
 import constants from "../../../utils/constants";
@@ -45,6 +46,9 @@ function ServiceForms(props) {
             IdServiceFormStatus: value,
         };
         dispatch(updateServiceForm(serviceForm));
+        if (value == constants.STATUSES.FINISHED) {
+            dispatch(createContract(serviceForm))
+        }
     };
 
     const columns = [

@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, PlusOutlined, EyeOutlined } from "@ant-design/icons";
 import ContractModal from "./Modal";
-import { fetchContracts, createContract, updateContract, deleteContract } from "./slice";
+import { fetchContracts, fetchContract, createContract, updateContract, deleteContract } from "./slice";
 import ConfirmModal from "../../../components/Modal/Confirm";
+import ViewModal from "./ViewModal";
 
 function Contracts(props) {
     const [openModal, setOpenModal] = useState(false);
+    const [openViewModal, setOpenViewModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentContract, setCurrentContract] = useState(null);
 
@@ -19,7 +21,7 @@ function Contracts(props) {
         document.title = "Contracts";
         dispatch(fetchContracts(contracts));
     }, []);
-    
+
     useEffect(() => {
         if (isSucceed) {
             dispatch(fetchContracts(contracts));
@@ -55,19 +57,10 @@ function Contracts(props) {
         {
             title: "Action",
             key: "action",
-            
+
             render: (text, record) => (
                 <Space>
-                    <Button
-                        className="btn--yellow"
-                        icon={<EditOutlined />}
-                        onClick={() => handleUpdate(record)}
-                    />
-                    <Button
-                        className="btn--red"
-                        icon={<DeleteOutlined />}
-                        onClick={() => handleDelete(record)}
-                    />
+                    <Button icon={<EyeOutlined />} type="primary" onClick={() => handleView(record["ContractId"])} />
                 </Space>
             ),
         },
@@ -94,6 +87,7 @@ function Contracts(props) {
 
     const handleCancel = () => {
         setOpenModal(false);
+        setOpenViewModal(false);
         setCurrentContract(null);
     };
 
@@ -112,6 +106,11 @@ function Contracts(props) {
         setOpenDeleteModal(false);
     };
 
+    const handleView = (ContractId) => {
+        setOpenViewModal(true);
+        dispatch(fetchContract(ContractId));
+    }
+
     return (
         <>
             <PageHeader title="Contracts" ghost={false} />
@@ -129,7 +128,8 @@ function Contracts(props) {
                         loading={isLoading}
                         dataSource={contracts}
                         columns={columns}
-                        onChange={handleChangeTable} rowKey="Id"
+                        onChange={handleChangeTable}
+                        rowKey="Id"
                     />
                 </Col>
             </Row>
@@ -147,12 +147,9 @@ function Contracts(props) {
                 onConfirm={handleConfirmDelete}
                 isLoading={isLoading}
             />
+            <ViewModal open={openViewModal} onCancel={handleCancel} />
         </>
     );
 }
-
-Contracts.propTypes = {};
-
-Contracts.defaultProps = {};
 
 export default Contracts;

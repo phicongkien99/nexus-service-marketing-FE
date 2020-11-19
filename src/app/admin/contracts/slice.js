@@ -5,7 +5,9 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     contracts: [],
-    isLoading: false, isSucceed: false,
+    isLoading: false,
+    isSucceed: false,
+    detailContract: {},
 };
 
 const contractSlice = createSlice({
@@ -32,6 +34,9 @@ const contractSlice = createSlice({
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
         },
+        setDetailContract: (state, action) => {
+            state.detailContract = action.payload;
+        },
     },
 });
 
@@ -50,7 +55,8 @@ function fetchContracts(contracts) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setContracts(resp.ListDataResult));dispatch(setIsSucceed(false));
+                dispatch(setContracts(resp.ListDataResult));
+                dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -65,9 +71,38 @@ function fetchContracts(contracts) {
     };
 }
 
-function createContract(contract) {
+function fetchContract(ContractId) {
     return async (dispatch) => {
         try {
+            dispatch(setIsLoading(true));
+            const resp = await axiosClient({
+                url: "/contract",
+                method: "get",
+            });
+            if (resp.IsSuccess) {
+                dispatch(setContracts(resp.ListDataResult));
+                dispatch(setIsSucceed(false));
+            } else {
+                throw resp.ErrorMsg;
+            }
+        } catch (e) {
+            console.error(e);
+            toast.error(e);
+        } finally {
+            dispatch(setIsLoading(false));
+        }
+    };
+}
+
+function createContract(serviceForm) {
+    return async (dispatch) => {
+        try {
+            const contract = {
+                Address: serviceForm["Address"],
+                ServiceFormId: serviceForm["ServiceFormId"],
+                IdArea: serviceForm["IdArea"],
+                IdCustomer: serviceForm["IdCustomer"],
+            };
             dispatch(setIsLoading(true));
             const resp = await axiosClient({
                 url: "/contract",
@@ -76,9 +111,23 @@ function createContract(contract) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addContract(resp.DataResult));dispatch(setIsSucceed(true));
+                    const connection = {
+                        IdConnectionStatus: 1,
+                        IdContract: resp.DataResult.Id,
+                        IdDevice: 1,
+                        IdServicePack: serviceForm["IdServicePack"],
+                        StartDate: resp.DataResult.CreatedAt,
+                    };
+                    const connectionResp = await axiosClient({
+                        url: "/connection",
+                        method: "post",
+                        data: connection,
+                    });
+                    if (connectionResp.IsSuccess && connectionResp.DataResult) {
+                        dispatch(setIsSucceed(true));
+                        toast.success("Create contract succeed!");
+                    }
                 }
-                toast.success("Create contract succeed!");
             } else {
                 throw resp.ErrorMsg;
             }
@@ -102,7 +151,8 @@ function updateContract(contract) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editContract(resp.DataResult));dispatch(setIsSucceed(true));
+                    dispatch(editContract(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Update contract succeed!");
             } else {
@@ -127,7 +177,8 @@ function deleteContract(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeContract(resp.DataResult));dispatch(setIsSucceed(true));
+                    dispatch(removeContract(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete contract succeed!");
             } else {
@@ -142,6 +193,6 @@ function deleteContract(id) {
     };
 }
 
-export { fetchContracts, createContract, updateContract, deleteContract };
+export { fetchContracts, fetchContract, createContract, updateContract, deleteContract };
 
 export default reducer;
