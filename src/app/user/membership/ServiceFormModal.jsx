@@ -83,11 +83,6 @@ function ViewModal({ open, onCancel }) {
                         </Row>
                     </Col>
                 </Row>
-                <Row>
-                    <Col span={24}>
-                        <h3>Status: {detailServiceForm["Status"]}</h3>
-                    </Col>
-                </Row>
             </Skeleton>
         </Modal>
     );

@@ -88,7 +88,7 @@ function fetchServiceForm(id) {
                 method: "get",
             });
             if (resp.IsSuccess && resp.DataResult) {
-                const detailServiceForm = {...resp.DataResult};
+                const detailServiceForm = { ...resp.DataResult };
                 const areaResp = await axiosClient({
                     url: `/area/${detailServiceForm["IdArea"]}`,
                     method: "get",
@@ -118,6 +118,64 @@ function fetchServiceForm(id) {
                 throw resp.ErrorMsg;
             }
         } catch (e) {
+            console.error(e);
+            toast.error(e);
+        } finally {
+            dispatch(setIsLoading(false));
+        }
+    };
+}
+
+function fetchServiceFormByServiceFormId(serviceFormId) {
+    return async (dispatch) => {
+        try {
+            dispatch(setIsLoading(true));
+            const resp = await axiosClient({
+                url: `/serviceform/`,
+                method: "get",
+                params: {
+                    serviceFormId,
+                },
+            });
+            if (resp.IsSuccess && resp.DataResult) {
+                const detailServiceForm = { ...resp.DataResult };
+                const areaResp = await axiosClient({
+                    url: `/area/${detailServiceForm["IdArea"]}`,
+                    method: "get",
+                });
+                if (areaResp.IsSuccess && areaResp.DataResult) {
+                    detailServiceForm["AreaName"] = areaResp.DataResult.Name;
+                }
+                const serviceFormStatusResp = await axiosClient({
+                    url: `/serviceformstatus/${detailServiceForm["IdServiceFormStatus"]}`,
+                    method: "get",
+                });
+                if (serviceFormStatusResp.IsSuccess && serviceFormStatusResp.DataResult) {
+                    detailServiceForm["Status"] = serviceFormStatusResp.DataResult.Name;
+                }
+                const servicePackResp = await axiosClient({
+                    url: `/servicepack/${detailServiceForm["IdServicePack"]}`,
+                    method: "get",
+                });
+                if (servicePackResp.IsSuccess && servicePackResp.DataResult) {
+                    detailServiceForm["ServicePackName"] = servicePackResp.DataResult.Name;
+                    detailServiceForm["ServicePackType"] = servicePackResp.DataResult.ConnectionTypeName;
+                }
+                const customerResp = await axiosClient({
+                    url: `/customer/${detailServiceForm["IdCustomer"]}`,
+                    method: "get",
+                });
+                if (customerResp.IsSuccess && customerResp.DataResult) {
+                    detailServiceForm["CustomerName"] = customerResp.DataResult.Name;
+                    detailServiceForm["CustomerPhone"] = customerResp.DataResult.Phone;
+                    detailServiceForm["CustomerAddress"] = customerResp.DataResult.Address;
+                }
+                dispatch(setDetailServiceForm(detailServiceForm));
+            } else {
+                throw resp.ErrorMsg;
+            }
+        } catch (e) {
+            toast.error(`Service form with ID ${serviceFormId} doesn't exist!`);
             console.error(e);
             toast.error(e);
         } finally {
@@ -221,6 +279,6 @@ function deleteServiceForm(id) {
     };
 }
 
-export { fetchServiceForms, fetchServiceForm, createServiceForm, updateServiceForm, deleteServiceForm };
+export { fetchServiceForms, fetchServiceForm, fetchServiceFormByServiceFormId, createServiceForm, updateServiceForm, deleteServiceForm };
 
 export default reducer;

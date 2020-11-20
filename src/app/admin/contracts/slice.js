@@ -138,6 +138,7 @@ function fetchContract(contractId) {
                 throw resp.ErrorMsg;
             }
         } catch (e) {
+            toast.error(`Contract with ID ${contractId} doesn't exist!`);
             console.error(e);
             toast.error(e);
         } finally {

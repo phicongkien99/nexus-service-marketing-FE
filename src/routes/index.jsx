@@ -63,7 +63,9 @@ function Routes() {
                 <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/attribute/contract-statuses" component={AdminContractStatuses} />
                 <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/attribute/service-form-statuses" component={AdminServiceFormStatuses} />
                 <AdminRoute roles={[constants.ROLES.ADMIN]} exact path="/admin/attribute/areas" component={AdminAreas} />
+
                 <Route exact path="/admin/login" component={Login} />
+                
                 <UserRoute exact path="/service-pack" component={ServicePack} />
                 <UserRoute exact path="/membership" component={Membership} />
                 <UserRoute exact path="/feedback" component={Feedback} />
