@@ -50,7 +50,8 @@ function fetchEmployees(employees) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setEmployees(resp.ListDataResult));dispatch(setIsSucceed(false));
+                dispatch(setEmployees(resp.ListDataResult));
+                dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }

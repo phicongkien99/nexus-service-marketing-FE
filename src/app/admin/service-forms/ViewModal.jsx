@@ -25,19 +25,21 @@ function ViewModal({ open, onCancel }) {
                         </Row>
                         <Row>
                             <Col span={24}>
-                                <table border="0">
-                                    <tr>
-                                        <td>Name:</td>
-                                        <td>{detailServiceForm["CustomerName"]}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phone:</td>
-                                        <td>{detailServiceForm["CustomerPhone"]}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Address:</td>
-                                        <td>{detailServiceForm["CustomerAddress"]}</td>
-                                    </tr>
+                                <table border="0" cellPadding="5" cellSpacing="5">
+                                    <tbody>
+                                        <tr>
+                                            <td>Name:</td>
+                                            <td>{detailServiceForm["CustomerName"]}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phone:</td>
+                                            <td>{detailServiceForm["CustomerPhone"]}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address:</td>
+                                            <td>{detailServiceForm["CustomerAddress"]}</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </Col>
                         </Row>
@@ -50,26 +52,32 @@ function ViewModal({ open, onCancel }) {
                         </Row>
                         <Row>
                             <Col span={24}>
-                                <table border="0">
-                                    <tr>
-                                        <td>Location:</td>
-                                        <td>{detailServiceForm["Address"]}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Area:</td>
-                                        <td>{detailServiceForm["AreaName"]}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Service:</td>
-                                        <td>
-                                            {detailServiceForm["ServicePackType"]}-
-                                            {detailServiceForm["ServicePackName"]}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Request at:</td>
-                                        <td>{moment(detailServiceForm["CreatedAt"]).format("YYYY-MM-DD HH:mm:ss")}</td>
-                                    </tr>
+                                <table border="0" cellPadding="5" cellSpacing="5">
+                                    <tbody>
+                                        <tr>
+                                            <td>Location:</td>
+                                            <td>{detailServiceForm["Address"]}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Area:</td>
+                                            <td>{detailServiceForm["AreaName"]}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Service:</td>
+                                            <td>
+                                                {detailServiceForm["ServicePackType"]}-
+                                                {detailServiceForm["ServicePackName"]}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Request at:</td>
+                                            <td>
+                                                {moment(detailServiceForm["CreatedAt"]).format(
+                                                    "YYYY-MM-DD HH:mm:ss"
+                                                )}
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </Col>
                         </Row>

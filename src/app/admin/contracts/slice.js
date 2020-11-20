@@ -26,7 +26,9 @@ const contractSlice = createSlice({
             );
         },
         removeContract: (state, action) => {
-            state.contracts = state.contracts.filter((contract) => contract.Id !== action.payload.Id);
+            state.contracts = state.contracts.filter(
+                (contract) => contract.Id !== action.payload.Id
+            );
         },
         setIsSucceed: (state, action) => {
             state.isSucceed = action.payload;
@@ -42,7 +44,15 @@ const contractSlice = createSlice({
 
 const { actions, reducer } = contractSlice;
 
-export const { setContracts, setDetailContract, addContract, editContract, removeContract, setIsLoading, setIsSucceed } = actions;
+export const {
+    setContracts,
+    setDetailContract,
+    addContract,
+    editContract,
+    removeContract,
+    setIsLoading,
+    setIsSucceed,
+} = actions;
 
 function fetchContracts(contracts) {
     return async (dispatch) => {
@@ -80,10 +90,50 @@ function fetchContract(contractId) {
                 method: "get",
                 params: {
                     contractId,
-                }
+                },
             });
             if (resp.IsSuccess && resp.DataResult) {
-                dispatch(setDetailContract(resp.DataResult));
+                const detailContract = { ...resp.DataResult };
+                const areaResp = await axiosClient({
+                    url: `/area/${detailContract["IdArea"]}`,
+                    method: "get",
+                });
+                if (areaResp.IsSuccess && areaResp.DataResult) {
+                    detailContract["AreaName"] = areaResp.DataResult.Name;
+                }
+                const connectionResp = await axiosClient({
+                    url: `/connection`,
+                    method: "get",
+                    params: {
+                        idContract: detailContract["Id"],
+                    },
+                });
+                if (connectionResp.IsSuccess && connectionResp.DataResult) {
+                    const connectionObj = { ...connectionResp.DataResult };
+                    const connectionStatusResp = await axiosClient({
+                        url: `/connectionstatus/${connectionObj["IdConnectionStatus"]}`,
+                        method: "get",
+                    });
+                    if (connectionStatusResp.IsSuccess && connectionStatusResp.DataResult) {
+                        connectionObj["status"] = connectionStatusResp.DataResult.Name;
+                    }
+                    const deviceResp = await axiosClient({
+                        url: `/device/${connectionObj["IdDevice"]}`,
+                        method: "get",
+                    });
+                    if (deviceResp.IsSuccess && deviceResp.DataResult) {
+                        connectionObj["device"] = deviceResp.DataResult.Name;
+                    }
+                    const servicePackResp = await axiosClient({
+                        url: `/servicepack/${connectionObj["IdServicePack"]}`,
+                        method: "get",
+                    });
+                    if (servicePackResp.IsSuccess && servicePackResp.DataResult) {
+                        connectionObj["servicePack"] = servicePackResp.DataResult.Name;
+                    }
+                    detailContract["Connection"] = connectionObj;
+                }
+                dispatch(setDetailContract(detailContract));
             } else {
                 throw resp.ErrorMsg;
             }

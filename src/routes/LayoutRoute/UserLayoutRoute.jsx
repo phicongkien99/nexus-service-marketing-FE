@@ -13,7 +13,7 @@ function UserLayoutRoute({ component: Component, ...rest }) {
         <Route
             {...rest}
             render={(matchProps) => (
-                <UserLayout>
+                <UserLayout history={matchProps.history}>
                     <Component {...matchProps} />
                 </UserLayout>
             )}

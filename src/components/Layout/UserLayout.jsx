@@ -8,7 +8,7 @@ function UserLayout(props) {
     return (
         <Layout className="wrapper">
             <Layout>
-                <UserHeader />
+                <UserHeader history={props.history} />
                 <Layout.Content className="wrapper-content">
                     <div className="main-content white-background content-padding">{props.children}</div>
                 </Layout.Content>

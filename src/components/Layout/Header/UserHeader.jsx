@@ -4,14 +4,12 @@ import { Layout, Menu, Skeleton } from "antd";
 import "./Header.scss";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchServicePacks } from "../../../app/slice/service-pack";
-import { fetchConnectionTypes } from "../../../app/slice/connection-type";
+import { fetchServicePacks } from "../../../app/admin/service-packs/slice";
+import { fetchConnectionTypes } from "../../../app/admin/connection-types/slice";
 
 function UserHeader(props) {
-    const { servicePacks, isLoading: isLoadingSP } = useSelector((state) => state.userServicePack);
-    const { connectionTypes, isLoading: isLoadingCT } = useSelector(
-        (state) => state.userConnectionType
-    );
+    const { servicePacks } = useSelector((state) => state.adminServicePack);
+    const { connectionTypes } = useSelector((state) => state.adminConnectionType);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,6 +19,10 @@ function UserHeader(props) {
 
     const textStyle = {
         fontSize: "18px",
+    };
+
+    const handleSelectPack = (sp) => {
+        props.history.push(`/register?pack=${sp["Name"].replace(" ", "-")}.${sp["Id"]}`);
     };
 
     return (
@@ -46,8 +48,13 @@ function UserHeader(props) {
                                 {servicePacks.length > 0 &&
                                     servicePacks
                                         .filter((sp) => sp["IdConnectionType"] === type["Id"])
-                                        .map((pack) => (
-                                            <Menu.Item key={pack["Id"]}>{pack["Name"]}</Menu.Item>
+                                        .map((sp) => (
+                                            <Menu.Item
+                                                key={sp["Id"]}
+                                                onClick={() => handleSelectPack(sp)}
+                                            >
+                                                {sp["Name"]}
+                                            </Menu.Item>
                                         ))}
                             </Menu.SubMenu>
                         ))}

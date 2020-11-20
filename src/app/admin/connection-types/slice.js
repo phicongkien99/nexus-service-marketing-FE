@@ -5,7 +5,8 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const defaultState = {
     connectionTypes: [],
-    isLoading: false, isSucceed: false,
+    isLoading: false,
+    isSucceed: false,
 };
 
 const connectionTypeSlice = createSlice({
@@ -24,7 +25,9 @@ const connectionTypeSlice = createSlice({
             );
         },
         removeConnectionType: (state, action) => {
-            state.connectionTypes = state.connectionTypes.filter((connectionType) => connectionType.Id !== action.payload.Id);
+            state.connectionTypes = state.connectionTypes.filter(
+                (connectionType) => connectionType.Id !== action.payload.Id
+            );
         },
         setIsSucceed: (state, action) => {
             state.isSucceed = action.payload;
@@ -37,7 +40,14 @@ const connectionTypeSlice = createSlice({
 
 const { actions, reducer } = connectionTypeSlice;
 
-export const { setConnectionTypes, addConnectionType, editConnectionType, removeConnectionType, setIsLoading, setIsSucceed } = actions;
+export const {
+    setConnectionTypes,
+    addConnectionType,
+    editConnectionType,
+    removeConnectionType,
+    setIsLoading,
+    setIsSucceed,
+} = actions;
 
 function fetchConnectionTypes(connectionTypes) {
     return async (dispatch) => {
@@ -50,7 +60,8 @@ function fetchConnectionTypes(connectionTypes) {
                 method: "get",
             });
             if (resp.IsSuccess) {
-                dispatch(setConnectionTypes(resp.ListDataResult));dispatch(setIsSucceed(false));
+                dispatch(setConnectionTypes(resp.ListDataResult));
+                dispatch(setIsSucceed(false));
             } else {
                 throw resp.ErrorMsg;
             }
@@ -76,7 +87,8 @@ function createConnectionType(connectionType) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(addConnectionType(resp.DataResult));dispatch(setIsSucceed(true));
+                    dispatch(addConnectionType(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Create connection type succeed!");
             } else {
@@ -102,7 +114,8 @@ function updateConnectionType(connectionType) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(editConnectionType(resp.DataResult));dispatch(setIsSucceed(true));
+                    dispatch(editConnectionType(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Update connection type succeed!");
             } else {
@@ -127,7 +140,8 @@ function deleteConnectionType(id) {
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeConnectionType(resp.DataResult));dispatch(setIsSucceed(true));
+                    dispatch(removeConnectionType(resp.DataResult));
+                    dispatch(setIsSucceed(true));
                 }
                 toast.success("Delete connection type succeed!");
             } else {
