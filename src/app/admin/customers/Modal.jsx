@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Modal, Form, Input } from "antd";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import PicturesWall from "./PicturesWall";
 
 function CustomerModal({ open, onConfirm, onCancel, customer, isLoading }) {
     const [form] = Form.useForm();
@@ -73,6 +74,7 @@ function CustomerModal({ open, onConfirm, onCancel, customer, isLoading }) {
                 >
                     <Input />
                 </Form.Item>
+                <PicturesWall />
             </Form>
         </Modal>
     );

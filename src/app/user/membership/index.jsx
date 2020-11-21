@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Input, Image, Button, Select } from "antd";
+import { Row, Col, Input, Image, Button, Select, Space, Table } from "antd";
 import { Link } from "react-router-dom";
-import { BookTwoTone } from "@ant-design/icons";
+import { BookTwoTone, EyeOutlined } from "@ant-design/icons";
 import {
     fetchServiceForms,
     fetchServiceFormByServiceFormId,
@@ -67,8 +67,12 @@ function Membership(props) {
 
     const option = searchOptions.find((data) => data["value"] == selectedOption);
 
-    const onSearch = async (value) => {
-        switch (selectedOption) {
+    const onSearch = (inputType) => async (value) => {
+        let _selectedOption = selectedOption;
+        if (inputType) {
+            _selectedOption = inputType;
+        }
+        switch (_selectedOption) {
             case "phone":
                 const findCustomerResp = await axiosClient({
                     url: "/customer",
@@ -79,14 +83,16 @@ function Membership(props) {
                 });
                 let IdCustomer = null;
                 if (findCustomerResp.IsSuccess && findCustomerResp.DataResult) {
-                    IdCustomer = findCustomerResp.DataResult;
+                    IdCustomer = findCustomerResp.DataResult.Id;
                 }
                 if (!IdCustomer) {
                     toast.error("You don't have any contract or submitted service form");
                 } else {
                     const filteredCs = contracts.filter((data) => data.IdCustomer == IdCustomer);
                     setContractList(filteredCs);
-                    const filteredSfs = serviceForms.filter((data) => data.IdCustomer == IdCustomer);
+                    const filteredSfs = serviceForms.filter(
+                        (data) => data.IdCustomer == IdCustomer
+                    );
                     setServiceFormList(filteredSfs);
                 }
                 break;
@@ -112,6 +118,60 @@ function Membership(props) {
         setDetailServiceForm({});
     };
 
+    const contractColumns = [
+        {
+            title: "#",
+            key: "index",
+            render: (text, record, index) => index + 1,
+        },
+        {
+            title: "Contract ID",
+            dataIndex: "ContractId",
+            key: "ContractId",
+        },
+        {
+            title: "Action",
+            key: "action",
+
+            render: (text, record) => (
+                <Space>
+                    <Button
+                        icon={<EyeOutlined />}
+                        type="primary"
+                        onClick={async () => await onSearch("contract")(record["ContractId"])}
+                    />
+                </Space>
+            ),
+        },
+    ];
+
+    const serviceFormColumns = [
+        {
+            title: "#",
+            key: "index",
+            render: (text, record, index) => index + 1,
+        },
+        {
+            title: "ID",
+            dataIndex: "ServiceFormId",
+            key: "ServiceFormId",
+        },
+        {
+            title: "Action",
+            key: "action",
+
+            render: (text, record) => (
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={async () => await onSearch("serviceForm")(record["ServiceFormId"])}
+                        icon={<EyeOutlined />}
+                    />
+                </Space>
+            ),
+        },
+    ];
+
     return (
         <>
             <Row className="mt-100">
@@ -125,7 +185,11 @@ function Membership(props) {
                     <Row justify="center" className="mt-20">
                         <Col span={16} offset={4}>
                             <Input.Group>
-                                <Select onSelect={handleSelectOption} size="large" defaultValue={"phone"}>
+                                <Select
+                                    onSelect={handleSelectOption}
+                                    size="large"
+                                    defaultValue={"phone"}
+                                >
                                     {searchOptions.map((option, idx) => (
                                         <Select.Option value={option["value"]} key={idx}>
                                             {option["name"]}
@@ -138,7 +202,7 @@ function Membership(props) {
                                     allowClear
                                     enterButton="Search"
                                     size="large"
-                                    onSearch={onSearch}
+                                    onSearch={onSearch("")}
                                 />
                             </Input.Group>
                         </Col>
@@ -148,6 +212,30 @@ function Membership(props) {
                             <hr />
                         </Col>
                     </Row>
+                    {selectedOption == "phone" && (
+                        <Row className="mt-15" gutter={15}>
+                            {contractList.length > 0 && (
+                                <Col span={12}>
+                                    <h4>Contract</h4>
+                                    <Table
+                                        dataSource={contractList}
+                                        columns={contractColumns}
+                                        rowKey="Id"
+                                    />
+                                </Col>
+                            )}
+                            {serviceFormList.length > 0 && (
+                                <Col span={12}>
+                                    <h4>Service form</h4>
+                                    <Table
+                                        dataSource={serviceFormList}
+                                        columns={serviceFormColumns}
+                                        rowKey="Id"
+                                    />
+                                </Col>
+                            )}
+                        </Row>
+                    )}
                     <Row justify="center" className="mt-20">
                         <Col span={8}>
                             <Row>
