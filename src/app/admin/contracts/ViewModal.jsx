@@ -89,30 +89,46 @@ function ViewModal({ open, onCancel }) {
                                             <tbody>
                                                 <tr>
                                                     <td>Status:</td>
-                                                    <td>
-                                                        {detailContract["Connection"]["status"]}
-                                                    </td>
+                                                    <td>{detailContract["Connection"]["status"]}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Device:</td>
-                                                    <td>
-                                                        {detailContract["Connection"]["device"]}
-                                                    </td>
+                                                    <td>{detailContract["Connection"]["device"]}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Service pack:</td>
-                                                    <td>
-                                                        {
-                                                            detailContract["Connection"][
-                                                                "servicePack"
-                                                            ]
-                                                        }
-                                                    </td>
+                                                    <td>{detailContract["Connection"]["servicePack"]}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </Col>
                                 </Row>
+                            </Col>
+                        </Row>
+                        <Row className="mt-15">
+                            <Col span={24}>
+                                <h3>Unsettled bills</h3>
+                                <table cellPadding="15" cellSpacing="15">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Created date</th>
+                                            <th>Total price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {detailContract["ListPayments"]
+                                            .filter((payment) => !payment["PayDate"])
+                                            .reverse()
+                                            .map((payment, idx) => (
+                                                <tr key={payment["Id"]}>
+                                                    <td>{idx + 1}</td>
+                                                    <td>{moment(payment["CreatedAt"]).format("YYYY-MM-DD HH:mm")}</td>
+                                                    <td>{payment["TotalPrice"]}</td>
+                                                </tr>
+                                            ))}
+                                    </tbody>
+                                </table>
                             </Col>
                         </Row>
                     </>

@@ -220,20 +220,20 @@ function updateContract(contract) {
     };
 }
 
-function deleteContract(id) {
+function createPayment(payment) {
     return async (dispatch) => {
         try {
             dispatch(setIsLoading(true));
             const resp = await axiosClient({
-                url: `/contract/${id}`,
-                method: "delete",
+                url: `/payment`,
+                method: "post",
+                data: payment,
             });
             if (resp.IsSuccess) {
                 if (resp.DataResult) {
-                    dispatch(removeContract(resp.DataResult));
                     dispatch(setIsSucceed(true));
                 }
-                toast.success("Delete contract succeed!");
+                toast.success("Create payment succeed!");
             } else {
                 throw resp.ErrorMsg;
             }
@@ -246,6 +246,36 @@ function deleteContract(id) {
     };
 }
 
-export { fetchContracts, fetchContract, createContract, updateContract, deleteContract };
+function updatePayment(payment) {
+    return async (dispatch) => {
+        try {
+            const newPayment = {
+                ...payment,
+                PayDate: new Date(),
+            }
+            dispatch(setIsLoading(true));
+            const resp = await axiosClient({
+                url: `/payment/${payment["Id"]}`,
+                method: "put",
+                data: newPayment,
+            });
+            if (resp.IsSuccess) {
+                if (resp.DataResult) {
+                    dispatch(setIsSucceed(true));
+                }
+                toast.success("Update payment succeed!");
+            } else {
+                throw resp.ErrorMsg;
+            }
+        } catch (e) {
+            console.error(e);
+            toast.error(e);
+        } finally {
+            dispatch(setIsLoading(false));
+        }
+    };
+}
+
+export { fetchContracts, fetchContract, createContract, updateContract, createPayment, updatePayment };
 
 export default reducer;

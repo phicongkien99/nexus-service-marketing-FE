@@ -2,24 +2,28 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Col, PageHeader, Row, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { EditOutlined, DeleteOutlined, PlusOutlined, EyeOutlined } from "@ant-design/icons";
+import { PlusOutlined, EyeOutlined, FileOutlined } from "@ant-design/icons";
 import ContractModal from "./Modal";
-import { fetchContracts, fetchContract, createContract, updateContract, deleteContract } from "./slice";
-import ConfirmModal from "../../../components/Modal/Confirm";
+import { fetchContracts, fetchContract, createContract, updateContract, createPayment, updatePayment } from "./slice";
+import { fetchFees } from "../fees/slice";
 import ViewModal from "./ViewModal";
+import PaymentModal from "./PaymentModal";
 
 function Contracts(props) {
     const [openModal, setOpenModal] = useState(false);
     const [openViewModal, setOpenViewModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [currentContract, setCurrentContract] = useState(null);
+    const [openPaymentModal, setOpenPaymentModal] = useState(false);
 
     const { contracts, isLoading, isSucceed } = useSelector((state) => state.adminContract);
+    const { fees } = useSelector(state => state.adminFee);
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Contracts";
         dispatch(fetchContracts(contracts));
+        dispatch(fetchFees(fees));
     }, []);
 
     useEffect(() => {
@@ -27,6 +31,15 @@ function Contracts(props) {
             dispatch(fetchContracts(contracts));
         }
     }, [isSucceed]);
+
+    useEffect(() => {
+        if (contracts.length > 0 && currentContract) {
+            const selectedContract = contracts.find(c => c["Id"] == currentContract["Id"]);
+            if (selectedContract) {
+                setCurrentContract(selectedContract);
+            }
+        }
+    }, [contracts]);
 
     const columns = [
         {
@@ -42,7 +55,7 @@ function Contracts(props) {
         {
             title: "Customer name",
             key: "Name",
-            render: (text, record) => record["Customer"]["Name"]
+            render: (text, record) => record["Customer"]["Name"],
         },
         {
             title: "Location",
@@ -56,6 +69,7 @@ function Contracts(props) {
             render: (text, record) => (
                 <Space>
                     <Button icon={<EyeOutlined />} type="primary" onClick={() => handleView(record["ContractId"])} />
+                    <Button icon={<FileOutlined />} type="secondary" onClick={() => handleOpenPaymentModal(record)} />
                 </Space>
             ),
         },
@@ -63,12 +77,12 @@ function Contracts(props) {
 
     const handleChangeTable = (pagination, filters, sorter) => {};
 
-    const handleCreate = () => {
-        setOpenModal(true);
+    const handleOpenPaymentModal = (contract) => {
+        setCurrentContract(contract);
+        setOpenPaymentModal(true);
     };
 
-    const handleUpdate = (contract) => {
-        setCurrentContract(contract);
+    const handleCreate = () => {
         setOpenModal(true);
     };
 
@@ -83,27 +97,21 @@ function Contracts(props) {
     const handleCancel = () => {
         setOpenModal(false);
         setOpenViewModal(false);
+        setOpenPaymentModal(false);
         setCurrentContract(null);
-    };
-
-    const handleDelete = (contract) => {
-        setCurrentContract(contract);
-        setOpenDeleteModal(true);
-    };
-
-    const handleCancelDelete = () => {
-        setCurrentContract(null);
-        setOpenDeleteModal(false);
-    };
-
-    const handleConfirmDelete = () => {
-        dispatch(deleteContract(currentContract["Id"]));
-        setOpenDeleteModal(false);
     };
 
     const handleView = (ContractId) => {
         setOpenViewModal(true);
         dispatch(fetchContract(ContractId));
+    };
+
+    const handleCreatePayment = (payment) => {
+        dispatch(createPayment(payment));
+    }
+
+    const handlePayBill = (payment) => {
+        dispatch(updatePayment(payment));
     }
 
     return (
@@ -135,14 +143,15 @@ function Contracts(props) {
                 contract={currentContract}
                 isLoading={isLoading}
             />
-            <ConfirmModal
-                open={openDeleteModal}
-                message="Are you sure to delete this contract?"
-                onCancel={handleCancelDelete}
-                onConfirm={handleConfirmDelete}
-                isLoading={isLoading}
-            />
             <ViewModal open={openViewModal} onCancel={handleCancel} />
+            <PaymentModal
+                contract={currentContract}
+                key={currentContract ? currentContract["Id"] : new Date()}
+                open={openPaymentModal}
+                onCancel={handleCancel}
+                onCreate={handleCreatePayment}
+                onPay={handlePayBill}
+            />
         </>
     );
 }
